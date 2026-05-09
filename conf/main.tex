@@ -177,16 +177,11 @@ Antes de aplicar VLSM, es necesario determinar la cantidad exacta de hosts reque
 \hline
 PB-A01 & Access Point con contraseña (AP\_C\_PB) & Recepción \\
 PB-A02 & Access Point libre (AP\_A\_PB) & Recepción \\
-PB-A03a & Laptop 1 & Sala de Conferencias \\
-PB-A03b & Laptop 2 & Sala de Conferencias \\
-PB-A03c & Laptop 3 & Sala de Conferencias \\
-PB-A03d & Laptop 4 & Sala de Conferencias \\
+PB-A03 & Laptop 1 & Sala de Conferencias \\
 PB-A04 & Impresora de red & Recepción \\
 PB-A05 & PC 1 & Recepción \\
-PB-A06 & PC 2 & Recepción \\
-PB-CAM & Cámara de seguridad IP & General \\
 \hline
-\multicolumn{2}{|r|}{\textbf{Total de hosts fijos:}} & \textbf{10} \\
+\multicolumn{2}{|r|}{\textbf{Total de hosts fijos:}} & \textbf{5} \\
 \hline
 \end{tabular}
 \end{table}
@@ -206,8 +201,9 @@ SRV-DHCP & Servidor DHCP & Asignación dinámica de IPs (PB) \\
 SRV-WEB & Servidor Web & Sitio corporativo con logotipo \\
 SRV-DNS & Servidor DNS & Resolución de nombres de dominio \\
 SRV-SYSLOG & Servidor Syslog & Monitoreo del estado de la red \\
+SW-SRV & Switch Servidores (SW\_SRV) & Conecta servidores a R\_PB \\
 \hline
-\multicolumn{2}{|r|}{\textbf{Total de hosts:}} & \textbf{4} \\
+\multicolumn{2}{|r|}{\textbf{Total de hosts:}} & \textbf{5} \\
 \hline
 \end{tabular}
 \end{table}
@@ -225,18 +221,16 @@ SRV-SYSLOG & Servidor Syslog & Monitoreo del estado de la red \\
 \hline
 P1-A02 & PC Administrador de Red & Administración de Red \\
 P1-A03 & PC Gerente 1 & Gerencia \\
-P1-A04 & PC Gerente 2 & Gerencia \\
+P1-A04 & Impresora gerente & Gerencia \\
 P1-A05 & PC Trabajo 1 & Área de Trabajo \\
 P1-A06 & Laptop VideoConf 1 & Sala de Videoconferencias \\
 P1-A07 & Laptop VideoConf 2 & Sala de Videoconferencias \\
 P1-A08 & Access Point con contraseña (AP\_C\_P1) & Administración de Red \\
 P1-A09 & Impresora de red & General \\
 P1-A10 & PC Administración 1 & Administración \\
-P1-A11 & PC Administración 2 & Administración \\
-P1-A12 & PC Trabajo 2 & Área de Trabajo \\
-P1-CAM & Cámara de seguridad IP & General \\
+P1-A11 & PC Trabajo 2 & Área de Trabajo \\
 \hline
-\multicolumn{2}{|r|}{\textbf{Total de hosts:}} & \textbf{12} \\
+\multicolumn{2}{|r|}{\textbf{Total de hosts:}} & \textbf{10} \\
 \hline
 \end{tabular}
 \end{table}
@@ -257,10 +251,10 @@ P2-A02 & PC Desarrollador 1 & Equipo de Desarrollo \\
 P2-A03 & PC Desarrollador 2 & Equipo de Desarrollo \\
 P2-A04 & PC Desarrollador 3 & Equipo de Desarrollo \\
 P2-A05 & PC Desarrollador 4 & Equipo de Desarrollo \\
-P2-A06 & PC VideoConf 1 & Sala de Videoconferencias \\
-P2-A07 & PC VideoConf 2 & Sala de Videoconferencias \\
-P2-A08 & Impresora de red & General \\
-P2-CAM & Cámara de seguridad IP & General \\
+P2-A06 & Impresora Equipo Desarrollo & Equipo de Desarrollo \\
+P2-A07 & PC VideoConf 1 & Sala de Videoconferencias \\
+P2-A08 & PC VideoConf 2 & Sala de Videoconferencias \\
+P2-A09 & Impresora de red & General \\
 \hline
 \multicolumn{2}{|r|}{\textbf{Total de hosts:}} & \textbf{9} \\
 \hline
@@ -270,6 +264,7 @@ P2-CAM & Cámara de seguridad IP & General \\
 \textbf{Justificación:} El segundo piso está dedicado al equipo de desarrollo de software. Se asigna un /27 (30 útiles) para permitir crecimiento del equipo de desarrollo (21 direcciones libres).
 
 \subsection{Tercer Piso (P3) -- Red LAN}
+
 
 \begin{table}[H]
 \centering
@@ -281,7 +276,7 @@ P2-CAM & Cámara de seguridad IP & General \\
 P3-AP & Access Point con contraseña (AP\_C\_P3) & Esparcimiento \\
 P3-L01 & Laptop 1 & Área de Esparcimiento \\
 P3-L02 & Laptop 2 & Área de Esparcimiento \\
-P3-CAM & Cámara de seguridad IP & General \\
+P3-L03 & Laptop 3 & Área de Esparcimiento \\
 P3-RES & Reserva & Crecimiento futuro \\
 \hline
 \multicolumn{2}{|r|}{\textbf{Total de hosts:}} & \textbf{5} \\
@@ -348,13 +343,13 @@ El procedimiento VLSM consiste en:
 \hline
 \textbf{\#} & \textbf{Subred} & \textbf{Hosts} & \textbf{Prefijo} & \textbf{Máscara} & \textbf{Dir. de Red} & \textbf{Rango Útil} & \textbf{Broadcast} \\
 \hline
-1 & PB LAN & 10 & /26 & 255.255.255.192 & 10.0.0.0 & .1 -- .62 & 10.0.0.63 \\
+1 & PB LAN & 5 & /26 & 255.255.255.192 & 10.0.0.0 & .1 -- .62 & 10.0.0.63 \\
 \hline
-2 & P1 LAN & 12 & /27 & 255.255.255.224 & 10.0.0.64 & .65 -- .94 & 10.0.0.95 \\
+2 & P1 LAN & 10 & /27 & 255.255.255.224 & 10.0.0.64 & .65 -- .94 & 10.0.0.95 \\
 \hline
 3 & P2 LAN & 9 & /27 & 255.255.255.224 & 10.0.0.96 & .97 -- .126 & 10.0.0.127 \\
 \hline
-4 & Servidores & 4 & /28 & 255.255.255.240 & 10.0.0.128 & .129 -- .142 & 10.0.0.143 \\
+4 & Servidores & 5 & /28 & 255.255.255.240 & 10.0.0.128 & .129 -- .142 & 10.0.0.143 \\
 \hline
 5 & P3 LAN & 5 & /28 & 255.255.255.240 & 10.0.0.144 & .145 -- .158 & 10.0.0.159 \\
 \hline
@@ -392,9 +387,9 @@ El procedimiento VLSM consiste en:
 \hline
 \textbf{Router} & \textbf{Interfaz} & \textbf{IP} & \textbf{Máscara} & \textbf{Descripción} \\
 \hline
-\multirow{5}{*}{R\_PB} & GigabitEthernet0/0 & 10.0.0.1 & 255.255.255.192 & Gateway PB LAN \\
+\multirow{5}{*}{R\_PB} & FastEthernet0/0 & 10.0.0.1 & 255.255.255.192 & Gateway PB LAN \\
 \cline{2-5}
- & GigabitEthernet0/1 & 10.0.0.129 & 255.255.255.240 & Gateway Servidores \\
+ & FastEthernet0/1 & 10.0.0.129 & 255.255.255.240 & Gateway Servidores \\
 \cline{2-5}
  & Serial0/0/0 & 10.0.0.161 & 255.255.255.252 & WAN hacia P1 \\
 \cline{2-5}
@@ -427,20 +422,15 @@ El procedimiento VLSM consiste en:
 \hline
 \textbf{Dispositivo} & \textbf{IP} & \textbf{Máscara} & \textbf{Gateway} & \textbf{Área} \\
 \hline
-R\_PB (Gig0/0) & 10.0.0.1 & 255.255.255.192 & -- & Gateway \\
+R\_PB (Fa0/0) & 10.0.0.1 & 255.255.255.192 & -- & Gateway \\
 AP\_C\_PB (PB-A01) & 10.0.0.2 & 255.255.255.192 & 10.0.0.1 & Recepción \\
 AP\_A\_PB (PB-A02) & 10.0.0.3 & 255.255.255.192 & 10.0.0.1 & Recepción \\
-Laptop 1 (PB-A03a) & 10.0.0.4 & 255.255.255.192 & 10.0.0.1 & Sala Conf. \\
-Laptop 2 (PB-A03b) & 10.0.0.5 & 255.255.255.192 & 10.0.0.1 & Sala Conf. \\
-Laptop 3 (PB-A03c) & 10.0.0.6 & 255.255.255.192 & 10.0.0.1 & Sala Conf. \\
-Laptop 4 (PB-A03d) & 10.0.0.7 & 255.255.255.192 & 10.0.0.1 & Sala Conf. \\
-Impresora (PB-A04) & 10.0.0.8 & 255.255.255.192 & 10.0.0.1 & Recepción \\
-PC 1 (PB-A05) & 10.0.0.9 & 255.255.255.192 & 10.0.0.1 & Recepción \\
-PC 2 (PB-A06) & 10.0.0.10 & 255.255.255.192 & 10.0.0.1 & Recepción \\
-Cámara IP & 10.0.0.11 & 255.255.255.192 & 10.0.0.1 & General \\
-SW\_PB (VLAN 1) & 10.0.0.12 & 255.255.255.192 & 10.0.0.1 & Administración \\
+Laptop 1 (PB-A03) & 10.0.0.4 & 255.255.255.192 & 10.0.0.1 & Sala Conf. \\
+Impresora (PB-A04) & 10.0.0.5 & 255.255.255.192 & 10.0.0.1 & Recepción \\
+PC 1 (PB-A05) & 10.0.0.6 & 255.255.255.192 & 10.0.0.1 & Recepción \\
+SW\_PB (VLAN 1) & 10.0.0.7 & 255.255.255.192 & 10.0.0.1 & Administración \\
 \hline
-\multicolumn{5}{|l|}{\textit{IPs .13 a .62 disponibles para visitantes vía AP\_A\_PB y crecimiento}} \\
+\multicolumn{5}{|l|}{\textit{IPs .8 a .62 disponibles para visitantes vía AP\_A\_PB y crecimiento}} \\
 \hline
 \end{tabular}
 \end{table}
@@ -455,11 +445,14 @@ SW\_PB (VLAN 1) & 10.0.0.12 & 255.255.255.192 & 10.0.0.1 & Administración \\
 \hline
 \textbf{Dispositivo} & \textbf{IP} & \textbf{Máscara} & \textbf{Gateway} & \textbf{Función} \\
 \hline
-R\_PB (Gig0/1) & 10.0.0.129 & 255.255.255.240 & -- & Gateway \\
+R\_PB (Fa0/1) & 10.0.0.129 & 255.255.255.240 & -- & Gateway \\
 Servidor DHCP & 10.0.0.130 & 255.255.255.240 & 10.0.0.129 & DHCP \\
 Servidor Web & 10.0.0.131 & 255.255.255.240 & 10.0.0.129 & Web \\
 Servidor DNS & 10.0.0.132 & 255.255.255.240 & 10.0.0.129 & DNS \\
 Servidor Syslog & 10.0.0.133 & 255.255.255.240 & 10.0.0.129 & Syslog \\
+SW\_SRV (VLAN 1) & 10.0.0.134 & 255.255.255.240 & 10.0.0.129 & Adm. Red Serv. \\
+\hline
+\multicolumn{5}{|l|}{\textit{IPs .135 a .142 disponibles de reserva}} \\
 \hline
 \end{tabular}
 \end{table}
@@ -477,17 +470,15 @@ Servidor Syslog & 10.0.0.133 & 255.255.255.240 & 10.0.0.129 & Syslog \\
 R\_P1 (Gig0/0) & 10.0.0.65 & 255.255.255.224 & -- & Gateway \\
 PC Admin Red (P1-A02) & 10.0.0.66 & 255.255.255.224 & 10.0.0.65 & Admin. Red \\
 PC Gerente 1 (P1-A03) & 10.0.0.67 & 255.255.255.224 & 10.0.0.65 & Gerencia \\
-PC Gerente 2 (P1-A04) & 10.0.0.68 & 255.255.255.224 & 10.0.0.65 & Gerencia \\
+Impresora gerente (P1-A04) & 10.0.0.68 & 255.255.255.224 & 10.0.0.65 & Gerencia \\
 PC Trabajo 1 (P1-A05) & 10.0.0.69 & 255.255.255.224 & 10.0.0.65 & Área Trabajo \\
 Laptop VC 1 (P1-A06) & 10.0.0.70 & 255.255.255.224 & 10.0.0.65 & VideoConf. \\
 Laptop VC 2 (P1-A07) & 10.0.0.71 & 255.255.255.224 & 10.0.0.65 & VideoConf. \\
 AP\_C\_P1 (P1-A08) & 10.0.0.72 & 255.255.255.224 & 10.0.0.65 & Admin. Red \\
 Impresora (P1-A09) & 10.0.0.73 & 255.255.255.224 & 10.0.0.65 & General \\
 PC Admin 1 (P1-A10) & 10.0.0.74 & 255.255.255.224 & 10.0.0.65 & Administración \\
-PC Admin 2 (P1-A11) & 10.0.0.75 & 255.255.255.224 & 10.0.0.65 & Administración \\
-PC Trabajo 2 (P1-A12) & 10.0.0.76 & 255.255.255.224 & 10.0.0.65 & Área Trabajo \\
-Cámara IP & 10.0.0.77 & 255.255.255.224 & 10.0.0.65 & General \\
-SW\_F1 (VLAN 1) & 10.0.0.78 & 255.255.255.224 & 10.0.0.65 & Administración \\
+PC Trabajo 2 (P1-A11) & 10.0.0.75 & 255.255.255.224 & 10.0.0.65 & Área Trabajo \\
+SW\_F1 (VLAN 1) & 10.0.0.76 & 255.255.255.224 & 10.0.0.65 & Administración \\
 \hline
 \end{tabular}
 \end{table}
@@ -508,10 +499,10 @@ PC Dev 1 (P2-A02) & 10.0.0.99 & 255.255.255.224 & 10.0.0.97 & Desarrollo \\
 PC Dev 2 (P2-A03) & 10.0.0.100 & 255.255.255.224 & 10.0.0.97 & Desarrollo \\
 PC Dev 3 (P2-A04) & 10.0.0.101 & 255.255.255.224 & 10.0.0.97 & Desarrollo \\
 PC Dev 4 (P2-A05) & 10.0.0.102 & 255.255.255.224 & 10.0.0.97 & Desarrollo \\
-PC VC 1 (P2-A06) & 10.0.0.103 & 255.255.255.224 & 10.0.0.97 & VideoConf. \\
-PC VC 2 (P2-A07) & 10.0.0.104 & 255.255.255.224 & 10.0.0.97 & VideoConf. \\
-Impresora (P2-A08) & 10.0.0.105 & 255.255.255.224 & 10.0.0.97 & General \\
-Cámara IP & 10.0.0.106 & 255.255.255.224 & 10.0.0.97 & General \\
+Impresora Dev (P2-A06) & 10.0.0.103 & 255.255.255.224 & 10.0.0.97 & Desarrollo \\
+PC VC 1 (P2-A07) & 10.0.0.104 & 255.255.255.224 & 10.0.0.97 & VideoConf. \\
+PC VC 2 (P2-A08) & 10.0.0.105 & 255.255.255.224 & 10.0.0.97 & VideoConf. \\
+Impresora (P2-A09) & 10.0.0.106 & 255.255.255.224 & 10.0.0.97 & General \\
 SW\_F2 (VLAN 1) & 10.0.0.107 & 255.255.255.224 & 10.0.0.97 & Administración \\
 \hline
 \end{tabular}
@@ -531,8 +522,10 @@ R\_P3 (Gig0/0) & 10.0.0.145 & 255.255.255.240 & -- & Gateway \\
 AP\_C\_P3 & 10.0.0.146 & 255.255.255.240 & 10.0.0.145 & Esparcimiento \\
 Laptop 1 & 10.0.0.147 & 255.255.255.240 & 10.0.0.145 & Esparcimiento \\
 Laptop 2 & 10.0.0.148 & 255.255.255.240 & 10.0.0.145 & Esparcimiento \\
-Cámara IP & 10.0.0.149 & 255.255.255.240 & 10.0.0.145 & General \\
+Laptop 3 & 10.0.0.149 & 255.255.255.240 & 10.0.0.145 & Esparcimiento \\
 SW\_P3 (VLAN 1) & 10.0.0.150 & 255.255.255.240 & 10.0.0.145 & Administración \\
+\hline
+\multicolumn{5}{|l|}{\textit{IPs .151 a .158 libres para crecimiento}} \\
 \hline
 \end{tabular}
 \end{table}
@@ -620,7 +613,7 @@ banner motd #
 #
 
 ! --- Interfaz LAN Planta Baja ---
-interface GigabitEthernet0/0
+interface FastEthernet0/0
  description LAN-Planta-Baja_Recepcion-Conferencias
  ip address 10.0.0.1 255.255.255.192
  ip helper-address 10.0.0.130
@@ -628,7 +621,7 @@ interface GigabitEthernet0/0
  exit
 
 ! --- Interfaz Red de Servidores ---
-interface GigabitEthernet0/1
+interface FastEthernet0/1
  description Red-Servidores_DHCP-WEB-DNS-SYSLOG
  ip address 10.0.0.129 255.255.255.240
  no shutdown
@@ -973,13 +966,13 @@ banner motd #
 
 ! --- IP de administración ---
 interface vlan 1
- ip address 10.0.0.12 255.255.255.192
+ ip address 10.0.0.7 255.255.255.192
  no shutdown
  exit
 ip default-gateway 10.0.0.1
 
-! --- Puertos activos con seguridad (Fa0/1 a Fa0/12) ---
-interface range FastEthernet0/1-12
+! --- Puertos activos con seguridad (Fa0/1 a Fa0/6) ---
+interface range FastEthernet0/1-6
  description Puertos-Activos_PB-LAN
  switchport mode access
  switchport port-security
@@ -990,13 +983,83 @@ interface range FastEthernet0/1-12
  exit
 
 ! --- Puertos no utilizados: deshabilitar ---
-interface range FastEthernet0/13-24
+interface range FastEthernet0/7-24
  description Puerto-No-Utilizado_DESHABILITADO
  shutdown
  exit
 
 interface range GigabitEthernet0/1-2
  description Uplink-Trunk
+ no shutdown
+ exit
+
+end
+copy running-config startup-config
+\end{lstlisting}
+
+\subsection{Switch Servidores Planta Baja (SW\_SRV)}
+
+\begin{lstlisting}[style=cisco, caption={Configuración completa de SW\_SRV}]
+enable
+configure terminal
+
+! --- Identificación ---
+hostname SW_SRV
+
+! --- Seguridad: contraseña de modo privilegiado ---
+enable secret Redes2026SwSRV
+
+! --- Acceso por consola ---
+line console 0
+ password c0nsolaSWsrv
+ login
+ logging synchronous
+ exit
+
+! --- Acceso remoto VTY ---
+line vty 0 4
+ password vtYswsrv
+ login
+ exit
+
+! --- Cifrado y banner ---
+service password-encryption
+banner motd #
+==============================================
+  SWITCH SERVIDORES (SW_SRV)
+  Cuarto de Equipos - Planta Baja
+  Acceso no autorizado esta prohibido.
+==============================================
+#
+
+! --- IP de administración ---
+interface vlan 1
+ ip address 10.0.0.134 255.255.255.240
+ no shutdown
+ exit
+ip default-gateway 10.0.0.129
+
+! --- Puertos activos (Fa0/1 a Fa0/4 para servidores) ---
+interface range FastEthernet0/1-4
+ description Puertos-Servidores
+ switchport mode access
+ switchport port-security
+ switchport port-security maximum 2
+ switchport port-security violation shutdown
+ switchport port-security mac-address sticky
+ no shutdown
+ exit
+
+! --- Puertos no utilizados: deshabilitar ---
+interface range FastEthernet0/5-24
+ description Puerto-No-Utilizado_DESHABILITADO
+ shutdown
+ exit
+
+! --- Enlace al Router ---
+interface GigabitEthernet0/1
+ description Uplink-Router-Servidores
+ switchport mode access
  no shutdown
  exit
 
@@ -1035,13 +1098,13 @@ banner motd #
 
 ! --- IP de administración ---
 interface vlan 1
- ip address 10.0.0.78 255.255.255.224
+ ip address 10.0.0.76 255.255.255.224
  no shutdown
  exit
 ip default-gateway 10.0.0.65
 
-! --- Puertos activos con seguridad (Fa0/1 a Fa0/14) ---
-interface range FastEthernet0/1-14
+! --- Puertos activos con seguridad (Fa0/1 a Fa0/10) ---
+interface range FastEthernet0/1-10
  description Puertos-Activos_P1-LAN
  switchport mode access
  switchport port-security
@@ -1052,7 +1115,7 @@ interface range FastEthernet0/1-14
  exit
 
 ! --- Puertos no utilizados ---
-interface range FastEthernet0/15-24
+interface range FastEthernet0/11-24
  description Puerto-No-Utilizado_DESHABILITADO
  shutdown
  exit
@@ -1102,8 +1165,8 @@ interface vlan 1
  exit
 ip default-gateway 10.0.0.97
 
-! --- Puertos activos con seguridad (Fa0/1 a Fa0/10) ---
-interface range FastEthernet0/1-10
+! --- Puertos activos con seguridad (Fa0/1 a Fa0/9) ---
+interface range FastEthernet0/1-9
  description Puertos-Activos_P2-LAN
  switchport mode access
  switchport port-security
@@ -1114,7 +1177,7 @@ interface range FastEthernet0/1-10
  exit
 
 ! --- Puertos no utilizados ---
-interface range FastEthernet0/11-24
+interface range FastEthernet0/10-24
  description Puerto-No-Utilizado_DESHABILITADO
  shutdown
  exit
@@ -1164,8 +1227,8 @@ interface vlan 1
  exit
 ip default-gateway 10.0.0.145
 
-! --- Puertos activos con seguridad (Fa0/1 a Fa0/6) ---
-interface range FastEthernet0/1-6
+! --- Puertos activos con seguridad (Fa0/1 a Fa0/4) ---
+interface range FastEthernet0/1-4
  description Puertos-Activos_P3-LAN
  switchport mode access
  switchport port-security
@@ -1176,7 +1239,7 @@ interface range FastEthernet0/1-6
  exit
 
 ! --- Puertos no utilizados ---
-interface range FastEthernet0/7-24
+interface range FastEthernet0/5-24
  description Puerto-No-Utilizado_DESHABILITADO
  shutdown
  exit
