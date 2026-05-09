@@ -1,0 +1,15 @@
+# Archivos auxiliares de LaTeX
+*.aux
+*.bbl
+*.bcf
+*.blg
+*.fdb_latexmk
+*.fls
+*.run.xml
+*.toc
+*.log
+*.out
+*.synctex.gz
+
+# Carpeta de configuración
+conf/
