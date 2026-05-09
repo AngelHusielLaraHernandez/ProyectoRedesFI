@@ -301,8 +301,8 @@ P3-RES & Reserva & Crecimiento futuro \\
 \textbf{Enlace} & \textbf{Hosts} & \textbf{Descripción} \\
 \hline
 WAN PB $\leftrightarrow$ P1 & 2 & Backbone entre Planta Baja y Primer Piso \\
-WAN P1 $\leftrightarrow$ P2 & 2 & Backbone entre Primer Piso y Segundo Piso \\
-WAN P2 $\leftrightarrow$ P3 & 2 & Backbone entre Segundo Piso y Tercer Piso \\
+WAN PB $\leftrightarrow$ P2 & 2 & Backbone entre Planta Baja y Segundo Piso \\
+WAN PB $\leftrightarrow$ P3 & 2 & Backbone entre Planta Baja y Tercer Piso \\
 \hline
 \end{tabular}
 \end{table}
@@ -332,8 +332,8 @@ El procedimiento VLSM consiste en:
     \item \textbf{Servidores}: 4 hosts $\Rightarrow$ $2^4 - 2 = 14 \geq 4$ $\Rightarrow$ \textbf{/28}
     \item \textbf{P3 LAN}: 5 hosts $\Rightarrow$ $2^4 - 2 = 14 \geq 5$ $\Rightarrow$ \textbf{/28}
     \item \textbf{WAN PB--P1}: 2 hosts $\Rightarrow$ $2^2 - 2 = 2$ $\Rightarrow$ \textbf{/30}
-    \item \textbf{WAN P1--P2}: 2 hosts $\Rightarrow$ \textbf{/30}
-    \item \textbf{WAN P2--P3}: 2 hosts $\Rightarrow$ \textbf{/30}
+    \item \textbf{WAN PB--P2}: 2 hosts $\Rightarrow$ \textbf{/30}
+    \item \textbf{WAN PB--P3}: 2 hosts $\Rightarrow$ \textbf{/30}
 \end{enumerate}
 
 \subsection{Tabla VLSM Completa}
@@ -360,9 +360,9 @@ El procedimiento VLSM consiste en:
 \hline
 6 & WAN PB--P1 & 2 & /30 & 255.255.255.252 & 10.0.0.160 & .161 -- .162 & 10.0.0.163 \\
 \hline
-7 & WAN P1--P2 & 2 & /30 & 255.255.255.252 & 10.0.0.164 & .165 -- .166 & 10.0.0.167 \\
+7 & WAN PB--P2 & 2 & /30 & 255.255.255.252 & 10.0.0.164 & .165 -- .166 & 10.0.0.167 \\
 \hline
-8 & WAN P2--P3 & 2 & /30 & 255.255.255.252 & 10.0.0.168 & .169 -- .170 & 10.0.0.171 \\
+8 & WAN PB--P3 & 2 & /30 & 255.255.255.252 & 10.0.0.168 & .169 -- .170 & 10.0.0.171 \\
 \hline
 \end{tabular}
 \end{table}
@@ -392,27 +392,27 @@ El procedimiento VLSM consiste en:
 \hline
 \textbf{Router} & \textbf{Interfaz} & \textbf{IP} & \textbf{Máscara} & \textbf{Descripción} \\
 \hline
-\multirow{3}{*}{R\_PB} & GigabitEthernet0/0 & 10.0.0.1 & 255.255.255.192 & Gateway PB LAN \\
+\multirow{5}{*}{R\_PB} & GigabitEthernet0/0 & 10.0.0.1 & 255.255.255.192 & Gateway PB LAN \\
 \cline{2-5}
  & GigabitEthernet0/1 & 10.0.0.129 & 255.255.255.240 & Gateway Servidores \\
 \cline{2-5}
  & Serial0/0/0 & 10.0.0.161 & 255.255.255.252 & WAN hacia P1 \\
-\hline
-\multirow{3}{*}{R\_P1} & GigabitEthernet0/0 & 10.0.0.65 & 255.255.255.224 & Gateway P1 LAN \\
-\cline{2-5}
- & Serial0/0/0 & 10.0.0.162 & 255.255.255.252 & WAN hacia PB \\
 \cline{2-5}
  & Serial0/0/1 & 10.0.0.165 & 255.255.255.252 & WAN hacia P2 \\
+\cline{2-5}
+ & Serial0/1/0 & 10.0.0.169 & 255.255.255.252 & WAN hacia P3 \\
 \hline
-\multirow{3}{*}{R\_P2} & GigabitEthernet0/0 & 10.0.0.97 & 255.255.255.224 & Gateway P2 LAN \\
+\multirow{2}{*}{R\_P1} & GigabitEthernet0/0 & 10.0.0.65 & 255.255.255.224 & Gateway P1 LAN \\
 \cline{2-5}
- & Serial0/0/0 & 10.0.0.166 & 255.255.255.252 & WAN hacia P1 \\
+ & Serial0/0/0 & 10.0.0.162 & 255.255.255.252 & WAN hacia PB \\
+\hline
+\multirow{2}{*}{R\_P2} & GigabitEthernet0/0 & 10.0.0.97 & 255.255.255.224 & Gateway P2 LAN \\
 \cline{2-5}
- & Serial0/0/1 & 10.0.0.169 & 255.255.255.252 & WAN hacia P3 \\
+ & Serial0/0/0 & 10.0.0.166 & 255.255.255.252 & WAN hacia PB \\
 \hline
 \multirow{2}{*}{R\_P3} & GigabitEthernet0/0 & 10.0.0.145 & 255.255.255.240 & Gateway P3 LAN \\
 \cline{2-5}
- & Serial0/0/0 & 10.0.0.170 & 255.255.255.252 & WAN hacia P2 \\
+ & Serial0/0/0 & 10.0.0.170 & 255.255.255.252 & WAN hacia PB \\
 \hline
 \end{tabular}
 \end{table}
@@ -551,11 +551,11 @@ SW\_P3 (VLAN 1) & 10.0.0.150 & 255.255.255.240 & 10.0.0.145 & Administración \\
 \cline{2-4}
  & R\_P1 (Se0/0/0) & 10.0.0.162 & 255.255.255.252 \\
 \hline
-\multirow{2}{*}{WAN P1--P2 (10.0.0.164/30)} & R\_P1 (Se0/0/1) & 10.0.0.165 & 255.255.255.252 \\
+\multirow{2}{*}{WAN PB--P2 (10.0.0.164/30)} & R\_PB (Se0/0/1) & 10.0.0.165 & 255.255.255.252 \\
 \cline{2-4}
  & R\_P2 (Se0/0/0) & 10.0.0.166 & 255.255.255.252 \\
 \hline
-\multirow{2}{*}{WAN P2--P3 (10.0.0.168/30)} & R\_P2 (Se0/0/1) & 10.0.0.169 & 255.255.255.252 \\
+\multirow{2}{*}{WAN PB--P3 (10.0.0.168/30)} & R\_PB (Se0/1/0) & 10.0.0.169 & 255.255.255.252 \\
 \cline{2-4}
  & R\_P3 (Se0/0/0) & 10.0.0.170 & 255.255.255.252 \\
 \hline
@@ -642,11 +642,29 @@ interface Serial0/0/0
  no shutdown
  exit
 
+! --- Interfaz WAN hacia Segundo Piso ---
+interface Serial0/0/1
+ description WAN-Enlace-hacia-Segundo-Piso_R_P2
+ ip address 10.0.0.165 255.255.255.252
+ clock rate 128000
+ no shutdown
+ exit
+
+! --- Interfaz WAN hacia Tercer Piso ---
+interface Serial0/1/0
+ description WAN-Enlace-hacia-Tercer-Piso_R_P3
+ ip address 10.0.0.169 255.255.255.252
+ clock rate 128000
+ no shutdown
+ exit
+
 ! --- Enrutamiento dinámico EIGRP ---
 router eigrp 100
  network 10.0.0.0 0.0.0.63
  network 10.0.0.128 0.0.0.15
  network 10.0.0.160 0.0.0.3
+ network 10.0.0.164 0.0.0.3
+ network 10.0.0.168 0.0.0.3
  no auto-summary
  exit
 
@@ -726,19 +744,10 @@ interface Serial0/0/0
  no shutdown
  exit
 
-! --- Interfaz WAN hacia Segundo Piso ---
-interface Serial0/0/1
- description WAN-Enlace-hacia-Segundo-Piso_R_P2
- ip address 10.0.0.165 255.255.255.252
- clock rate 128000
- no shutdown
- exit
-
 ! --- Enrutamiento dinámico EIGRP ---
 router eigrp 100
  network 10.0.0.64 0.0.0.31
  network 10.0.0.160 0.0.0.3
- network 10.0.0.164 0.0.0.3
  no auto-summary
  exit
 
@@ -811,18 +820,10 @@ interface GigabitEthernet0/0
  no shutdown
  exit
 
-! --- Interfaz WAN hacia Primer Piso ---
+! --- Interfaz WAN hacia Planta Baja ---
 interface Serial0/0/0
- description WAN-Enlace-hacia-Primer-Piso_R_P1
+ description WAN-Enlace-hacia-Planta-Baja_R_PB
  ip address 10.0.0.166 255.255.255.252
- no shutdown
- exit
-
-! --- Interfaz WAN hacia Tercer Piso ---
-interface Serial0/0/1
- description WAN-Enlace-hacia-Tercer-Piso_R_P3
- ip address 10.0.0.169 255.255.255.252
- clock rate 128000
  no shutdown
  exit
 
@@ -830,7 +831,6 @@ interface Serial0/0/1
 router eigrp 100
  network 10.0.0.96 0.0.0.31
  network 10.0.0.164 0.0.0.3
- network 10.0.0.168 0.0.0.3
  no auto-summary
  exit
 
@@ -903,9 +903,9 @@ interface GigabitEthernet0/0
  no shutdown
  exit
 
-! --- Interfaz WAN hacia Segundo Piso ---
+! --- Interfaz WAN hacia Planta Baja ---
 interface Serial0/0/0
- description WAN-Enlace-hacia-Segundo-Piso_R_P2
+ description WAN-Enlace-hacia-Planta-Baja_R_PB
  ip address 10.0.0.170 255.255.255.252
  no shutdown
  exit
