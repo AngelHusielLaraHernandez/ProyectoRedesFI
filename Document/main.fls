@@ -122,10 +122,13 @@ INPUT C:\Users\Angel Lara\AppData\Local\Programs\MiKTeX\tex\latex\caption\captio
 INPUT C:\Users\Angel Lara\AppData\Local\Programs\MiKTeX\tex\latex\caption\caption.sty
 INPUT C:\Users\Angel Lara\AppData\Local\Programs\MiKTeX\tex\latex\caption\caption3.sty
 INPUT C:\Users\Angel Lara\AppData\Local\Programs\MiKTeX\tex\latex\caption\caption3.sty
-INPUT C:\Users\Angel Lara\AppData\Local\Programs\MiKTeX\tex\latex\makecell\makecell.sty
-INPUT C:\Users\Angel Lara\AppData\Local\Programs\MiKTeX\tex\latex\makecell\makecell.sty
+INPUT C:\Users\Angel Lara\AppData\Local\Programs\MiKTeX\tex\latex\colortbl\colortbl.sty
+INPUT C:\Users\Angel Lara\AppData\Local\Programs\MiKTeX\tex\latex\colortbl\colortbl.sty
 INPUT C:\Users\Angel Lara\AppData\Local\Programs\MiKTeX\tex\latex\tools\array.sty
 INPUT C:\Users\Angel Lara\AppData\Local\Programs\MiKTeX\tex\latex\tools\array.sty
+INPUT C:\Users\Angel Lara\AppData\Local\Programs\MiKTeX\tex\latex\graphics\color.sty
+INPUT C:\Users\Angel Lara\AppData\Local\Programs\MiKTeX\tex\latex\makecell\makecell.sty
+INPUT C:\Users\Angel Lara\AppData\Local\Programs\MiKTeX\tex\latex\makecell\makecell.sty
 INPUT C:\Users\Angel Lara\AppData\Local\Programs\MiKTeX\tex\latex\pgf\frontendlayer\tikz.sty
 INPUT C:\Users\Angel Lara\AppData\Local\Programs\MiKTeX\tex\latex\pgf\frontendlayer\tikz.sty
 INPUT C:\Users\Angel Lara\AppData\Local\Programs\MiKTeX\tex\latex\pgf\basiclayer\pgf.sty
@@ -222,9 +225,6 @@ INPUT C:\Users\Angel Lara\AppData\Local\Programs\MiKTeX\tex\generic\pgf\librarie
 INPUT C:\Users\Angel Lara\AppData\Local\Programs\MiKTeX\tex\generic\pgf\modules\pgfmodulematrix.code.tex
 INPUT C:\Users\Angel Lara\AppData\Local\Programs\MiKTeX\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibrarytopaths.code.tex
 INPUT C:\Users\Angel Lara\AppData\Local\Programs\MiKTeX\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibrarytopaths.code.tex
-INPUT C:\Users\Angel Lara\AppData\Local\Programs\MiKTeX\tex\latex\colortbl\colortbl.sty
-INPUT C:\Users\Angel Lara\AppData\Local\Programs\MiKTeX\tex\latex\colortbl\colortbl.sty
-INPUT C:\Users\Angel Lara\AppData\Local\Programs\MiKTeX\tex\latex\graphics\color.sty
 INPUT C:\Users\Angel Lara\AppData\Local\Programs\MiKTeX\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibraryshapes.geometric.code.tex
 INPUT C:\Users\Angel Lara\AppData\Local\Programs\MiKTeX\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibraryshapes.geometric.code.tex
 INPUT C:\Users\Angel Lara\AppData\Local\Programs\MiKTeX\tex\generic\pgf\libraries\shapes\pgflibraryshapes.geometric.code.tex
@@ -492,6 +492,55 @@ INPUT .\main.toc
 INPUT main.toc
 INPUT C:\Users\Angel Lara\AppData\Local\Programs\MiKTeX\fonts\tfm\public\newtx\ntx-Bold-tlf-t1.tfm
 OUTPUT main.toc
+INPUT C:\Users\Angel Lara\AppData\Local\Programs\MiKTeX\tex\latex\newtx\t1ntxtt.fd
+INPUT C:\Users\Angel Lara\AppData\Local\Programs\MiKTeX\tex\latex\newtx\t1ntxtt.fd
+INPUT C:\Users\Angel Lara\AppData\Local\Programs\MiKTeX\tex\latex\newtx\t1ntxtt.fd
+INPUT C:\Users\Angel Lara\AppData\Local\Programs\MiKTeX\fonts\tfm\public\txfonts\t1xtt.tfm
+INPUT .\portada_img\der.png
+INPUT .\portada_img\der.png
+INPUT .\portada_img\der.png
+INPUT .\portada_img\der.png
+INPUT .\portada_img\izq.png
+INPUT .\portada_img\izq.png
+INPUT .\portada_img\izq.png
+INPUT .\portada_img\izq.png
+INPUT C:\Users\Angel Lara\AppData\Local\Programs\MiKTeX\fonts\tfm\public\newtx\ntx-Regular-tlf-t1.tfm
+INPUT C:\Users\Angel Lara\AppData\Local\Programs\MiKTeX\fonts\tfm\public\newtx\ntx-Bold-tlf-t1.tfm
+INPUT .\portada_img\der.png
+INPUT .\portada_img\der.png
+INPUT .\portada_img\der.png
+INPUT .\portada_img\der.png
+INPUT .\portada_img\izq.png
+INPUT .\portada_img\izq.png
+INPUT .\portada_img\izq.png
+INPUT .\portada_img\izq.png
+INPUT .\portada_img\der.png
+INPUT .\portada_img\der.png
+INPUT .\portada_img\der.png
+INPUT .\portada_img\der.png
+INPUT .\portada_img\izq.png
+INPUT .\portada_img\izq.png
+INPUT .\portada_img\izq.png
+INPUT .\portada_img\izq.png
+INPUT C:\Users\Angel Lara\AppData\Local\Programs\MiKTeX\fonts\vf\public\newtx\ntxsy.vf
+INPUT C:\Users\Angel Lara\AppData\Local\Programs\MiKTeX\fonts\tfm\public\newtx\txsys.tfm
+INPUT C:\Users\Angel Lara\AppData\Local\Programs\MiKTeX\fonts\tfm\public\newtx\txex-bar.tfm
+INPUT .\portada_img\der.png
+INPUT .\portada_img\der.png
+INPUT .\portada_img\der.png
+INPUT .\portada_img\der.png
+INPUT .\portada_img\izq.png
+INPUT .\portada_img\izq.png
+INPUT .\portada_img\izq.png
+INPUT .\portada_img\izq.png
+INPUT .\portada_img\der.png
+INPUT .\portada_img\der.png
+INPUT .\portada_img\der.png
+INPUT .\portada_img\der.png
+INPUT .\portada_img\izq.png
+INPUT .\portada_img\izq.png
+INPUT .\portada_img\izq.png
+INPUT .\portada_img\izq.png
 INPUT .\portada_img\der.png
 INPUT .\portada_img\der.png
 INPUT .\portada_img\der.png
@@ -505,6 +554,10 @@ INPUT .\main.out
 INPUT .\main.out
 INPUT main.run.xml
 OUTPUT main.run.xml
+INPUT C:\Users\Angel Lara\AppData\Local\Programs\MiKTeX\fonts\type1\public\txfonts\t1xtt.pfb
+INPUT C:\Users\Angel Lara\AppData\Local\Programs\MiKTeX\fonts\type1\public\txfonts\t1xtt.pfb
+INPUT C:\Users\Angel Lara\AppData\Local\Programs\MiKTeX\fonts\type1\public\newtx\txsys.pfb
+INPUT C:\Users\Angel Lara\AppData\Local\Programs\MiKTeX\fonts\type1\public\newtx\txsys.pfb
 INPUT C:\Users\Angel Lara\AppData\Local\Programs\MiKTeX\fonts\type1\public\newtx\ztmb.pfb
 INPUT C:\Users\Angel Lara\AppData\Local\Programs\MiKTeX\fonts\type1\public\newtx\ztmb.pfb
 INPUT C:\Users\Angel Lara\AppData\Local\Programs\MiKTeX\fonts\type1\public\newtx\ztmr.pfb

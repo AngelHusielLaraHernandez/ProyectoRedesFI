@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2025.9.10)  9 MAY 2026 07:26
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2025.9.10)  9 MAY 2026 11:30
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -388,8 +388,8 @@ Package caption Info: New subtype `subfigure' on input line 238.
 \c@subfigure=\count317
 Package caption Info: New subtype `subtable' on input line 238.
 \c@subtable=\count318
-) (C:\Users\Angel Lara\AppData\Local\Programs\MiKTeX\tex/latex/makecell\makecell.sty
-Package: makecell 2009/08/03 V0.1e Managing of Tab Column Heads and Cells
+) (C:\Users\Angel Lara\AppData\Local\Programs\MiKTeX\tex/latex/colortbl\colortbl.sty
+Package: colortbl 2024/10/29 v1.0k Color table columns (DPC)
  (C:\Users\Angel Lara\AppData\Local\Programs\MiKTeX\tex/latex/tools\array.sty
 Package: array 2025/06/08 v2.6j Tabular extension package (FMi)
 \col@sep=\dimen183
@@ -400,11 +400,16 @@ Package: array 2025/06/08 v2.6j Tabular extension package (FMi)
 \backup@length=\skip55
 \ar@cellbox=\box58
 )
+\everycr=\toks35
+\minrowclearance=\skip56
+\rownum=\count319
+) (C:\Users\Angel Lara\AppData\Local\Programs\MiKTeX\tex/latex/makecell\makecell.sty
+Package: makecell 2009/08/03 V0.1e Managing of Tab Column Heads and Cells
 \rotheadsize=\dimen185
-\c@nlinenum=\count319
-\TeXr@lab=\toks35
+\c@nlinenum=\count320
+\TeXr@lab=\toks36
 ) (C:\Users\Angel Lara\AppData\Local\Programs\MiKTeX\tex/latex/pgf/frontendlayer\tikz.sty (C:\Users\Angel Lara\AppData\Local\Programs\MiKTeX\tex/latex/pgf/basiclayer\pgf.sty (C:\Users\Angel Lara\AppData\Local\Programs\MiKTeX\tex/latex/pgf/utilities\pgfrcs.sty (C:\Users\Angel Lara\AppData\Local\Programs\MiKTeX\tex/generic/pgf/utilities\pgfutil-common.tex
-\pgfutil@everybye=\toks36
+\pgfutil@everybye=\toks37
 \pgfutil@tempdima=\dimen186
 \pgfutil@tempdimb=\dimen187
 ) (C:\Users\Angel Lara\AppData\Local\Programs\MiKTeX\tex/generic/pgf/utilities\pgfutil-latex.def
@@ -416,10 +421,10 @@ Package: pgf 2025-08-29 v3.1.11a (3.1.11a)
  (C:\Users\Angel Lara\AppData\Local\Programs\MiKTeX\tex/latex/pgf/basiclayer\pgfcore.sty (C:\Users\Angel Lara\AppData\Local\Programs\MiKTeX\tex/latex/pgf/systemlayer\pgfsys.sty (C:\Users\Angel Lara\AppData\Local\Programs\MiKTeX\tex/generic/pgf/systemlayer\pgfsys.code.tex
 Package: pgfsys 2025-08-29 v3.1.11a (3.1.11a)
  (C:\Users\Angel Lara\AppData\Local\Programs\MiKTeX\tex/generic/pgf/utilities\pgfkeys.code.tex
-\pgfkeys@pathtoks=\toks37
-\pgfkeys@temptoks=\toks38
+\pgfkeys@pathtoks=\toks38
+\pgfkeys@temptoks=\toks39
  (C:\Users\Angel Lara\AppData\Local\Programs\MiKTeX\tex/generic/pgf/utilities\pgfkeyslibraryfiltered.code.tex
-\pgfkeys@tmptoks=\toks39
+\pgfkeys@tmptoks=\toks40
 ))
 \pgf@x=\dimen188
 \pgf@y=\dimen189
@@ -433,14 +438,14 @@ Package: pgfsys 2025-08-29 v3.1.11a (3.1.11a)
 \pgf@yd=\dimen197
 \w@pgf@writea=\write3
 \r@pgf@reada=\read4
-\c@pgf@counta=\count320
-\c@pgf@countb=\count321
-\c@pgf@countc=\count322
-\c@pgf@countd=\count323
-\t@pgf@toka=\toks40
-\t@pgf@tokb=\toks41
-\t@pgf@tokc=\toks42
-\pgf@sys@id@count=\count324
+\c@pgf@counta=\count321
+\c@pgf@countb=\count322
+\c@pgf@countc=\count323
+\c@pgf@countd=\count324
+\t@pgf@toka=\toks41
+\t@pgf@tokb=\toks42
+\t@pgf@tokc=\toks43
+\pgf@sys@id@count=\count325
  (C:\Users\Angel Lara\AppData\Local\Programs\MiKTeX\tex/generic/pgf/systemlayer\pgf.cfg
 File: pgf.cfg 2025-08-29 v3.1.11a (3.1.11a)
 )
@@ -451,21 +456,21 @@ File: pgfsys-pdftex.def 2025-08-29 v3.1.11a (3.1.11a)
 File: pgfsys-common-pdf.def 2025-08-29 v3.1.11a (3.1.11a)
 ))) (C:\Users\Angel Lara\AppData\Local\Programs\MiKTeX\tex/generic/pgf/systemlayer\pgfsyssoftpath.code.tex
 File: pgfsyssoftpath.code.tex 2025-08-29 v3.1.11a (3.1.11a)
-\pgfsyssoftpath@smallbuffer@items=\count325
-\pgfsyssoftpath@bigbuffer@items=\count326
+\pgfsyssoftpath@smallbuffer@items=\count326
+\pgfsyssoftpath@bigbuffer@items=\count327
 ) (C:\Users\Angel Lara\AppData\Local\Programs\MiKTeX\tex/generic/pgf/systemlayer\pgfsysprotocol.code.tex
 File: pgfsysprotocol.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 )) (C:\Users\Angel Lara\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfcore.code.tex
 Package: pgfcore 2025-08-29 v3.1.11a (3.1.11a)
  (C:\Users\Angel Lara\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmath.code.tex (C:\Users\Angel Lara\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathutil.code.tex) (C:\Users\Angel Lara\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathparser.code.tex
 \pgfmath@dimen=\dimen198
-\pgfmath@count=\count327
+\pgfmath@count=\count328
 \pgfmath@box=\box60
-\pgfmath@toks=\toks43
-\pgfmath@stack@operand=\toks44
-\pgfmath@stack@operation=\toks45
+\pgfmath@toks=\toks44
+\pgfmath@stack@operand=\toks45
+\pgfmath@stack@operation=\toks46
 ) (C:\Users\Angel Lara\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathfunctions.code.tex) (C:\Users\Angel Lara\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathfunctions.basic.code.tex) (C:\Users\Angel Lara\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathfunctions.trigonometric.code.tex) (C:\Users\Angel Lara\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathfunctions.random.code.tex) (C:\Users\Angel Lara\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathfunctions.comparison.code.tex) (C:\Users\Angel Lara\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathfunctions.base.code.tex) (C:\Users\Angel Lara\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathfunctions.round.code.tex) (C:\Users\Angel Lara\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathfunctions.misc.code.tex) (C:\Users\Angel Lara\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathfunctions.integerarithmetics.code.tex) (C:\Users\Angel Lara\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathcalc.code.tex) (C:\Users\Angel Lara\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathfloat.code.tex
-\c@pgfmathroundto@lastzeros=\count328
+\c@pgfmathroundto@lastzeros=\count329
 )) (C:\Users\Angel Lara\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfint.code.tex) (C:\Users\Angel Lara\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfcorepoints.code.tex
 File: pgfcorepoints.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 \pgf@picminx=\dimen199
@@ -495,7 +500,7 @@ File: pgfcorescopes.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 \pgfpic=\box61
 \pgf@hbox=\box62
 \pgf@layerbox@main=\box63
-\pgf@picture@serial@count=\count329
+\pgf@picture@serial@count=\count330
 ) (C:\Users\Angel Lara\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfcoregraphicstate.code.tex
 File: pgfcoregraphicstate.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 \pgflinewidth=\dimen273
@@ -516,8 +521,8 @@ File: pgfcorearrows.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 ) (C:\Users\Angel Lara\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfcoreshade.code.tex
 File: pgfcoreshade.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 \pgf@max=\dimen278
-\pgf@sys@shading@range@num=\count330
-\pgf@shadingcount=\count331
+\pgf@sys@shading@range@num=\count331
+\pgf@shadingcount=\count332
 ) (C:\Users\Angel Lara\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfcoreimage.code.tex
 File: pgfcoreimage.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 ) (C:\Users\Angel Lara\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfcoreexternal.code.tex
@@ -546,13 +551,13 @@ Package: pgfcomp-version-1-18 2025-08-29 v3.1.11a (3.1.11a)
 Package: pgffor 2025-08-29 v3.1.11a (3.1.11a)
 \pgffor@iter=\dimen281
 \pgffor@skip=\dimen282
-\pgffor@stack=\toks46
-\pgffor@toks=\toks47
+\pgffor@stack=\toks47
+\pgffor@toks=\toks48
 )) (C:\Users\Angel Lara\AppData\Local\Programs\MiKTeX\tex/generic/pgf/frontendlayer/tikz\tikz.code.tex
 Package: tikz 2025-08-29 v3.1.11a (3.1.11a)
  (C:\Users\Angel Lara\AppData\Local\Programs\MiKTeX\tex/generic/pgf/libraries\pgflibraryplothandlers.code.tex
 File: pgflibraryplothandlers.code.tex 2025-08-29 v3.1.11a (3.1.11a)
-\pgf@plot@mark@count=\count332
+\pgf@plot@mark@count=\count333
 \pgfplotmarksize=\dimen283
 )
 \tikz@lastx=\dimen284
@@ -567,25 +572,20 @@ File: pgflibraryplothandlers.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 \tikz@figbox@bg=\box67
 \tikz@tempbox=\box68
 \tikz@tempbox@bg=\box69
-\tikztreelevel=\count333
-\tikznumberofchildren=\count334
-\tikznumberofcurrentchild=\count335
-\tikz@fig@count=\count336
+\tikztreelevel=\count334
+\tikznumberofchildren=\count335
+\tikznumberofcurrentchild=\count336
+\tikz@fig@count=\count337
  (C:\Users\Angel Lara\AppData\Local\Programs\MiKTeX\tex/generic/pgf/modules\pgfmodulematrix.code.tex
 File: pgfmodulematrix.code.tex 2025-08-29 v3.1.11a (3.1.11a)
-\pgfmatrixcurrentrow=\count337
-\pgfmatrixcurrentcolumn=\count338
-\pgf@matrix@numberofcolumns=\count339
+\pgfmatrixcurrentrow=\count338
+\pgfmatrixcurrentcolumn=\count339
+\pgf@matrix@numberofcolumns=\count340
 )
-\tikz@expandcount=\count340
+\tikz@expandcount=\count341
  (C:\Users\Angel Lara\AppData\Local\Programs\MiKTeX\tex/generic/pgf/frontendlayer/tikz/libraries\tikzlibrarytopaths.code.tex
 File: tikzlibrarytopaths.code.tex 2025-08-29 v3.1.11a (3.1.11a)
-))) (C:\Users\Angel Lara\AppData\Local\Programs\MiKTeX\tex/latex/colortbl\colortbl.sty
-Package: colortbl 2024/10/29 v1.0k Color table columns (DPC)
-\everycr=\toks48
-\minrowclearance=\skip56
-\rownum=\count341
-) (C:\Users\Angel Lara\AppData\Local\Programs\MiKTeX\tex/generic/pgf/frontendlayer/tikz/libraries\tikzlibraryshapes.geometric.code.tex
+))) (C:\Users\Angel Lara\AppData\Local\Programs\MiKTeX\tex/generic/pgf/frontendlayer/tikz/libraries\tikzlibraryshapes.geometric.code.tex
 File: tikzlibraryshapes.geometric.code.tex 2025-08-29 v3.1.11a (3.1.11a)
  (C:\Users\Angel Lara\AppData\Local\Programs\MiKTeX\tex/generic/pgf/libraries/shapes\pgflibraryshapes.geometric.code.tex
 File: pgflibraryshapes.geometric.code.tex 2025-08-29 v3.1.11a (3.1.11a)
@@ -1094,17 +1094,17 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 28
 )
 \Hy@SectionHShift=\skip125
 )
-Package hyperref Info: Option `colorlinks' set `true' on input line 190.
+Package hyperref Info: Option `colorlinks' set `true' on input line 189.
 Package csquotes Info: Checking for multilingual support...
 Package csquotes Info: ... found 'babel' package.
 Package csquotes Info: Adjusting default style.
 Package csquotes Info: Redefining alias 'default' -> 'spanish'.
-LaTeX Font Info:    Trying to load font information for T1+ntxtlf on input line 192.
+LaTeX Font Info:    Trying to load font information for T1+ntxtlf on input line 191.
  (C:\Users\Angel Lara\AppData\Local\Programs\MiKTeX\tex/latex/newtx\t1ntxtlf.fd
 File: t1ntxtlf.fd 2021/05/24 v1.1 font definition file for T1/ntx/tlf
 )
 LaTeX Font Info:    Font shape `T1/ntxtlf/m/n' will be
-(Font)              scaled to size 10.95pt on input line 192.
+(Font)              scaled to size 10.95pt on input line 191.
  (main.aux
 LaTeX Info: Redefining \. on input line 9.
 LaTeX Info: Redefining \% on input line 9.
@@ -1113,46 +1113,46 @@ Package babel Info: 'spanish' activates 'spanish' shorthands.
 )
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/ntxmi/m/it on input line 192.
-LaTeX Font Info:    Trying to load font information for OML+ntxmi on input line 192.
+LaTeX Font Info:    Checking defaults for OML/ntxmi/m/it on input line 191.
+LaTeX Font Info:    Trying to load font information for OML+ntxmi on input line 191.
  (C:\Users\Angel Lara\AppData\Local\Programs\MiKTeX\tex/latex/newtx\omlntxmi.fd
 File: omlntxmi.fd 2015/08/25 Fontinst v1.933 font definitions for OML/ntxmi.
 )
-LaTeX Font Info:    ... okay on input line 192.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 192.
-LaTeX Font Info:    ... okay on input line 192.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 192.
-LaTeX Font Info:    ... okay on input line 192.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 192.
-LaTeX Font Info:    ... okay on input line 192.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 192.
-LaTeX Font Info:    ... okay on input line 192.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 192.
-LaTeX Font Info:    ... okay on input line 192.
-LaTeX Font Info:    Checking defaults for U/ntxexa/m/n on input line 192.
-LaTeX Font Info:    Trying to load font information for U+ntxexa on input line 192.
+LaTeX Font Info:    ... okay on input line 191.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 191.
+LaTeX Font Info:    ... okay on input line 191.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 191.
+LaTeX Font Info:    ... okay on input line 191.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 191.
+LaTeX Font Info:    ... okay on input line 191.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 191.
+LaTeX Font Info:    ... okay on input line 191.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 191.
+LaTeX Font Info:    ... okay on input line 191.
+LaTeX Font Info:    Checking defaults for U/ntxexa/m/n on input line 191.
+LaTeX Font Info:    Trying to load font information for U+ntxexa on input line 191.
  (C:\Users\Angel Lara\AppData\Local\Programs\MiKTeX\tex/latex/newtx\untxexa.fd
 File: untxexa.fd 2012/04/16 Fontinst v1.933 font definitions for U/ntxexa.
 )
-LaTeX Font Info:    ... okay on input line 192.
-LaTeX Font Info:    Checking defaults for LMS/ntxsy/m/n on input line 192.
-LaTeX Font Info:    Trying to load font information for LMS+ntxsy on input line 192.
+LaTeX Font Info:    ... okay on input line 191.
+LaTeX Font Info:    Checking defaults for LMS/ntxsy/m/n on input line 191.
+LaTeX Font Info:    Trying to load font information for LMS+ntxsy on input line 191.
  (C:\Users\Angel Lara\AppData\Local\Programs\MiKTeX\tex/latex/newtx\lmsntxsy.fd
 File: lmsntxsy.fd 2016/07/02 Fontinst v1.933 font definitions for LMS/ntxsy.
 )
-LaTeX Font Info:    ... okay on input line 192.
-LaTeX Font Info:    Checking defaults for LMX/ntxexx/m/n on input line 192.
-LaTeX Font Info:    Trying to load font information for LMX+ntxexx on input line 192.
+LaTeX Font Info:    ... okay on input line 191.
+LaTeX Font Info:    Checking defaults for LMX/ntxexx/m/n on input line 191.
+LaTeX Font Info:    Trying to load font information for LMX+ntxexx on input line 191.
  (C:\Users\Angel Lara\AppData\Local\Programs\MiKTeX\tex/latex/newtx\lmxntxexx.fd
 File: lmxntxexx.fd 2016/07/03 Fontinst v1.933 font definitions for LMX/ntxexx.
 )
-LaTeX Font Info:    ... okay on input line 192.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 192.
-LaTeX Font Info:    ... okay on input line 192.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 192.
-LaTeX Font Info:    ... okay on input line 192.
-LaTeX Info: Redefining \. on input line 192.
-LaTeX Info: Redefining \% on input line 192.
+LaTeX Font Info:    ... okay on input line 191.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 191.
+LaTeX Font Info:    ... okay on input line 191.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 191.
+LaTeX Font Info:    ... okay on input line 191.
+LaTeX Info: Redefining \. on input line 191.
+LaTeX Info: Redefining \% on input line 191.
  (C:\Users\Angel Lara\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count508
@@ -1174,8 +1174,8 @@ File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
 ))
 \c@mv@tabular=\count514
 \c@mv@boldtabular=\count515
-LaTeX Info: Command `\dddot' is already robust on input line 192.
-LaTeX Info: Command `\ddddot' is already robust on input line 192.
+LaTeX Info: Command `\dddot' is already robust on input line 191.
+LaTeX Info: Command `\ddddot' is already robust on input line 191.
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: hyperref package is loaded.
 Package caption Info: listings package is loaded.
@@ -1238,9 +1238,9 @@ Package biblatex Info: Automatic encoding selection.
 Package biblatex Info: Trying to load bibliographic data...
 Package biblatex Info: ... file 'main.bbl' found.
  (main.bbl)
-Package biblatex Info: Reference section=0 on input line 192.
-Package biblatex Info: Reference segment=0 on input line 192.
-Package hyperref Info: Link coloring ON on input line 192.
+Package biblatex Info: Reference section=0 on input line 191.
+Package biblatex Info: Reference segment=0 on input line 191.
+Package hyperref Info: Link coloring ON on input line 191.
  (main.out) (main.out)
 \@outlinefile=\write5
 \openout5 = `main.out'.
@@ -1314,7 +1314,7 @@ LaTeX Font Info:    Trying to load font information for U+rsfs on input line 6.
  (C:\Users\Angel Lara\AppData\Local\Programs\MiKTeX\tex/latex/jknappen\ursfs.fd
 File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
 )
-<portada_img/der.png, id=58, 332.24126pt x 393.47pt>
+<portada_img/der.png, id=86, 332.24126pt x 393.47pt>
 File: portada_img/der.png Graphic file (type png)
 <use portada_img/der.png>
 Package pdftex.def Info: portada_img/der.png  used on input line 8.
@@ -1323,7 +1323,7 @@ LaTeX Font Info:    Font shape `T1/ntxtlf/m/n' will be
 (Font)              scaled to size 24.88pt on input line 11.
 LaTeX Font Info:    Font shape `T1/ntxtlf/b/n' will be
 (Font)              scaled to size 24.88pt on input line 11.
-<portada_img/izq.png, id=60, 254.9525pt x 301.125pt>
+<portada_img/izq.png, id=88, 254.9525pt x 301.125pt>
 File: portada_img/izq.png Graphic file (type png)
 <use portada_img/izq.png>
 Package pdftex.def Info: portada_img/izq.png  used on input line 14.
@@ -1353,25 +1353,92 @@ LaTeX Font Info:    Font shape `T1/ntxtlf/b/n' will be
 
 
 [2]
-
-LaTeX Warning: Empty bibliography on input line 222.
-
+LaTeX Font Info:    Trying to load font information for T1+ntxtt on input line 226.
+ (C:\Users\Angel Lara\AppData\Local\Programs\MiKTeX\tex/latex/newtx\t1ntxtt.fd
+File: t1ntxtt.fd 2012/04/20 v3.1
+)
+LaTeX Font Info:    Font shape `T1/ntxtt/m/n' will be
+(Font)              scaled to size 10.95pt on input line 226.
 
 
 File: portada_img/der.png Graphic file (type png)
 <use portada_img/der.png>
-Package pdftex.def Info: portada_img/der.png  used on input line 223.
+Package pdftex.def Info: portada_img/der.png  used on input line 242.
 (pdftex.def)             Requested size: 36.0346pt x 42.67912pt.
 File: portada_img/izq.png Graphic file (type png)
 <use portada_img/izq.png>
-Package pdftex.def Info: portada_img/izq.png  used on input line 223.
+Package pdftex.def Info: portada_img/izq.png  used on input line 242.
 (pdftex.def)             Requested size: 36.13269pt x 42.67912pt.
 
 pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.223 \end{document}
-                     [1] (main.aux
+l.242 
+       [1]
+LaTeX Font Info:    Font shape `T1/ntxtlf/m/n' will be
+(Font)              scaled to size 12.0pt on input line 250.
+LaTeX Font Info:    Font shape `T1/ntxtlf/b/n' will be
+(Font)              scaled to size 12.0pt on input line 250.
+
+
+File: portada_img/der.png Graphic file (type png)
+<use portada_img/der.png>
+Package pdftex.def Info: portada_img/der.png  used on input line 274.
+(pdftex.def)             Requested size: 36.0346pt x 42.67912pt.
+File: portada_img/izq.png Graphic file (type png)
+<use portada_img/izq.png>
+Package pdftex.def Info: portada_img/izq.png  used on input line 274.
+(pdftex.def)             Requested size: 36.13269pt x 42.67912pt.
+
+pdfTeX warning (ext4): destination with the same identifier (name{page.2}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.274     \subsection
+                     {Protocolo de enrutamiento:} [2]
+
+File: portada_img/der.png Graphic file (type png)
+<use portada_img/der.png>
+Package pdftex.def Info: portada_img/der.png  used on input line 311.
+(pdftex.def)             Requested size: 36.0346pt x 42.67912pt.
+File: portada_img/izq.png Graphic file (type png)
+<use portada_img/izq.png>
+Package pdftex.def Info: portada_img/izq.png  used on input line 311.
+(pdftex.def)             Requested size: 36.13269pt x 42.67912pt.
+[3]
+
+File: portada_img/der.png Graphic file (type png)
+<use portada_img/der.png>
+Package pdftex.def Info: portada_img/der.png  used on input line 347.
+(pdftex.def)             Requested size: 36.0346pt x 42.67912pt.
+File: portada_img/izq.png Graphic file (type png)
+<use portada_img/izq.png>
+Package pdftex.def Info: portada_img/izq.png  used on input line 347.
+(pdftex.def)             Requested size: 36.13269pt x 42.67912pt.
+[4]
+
+LaTeX Warning: Empty bibliography on input line 390.
+
+
+
+File: portada_img/der.png Graphic file (type png)
+<use portada_img/der.png>
+Package pdftex.def Info: portada_img/der.png  used on input line 391.
+(pdftex.def)             Requested size: 36.0346pt x 42.67912pt.
+File: portada_img/izq.png Graphic file (type png)
+<use portada_img/izq.png>
+Package pdftex.def Info: portada_img/izq.png  used on input line 391.
+(pdftex.def)             Requested size: 36.13269pt x 42.67912pt.
+[5]
+
+File: portada_img/der.png Graphic file (type png)
+<use portada_img/der.png>
+Package pdftex.def Info: portada_img/der.png  used on input line 391.
+(pdftex.def)             Requested size: 36.0346pt x 42.67912pt.
+File: portada_img/izq.png Graphic file (type png)
+<use portada_img/izq.png>
+Package pdftex.def Info: portada_img/izq.png  used on input line 391.
+(pdftex.def)             Requested size: 36.13269pt x 42.67912pt.
+[6] (main.aux
 LaTeX Info: Redefining \sptext on input line 9.
 LaTeX Info: Redefining \. on input line 9.
 LaTeX Info: Redefining \% on input line 9.
@@ -1385,7 +1452,7 @@ L3 programming layer <2020/03/25>
 LaTeX Warning: There were undefined references.
 
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: 0D49DEA957EFFD15997E0455552FAF5A;729.
+(rerunfilecheck)             Checksum: 457D0355AF5881F36764E7756822AEB8;1855.
 
 Package biblatex Warning: Please (re)run Biber on the file:
 (biblatex)                main
@@ -1396,17 +1463,17 @@ Package logreq Info: Writing requests to 'main.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 40213 strings out of 468133
- 765555 string characters out of 5428256
- 1755568 words of memory out of 5000000
- 68205 multiletter control sequences out of 15000+600000
- 663045 words of font info for 77 fonts, out of 8000000 for 9000
+ 40285 strings out of 468133
+ 766700 string characters out of 5428256
+ 1759476 words of memory out of 5000000
+ 68254 multiletter control sequences out of 15000+600000
+ 669700 words of font info for 82 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  84i,15n,131p,761b,2899s stack positions out of 10000i,1000n,20000p,200000b,200000s
-<C:/Users/Angel Lara/AppData/Local/Programs/MiKTeX/fonts/type1/public/newtx/ztmb.pfb><C:/Users/Angel Lara/AppData/Local/Programs/MiKTeX/fonts/type1/public/newtx/ztmr.pfb>
-Output written on main.pdf (3 pages, 294898 bytes).
+<C:/Users/Angel Lara/AppData/Local/Programs/MiKTeX/fonts/type1/public/txfonts/t1xtt.pfb><C:/Users/Angel Lara/AppData/Local/Programs/MiKTeX/fonts/type1/public/newtx/txsys.pfb><C:/Users/Angel Lara/AppData/Local/Programs/MiKTeX/fonts/type1/public/newtx/ztmb.pfb><C:/Users/Angel Lara/AppData/Local/Programs/MiKTeX/fonts/type1/public/newtx/ztmr.pfb>
+Output written on main.pdf (8 pages, 335153 bytes).
 PDF statistics:
- 99 PDF objects out of 1000 (max. 8388607)
- 10 named destinations out of 1000 (max. 500000)
- 175 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 174 PDF objects out of 1000 (max. 8388607)
+ 27 named destinations out of 1000 (max. 500000)
+ 231 words of extra memory for PDF output out of 10000 (max. 10000000)
 

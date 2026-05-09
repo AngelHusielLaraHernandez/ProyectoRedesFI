@@ -25,11 +25,10 @@
 \usepackage{float}
 \usepackage{placeins}
 \usepackage{subcaption}
-\usepackage{xcolor}
+\usepackage[table]{xcolor}
 \usepackage{makecell}
 \usepackage{array}
 \usepackage{tikz}
-\usepackage[table]{xcolor}
 \usetikzlibrary{shapes.geometric, shapes.multipart, positioning, arrows.meta, calc, shadows, decorations.pathreplacing,babel}
 
 % --- LISTAS ---
@@ -200,17 +199,186 @@
 
     \setcounter{page}{1}
 
-    \section{Introducción:}
+    \section{Introducción}
 
-    \section{Objetivos}
+    Se implementara un diseño eficiente y completo de red de datos esto para un edificio empresarial 
+    de cuantro plantas, donde, para estas 4 plantas se satifacera las necesasidades de conexion de cada dispostivo 
+    asi como el cumplimientos de los requisitos puestos para el proyecto, con esto siguiendo estandares de cableado.
 
-    \section{Justificacion:}
+    El diseño principal es basado completamente en el cableado estructurado 
+    siguiendo las normas ANSI/TIA-568 y ANSI/TIA-569, 
+    esto debido a que vamos a tener un cableado, con las 6 areas, donde se contamplaran la entrada de servicios, 
+    cuarto de equipos, cableado vertical (backbone), cuarto de telecomunicaciones, cableado horizontal y área de trabajo. 
+    
+    Siguiendo documentacion oficial, tanto de profesores de instituciones, como de empresas, se llevara a cabo la implementacion
+    principal de un plan, donde se debera de contemplar la administracion, mantemineto y expansión de la red a futuro si es que la empresa 
+    asi lo desea.
 
-    \section{Propuesta:}
+    Con ayuda de planos de la empresa, se llevara a cabo el diseño primario de la topologia de la red,
+    donde a criterio del equipo, es que se asigara la disposicision del cableado y del cuarto, esto bajo las normas del cableado estructurado, 
+    tal es el caso de el cuarto de telecomunicaciones, donde estos cuartos por norma y recomendacion se deben de encontrar 
+    a la misma altura en cada planta, esto para facilitar la instalacion del cableado vertical, asi mismo tenemos la orientacion de las puertas 
+    que estas en los cuartos de telecomunicaciones deben de estar orientadas hacia el pasillo, esto para facilitar el acceso a los equipos y al cableado.
+    No obstante, cabe recalcar que para el diseño de los planos, se siguieron codigo de colores para delimitar cada area, asi como cda 
+    subsistema del mismo, esto para facilitar la lectura de los planos, la disposicion de los equipos, sera asignada por los requisitos del proyecto.
 
-    \section{Desarrollo:}
+    El segmento con el que se trabajara sera proporcionado por los numeros de cuenta del equipo a cargo, donde
+    el formato del segmento es \texttt{10.X1.X2.0}, donde X1 corresponde al tercer y cuarto dígito del número de cuenta del primer integrante 
+    y X2 al tercer y cuarto dígito del segundo integrante. 
+    A partir de este segmento, se usara VLSM, esto para crear subredes las cuales seran las encargadas de la configuracion de los dispositivos en nuestra topologia.
 
-    \section{Implementacion:}
+    Ahora bien, siguiendo con la topologia, la cuestion del enrutamiento, este se implementa mediante el protocolo dinámico EIGRP, 
+    este fue elegido, ademas de las espeficaciones del proyecto, es por su soporte para VLSM y balanceo de carga. 
+    Ademas de esto, se implementara la cuestion de servidor, estos seran el servidor DHCP que es para la asignacion 
+    automática de direcciones en la planta baja; tambien a los servidores DNS y Web que estos son principalmente para el alojamiento y lanzamiendo de la pagina web de la empresa 
+    que se mostrara en los dispositivos conectados, por ultimo tenemos al servidor Syslog para el monitoreo del estado de la red.
+
+    \section{Objetivo:}
+
+    Se diseñara e implementar una red de datos segura, escalable para un edificio empresarial de cuatro pisos, cumpliendo con los
+    estándares de cableado estructurado y seguridad de redes. Se configuraran los dispositivos por medio de cisco packet tracer,
+    aplicando VLSM para la asginacion de IP, y como metodo de enrutamiento se aplicara EIGRP, esto para asugurar el envio de paquetes entre 
+    los dispositivos, ademas de esto, se implementaran los servidores DHCP, DNS, Web y Syslog para dar los servicios conrrespondientes a la red.
+
+    Se investigara que es un AP, como se configura un AP, y como se implementa en una red, esto para la asignacion de los APs en cada piso, esto para dar conectividad inalámbrica a los dispositivos que lo requieran,
+    ademas de esto, se implementaran medidas de seguridad tanto físicas como lógicas.
+
+    \section{Justificación}
+
+    Para la implementacion de la topologia, se tomaron en cuenta los siguientes aspectos, partiendo desde el plano:
+
+    \subsection{Cableado Estructurado:}
+
+    En cuestion del cableado estructurado, como se dijo desde la introduccion, se tomo basandonos en las normas ANSI/TIA 
+    porque es la forma mas viable, de llevarlo a cabo, debido al orden que esta lleva, esto por lo rapido de alambrar 
+    y por el facil mantemiento que se le puede dar a futuro, esto por que que al separar la red en los seis subsisteas, se pueden aislar las fallas
+    y tambien la escalabilidad ante nuevos requerimientos se podria implementar de una manera mas sencilla. 
+
+    \subsection{Seguridad Física y Lógica:}
+
+    La seguridad se vera reflaja a nivel del plano, esto tendra dos secciones, tal cual como dictan los estandes de redes
+    para esto, tenemos primero a la seguridad a nivel físico, 
+    donde en este punto en la empresa se utilizaran cerraduras con llave biometrica de huellas en los cuartos de telecomunicaciones, esto principalmente 
+    por que al ser los cuartos que contienen todos los equipos principales, tales como los servidores, routers, esto hace que sea la zona mas sensible 
+    de la infrestructura, por lo que solo personal autorizado podra acceder a estos, con las claves necesarias,
+    no obstante, tenemos la seguridad por medio de lleves, a zonas no tan sensibles, colo son a cuartos de trabajo mas especializados
+    y por ultimo tenemos la seguridad a nivel de las cámaras de vigilancia en áreas críticas. 
+    Ahora bien, pasando a la segundo nivel de seguridad, que es el nivel lógico, todos los routers y switches 
+    cuentan con contraseñas cifradas, acceso por consola, cifrado de contraseñas con servicios de encriptacion, y 
+    mensajes de advertencia. 
+    Los switches implementan seguridad en puertos mediante port securitty esto tambien donde los switches aprenden las direccionees MAC de los dispositivos conectados
+    de forma dinamicar y gurdandolas en su configuracion, 
+    limitando el número de dispositivos por puerto y deshabilitando puertos no utilizados.
+
+
+    \subsection{Protocolo de enrutamiento:}
+
+    Se usara EIGRP como protocolo de enrutamiento dinámico esto, por su varacterisitcas de soprote con VLSM, balanceo de carga y su algoritmo dual, no obstante, tambien tenemos las siguientes caracteristicas:
+
+    \begin{itemize}
+        \item El soporte de VLSM, lo hace que sea un protocolo eficiente, pero este protocolo tiene una convergencia mas rapida que RIP, es por que es RIP, debido a que EIGRP es mejor en cuestion de eficiencia.
+        \item La convergencia rapida, se debe al uso del algoritmo DUAL que integra, este algoritmo es principal para calcular rutas, que ademas mantiene rutas de respaldo precalculadas.
+        \item Consume menor ancho de banda como OSPF, al enviar actualizaciones de un solo sector, solo pasa cuando ocurre un cambio en la topología.
+    \end{itemize}
+
+    \subsection{VLSM:}
+
+    Se usara en este caso VLSM en lugar de un subneteo, porque permite asignar subredes sin que se desperdicien direcciones. 
+    
+    Para nuestra empresa, tenemos ya un numero predefinido de dispositivos, esto hace que tengamos un numero de hosts
+    por piso, esto hace que al usar VLSM, se asignes solo necesarios, a camparacion de que con subneteo, se desperdiciarian una gran cantidad e IP, utiles.
+
+
+    \section{Propuesta}
+
+    El problema principal consta de asignrar correctamente el cableado estructurado al edificio, asi como el diseño del plano, para esto,
+    primero el edificio consta de cuatro niveles, cada uno con un cuarto de telecomunicaciones que tiene un router 
+    y un switch para cada planta, tal cual como lo dictan las normas. 
+    Los pisos se conectan mediante cableado vertical a esto por los purtos seriales entre los routers, 
+    haciando que se vean de la siguiente manera la conexion de los pisos: 
+    R\_PB $\leftrightarrow$ R\_P1 $\leftrightarrow$ R\_P2 $\leftrightarrow$ R\_P3. 
+    Cabe recalcar, que la planta baja cuenta con el cuarto de equipos principal donde se estan los servidores 
+    (DHCP, Web, DNS, Syslog) y la entrada de servicios esto siguiendo de igual forma las normas ANSI/TIA.
+
+    \subsection{Distribucion por Pisos}
+
+    Como en las especificaciones del proyecto, cada piso tiene una funcion diferente, por lo que la propuesta siguiendo esas instrucciones es esta:
+
+    \textbf{Planta Baja (PB):} Esta plana tiene la recepción que es en la que cualquier persona (publica o privada) puede llegar a tener contacto,
+    tambien tenemos una sala de conferencias, una impresora de red, dos AP
+    uno público sin contraseña y otro con contraseña que este es exclusivo para el uso de las personas que trabajan en la empresa, en cuestion de medidas de seguridad, al ser un lugar donde el publico en general tiene acceso se cuenta con
+    cámaras de seguridad, esto tambien con cerraduras, en los diferentes cuartos sensibles. 
+
+    \textbf{Primer Piso (P1):} Esta planta tiene las áreas de gerencia, administración de red, administración general, 
+    área de trabajo, una sala de videoconferencias, una impresora de red, un Access Point con contraseña y cámaras de seguridad. 
+    Donde de igual forma que en la anterior, la seguridad se ve reflejada en los cuartos mas sensibles, y el cuarto de telecomunicacion 
+    se encuentra al mismo nivel que de los otros pisos.
+
+    \textbf{Segundo Piso (P2):} Este segundo piso tiene a toda la parte del desarrollo de software, este tiene
+    estaciones de trabajo para los desarrolladores, que se convierte en un punto sensible, tambien tiene 
+    una sala de videoconferencias, una impresora de red, un Access Point con contraseña y cámaras de seguridad. 
+
+    \textbf{Tercer Piso (P3):} Por ultimo el tercer piso, este es el area de descanso para los trabajadores, 
+    con un Access Point con contraseña esto para la conexion inalámbrica y cámaras de seguridad de igual forma que en los anteriores.
+
+    \subsection{Cableado Estructurado}
+
+    \begin{enumerate}
+        \item Entrada de Servicios: Esta seccion se coloco en la planta baja, 
+        esto como dictaminan las normas, este debe de ir en la planta baja, esto por que es donde se coloca
+        la conexion con el exterior con la empresa, es decir 
+        donde el proveedor  proporciona la infrestructura para empezar la conexion. Este ademas se conecta directamente 
+        al cuarto de equipos.
+        \item Cuarto de Equipos: Este esta en la planta baja, este tiene toda la parte de los servidores que vamos a usar tales como 
+        DHCP, Web/DNS, Syslog, el router principal y un switch. Este cuarto se encuentra en esta planta por que 
+        es donde se encuentra la entrada de servicios y esto hace que sea mas facil la conexion con el proveedor.
+        \item Cableado Vertical (Backbone): Este cableado, su funcion principal es la conexion de 
+        los cuartos de telecomunicaciones de cada piso con el cuarto de equipos. 
+
+        \item Cuarto de Telecomunicaciones: Este cuarto se encuentra en los 3 pisos, donde por reglas de las normas ANSI/TIA, cada planata debera de
+        contar con un cuarto de telecomunicaciones, estos cuartos se tiene el router, switch y patch panel correspondiente. 
+        
+        \item Cableado Horizontal: Para subsistema su objetivo es que conecta las rosetas de cada área de trabajo 
+        con el patch panel de el cuarto de telecomunicaciones que se encuentra en el piso correspondiente a donde esta. 
+        
+        \item Area de Trabajo: Para este subsistema, este no se comrpende un solo lugar, en la empresa como tal, tenenemos multiples lugares de trabajo en diferentes plantas,
+        es por eso que como tal el area de trabajo tiene las rosetas y los dispositivos finales con lo que trabajaran los empleados, tales 
+        como PCs, laptops, impresoras.
+    \end{enumerate}
+
+    \subsection{Seguridad Propuesta}
+
+    \textbf{Seguridad Física:}
+    \begin{itemize}
+        \item Cuarto de equipos (PB): acceso mediante huella dactilar.
+        \item Cuartos de telecomunicaciones (P1, P2, P3): acceso mediante huella dactilar.
+        \item Cámaras de seguridad en cada piso para vigilancia de zonas sensibles.
+    \end{itemize}
+
+    \textbf{Seguridad Lógica en Routers:}
+    \begin{itemize}
+        \item Contraseña de modo privilegiado cifrada (\texttt{enable secret}).
+        \item Acceso por consola y VTY protegido con contraseña.
+        \item Cifrado de contraseñas almacenadas (\texttt{service password-encryption}).
+        \item Nombre del router correspondiente al piso y área que da servicio.
+    \end{itemize}
+
+    \textbf{Seguridad Lógica en Switches:}
+    \begin{itemize}
+        \item Seguridad en puertos: \texttt{switchport port-security} con máximo 2 direcciones MAC, modo \texttt{sticky} para aprendizaje dinámico y violación en modo \texttt{shutdown}.
+        \item Deshabilitación de puertos no utilizados.
+        \item Nombre del switch correspondiente al área que da servicio.
+    \end{itemize}
+
+    \textbf{Seguridad Inalámbrica:}
+    \begin{itemize}
+        \item Se coloque un AP con acceso libre sin contraseña para visitantes en la recepción.
+        \item Los AP, de plantas superiores y de zonas sensibles tienen acceso protegido mediante contraseña para empleados.
+    \end{itemize}
+
+    \section{Desarrollo}
+
+    \section{Implementación}
 
 
 

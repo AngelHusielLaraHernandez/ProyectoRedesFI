@@ -1,0 +1,1355 @@
+\documentclass[letterpaper,11pt]{article}
+
+% --- PAQUETES DE IDIOMA ---
+\usepackage[spanish,mexico]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+% --- PAQUETES GRÁFICOS Y DE DISEÑO ---
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{xcolor}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{booktabs}
+\usepackage{makecell}
+\usepackage{multirow}
+
+% --- LISTAS ---
+\usepackage{enumitem}
+
+% --- PAQUETES DE CÓDIGO ---
+\usepackage{listings}
+
+\definecolor{codebg}{rgb}{0.95,0.95,0.95}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codeblue}{rgb}{0.0,0.2,0.6}
+\definecolor{codegreen}{rgb}{0.13,0.55,0.13}
+
+\lstdefinestyle{cisco}{
+  backgroundcolor=\color{codebg},
+  basicstyle=\ttfamily\small,
+  keywordstyle=\color{codeblue}\bfseries,
+  commentstyle=\color{codegreen}\itshape,
+  stringstyle=\color{red!70!black},
+  numbers=left,
+  numberstyle=\tiny\color{codegray},
+  frame=single,
+  rulecolor=\color{black},
+  breaklines=true,
+  tabsize=4,
+  showstringspaces=false,
+  captionpos=b,
+  morekeywords={enable,configure,terminal,hostname,interface,ip,address,no,shutdown,
+    clock,rate,router,eigrp,network,auto-summary,end,copy,running-config,
+    startup-config,secret,line,console,password,login,vty,transport,input,
+    ssh,telnet,service,password-encryption,banner,motd,description,switchport,
+    mode,access,port-security,maximum,violation,mac-address,sticky,range,
+    do,show,write,memory,GigabitEthernet0,Serial0,FastEthernet0,
+    exit,encapsulation,dot1Q,duplex,speed,logging,trap,warnings,
+    ip,default-gateway,snmp-server,community,location,contact},
+  literate={á}{{\'a}}1
+           {é}{{\'e}}1
+           {í}{{\'i}}1
+           {ó}{{\'o}}1
+           {ú}{{\'u}}1
+           {Á}{{\'A}}1
+           {É}{{\'E}}1
+           {Í}{{\'I}}1
+           {Ó}{{\'O}}1
+           {Ú}{{\'U}}1
+           {ñ}{{\~n}}1
+           {Ñ}{{\~N}}1
+           {¿}{{\textquestiondown}}1
+           {¡}{{\textexclamdown}}1
+}
+
+% --- CONFIGURACIÓN DE PÁGINA ---
+\usepackage[
+    left=20mm,
+    right=20mm,
+    top=25mm,
+    bottom=25mm
+]{geometry}
+
+% --- FORMATO DE TEXTO ---
+\usepackage{setspace}
+\onehalfspacing
+\usepackage{parskip}
+
+% --- ENCABEZADOS Y PIES ---
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\textbf{Guía de Configuración de Red}}
+\fancyhead[R]{\small Proyecto Final -- Redes de Datos Seguras}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% --- HIPERVÍNCULOS ---
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    citecolor=blue,
+    urlcolor=cyan
+}
+
+% --- MATEMÁTICAS ---
+\usepackage{amsmath}
+
+\begin{document}
+
+% ====================================================================
+% PORTADA
+% ====================================================================
+\begin{titlepage}
+\centering
+\vspace*{2cm}
+{\Huge\textbf{Guía de Configuración de Red}}\\[0.5cm]
+{\LARGE Edificio Empresarial -- Desarrollo de Software}\\[1.5cm]
+{\Large\textbf{Proyecto Final -- Redes de Datos Seguras}}\\[0.5cm]
+{\Large Grupo 02 -- Semestre 2026-2}\\[2cm]
+{\large\textbf{Integrantes:}}\\[0.3cm]
+{\large Espinoza Matamoros Percival Ulises -- 320025561}\\[0.2cm]
+{\large Lara Hernández Ángel Husiel -- 320060829}\\[2cm]
+{\large\textbf{Profesora:}}\\[0.2cm]
+{\large Mtra. María Eugenia Bautista González}\\[2cm]
+{\large Mayo 2026}
+\end{titlepage}
+
+% ====================================================================
+% ÍNDICE
+% ====================================================================
+\newpage
+\tableofcontents
+\newpage
+
+% ====================================================================
+% 1. CÁLCULO DEL SEGMENTO DE RED
+% ====================================================================
+\section{Cálculo del Segmento de Red}
+
+\subsection{Determinación de los Octetos X1 y X2}
+
+Conforme a las indicaciones del proyecto, el segmento de red se define con el formato:
+
+\begin{center}
+\texttt{10.X1.X2.0}
+\end{center}
+
+Donde:
+\begin{itemize}
+    \item \textbf{X1}: corresponde al 3er y 4to dígito del número de cuenta del \textbf{primer integrante}.
+    \item \textbf{X2}: corresponde al 3er y 4to dígito del número de cuenta del \textbf{segundo integrante}.
+\end{itemize}
+
+\textbf{Primer integrante:} Espinoza Matamoros Percival Ulises \\
+Número de cuenta: \texttt{3\underline{20}025561} \\
+Dígitos: $3, 2, \mathbf{0}, \mathbf{0}, 2, 5, 5, 6, 1$ \\
+3er dígito = 0, 4to dígito = 0 $\Rightarrow$ \textbf{X1 = 00 = 0}
+
+\textbf{Segundo integrante:} Lara Hernández Ángel Husiel \\
+Número de cuenta: \texttt{3\underline{20}060829} \\
+Dígitos: $3, 2, \mathbf{0}, \mathbf{0}, 6, 0, 8, 2, 9$ \\
+3er dígito = 0, 4to dígito = 0 $\Rightarrow$ \textbf{X2 = 00 = 0}
+
+\subsection{Segmento Resultante}
+
+\begin{center}
+\fbox{\Large \texttt{Segmento de red: 10.0.0.0/24}}
+\end{center}
+
+Máscara base: \texttt{255.255.255.0} (clase A con máscara /24). \\
+Direcciones totales disponibles en el segmento: $2^{8} = 256$ direcciones (254 útiles). \\
+Este segmento será subdividido mediante VLSM para asignar subredes de tamaño apropiado a cada piso y enlace.
+
+% ====================================================================
+% 2. INVENTARIO DE HOSTS POR SUBRED
+% ====================================================================
+\section{Inventario de Hosts por Subred}
+
+Antes de aplicar VLSM, es necesario determinar la cantidad exacta de hosts requeridos en cada segmento de red. Esta información se obtiene del plano de infraestructura del edificio.
+
+\subsection{Planta Baja (PB) -- Red LAN}
+
+\begin{table}[H]
+\centering
+\caption{Dispositivos en la subred LAN de Planta Baja}
+\begin{tabular}{|c|l|l|}
+\hline
+\textbf{ID} & \textbf{Dispositivo} & \textbf{Área} \\
+\hline
+PB-A01 & Access Point con contraseña (AP\_C\_PB) & Recepción \\
+PB-A02 & Access Point libre (AP\_A\_PB) & Recepción \\
+PB-A03a & Laptop 1 & Sala de Conferencias \\
+PB-A03b & Laptop 2 & Sala de Conferencias \\
+PB-A03c & Laptop 3 & Sala de Conferencias \\
+PB-A03d & Laptop 4 & Sala de Conferencias \\
+PB-A04 & Impresora de red & Recepción \\
+PB-A05 & PC 1 & Recepción \\
+PB-A06 & PC 2 & Recepción \\
+PB-CAM & Cámara de seguridad IP & General \\
+\hline
+\multicolumn{2}{|r|}{\textbf{Total de hosts:}} & \textbf{10} \\
+\hline
+\end{tabular}
+\end{table}
+
+\textbf{Justificación:} La planta baja requiere conectividad para la recepción (atención a visitantes y empleados), la sala de conferencias (reuniones con clientes) y la vigilancia. Se incluyen dos APs: uno público para visitantes y otro con contraseña para empleados. Las 4 laptops en la sala de conferencias permiten presentaciones y trabajo colaborativo durante reuniones.
+
+\subsection{Red de Servidores}
+
+\begin{table}[H]
+\centering
+\caption{Dispositivos en la subred de Servidores}
+\begin{tabular}{|c|l|l|}
+\hline
+\textbf{ID} & \textbf{Dispositivo} & \textbf{Función} \\
+\hline
+SRV-DHCP & Servidor DHCP & Asignación dinámica de IPs (PB) \\
+SRV-WEB & Servidor Web & Sitio corporativo con logotipo \\
+SRV-DNS & Servidor DNS & Resolución de nombres de dominio \\
+SRV-SYSLOG & Servidor Syslog & Monitoreo del estado de la red \\
+\hline
+\multicolumn{2}{|r|}{\textbf{Total de hosts:}} & \textbf{4} \\
+\hline
+\end{tabular}
+\end{table}
+
+\textbf{Justificación:} Los servidores se ubican en una subred independiente dentro del cuarto de equipos de la planta baja por razones de seguridad y rendimiento. Al aislarlos en su propia subred, se puede aplicar políticas de acceso específicas y evitar que el tráfico broadcast de las subredes LAN afecte los servicios.
+
+\subsection{Primer Piso (P1) -- Red LAN}
+
+\begin{table}[H]
+\centering
+\caption{Dispositivos en la subred LAN del Primer Piso}
+\begin{tabular}{|c|l|l|}
+\hline
+\textbf{ID} & \textbf{Dispositivo} & \textbf{Área} \\
+\hline
+P1-A02 & PC Administrador de Red & Administración de Red \\
+P1-A03 & PC Gerente 1 & Gerencia \\
+P1-A04 & PC Gerente 2 & Gerencia \\
+P1-A05 & PC Trabajo 1 & Área de Trabajo \\
+P1-A06 & Laptop VideoConf 1 & Sala de Videoconferencias \\
+P1-A07 & Laptop VideoConf 2 & Sala de Videoconferencias \\
+P1-A08 & Access Point con contraseña (AP\_C\_P1) & Administración de Red \\
+P1-A09 & Impresora de red & General \\
+P1-A10 & PC Administración 1 & Administración \\
+P1-A11 & PC Administración 2 & Administración \\
+P1-A12 & PC Trabajo 2 & Área de Trabajo \\
+P1-CAM & Cámara de seguridad IP & General \\
+\hline
+\multicolumn{2}{|r|}{\textbf{Total de hosts:}} & \textbf{12} \\
+\hline
+\end{tabular}
+\end{table}
+
+\textbf{Justificación:} El primer piso concentra las áreas administrativas y de gestión de la empresa. La gerencia requiere 2 PCs para los directivos. El administrador de red necesita un equipo dedicado para la gestión de la infraestructura. El área de trabajo y administración general requieren PCs para las operaciones diarias. La sala de videoconferencias permite reuniones remotas con clientes y equipos externos. Este piso tiene la mayor cantidad de hosts (12), por lo que su subred (/28 con 14 direcciones útiles) queda ajustada pero con margen mínimo para crecimiento.
+
+\subsection{Segundo Piso (P2) -- Red LAN}
+
+\begin{table}[H]
+\centering
+\caption{Dispositivos en la subred LAN del Segundo Piso}
+\begin{tabular}{|c|l|l|}
+\hline
+\textbf{ID} & \textbf{Dispositivo} & \textbf{Área} \\
+\hline
+P2-A01 & Access Point con contraseña (AP\_C\_P2) & Equipo de Desarrollo \\
+P2-A02 & PC Desarrollador 1 & Equipo de Desarrollo \\
+P2-A03 & PC Desarrollador 2 & Equipo de Desarrollo \\
+P2-A04 & PC Desarrollador 3 & Equipo de Desarrollo \\
+P2-A05 & PC Desarrollador 4 & Equipo de Desarrollo \\
+P2-A06 & PC VideoConf 1 & Sala de Videoconferencias \\
+P2-A07 & PC VideoConf 2 & Sala de Videoconferencias \\
+P2-A08 & Impresora de red & General \\
+P2-CAM & Cámara de seguridad IP & General \\
+\hline
+\multicolumn{2}{|r|}{\textbf{Total de hosts:}} & \textbf{9} \\
+\hline
+\end{tabular}
+\end{table}
+
+\textbf{Justificación:} El segundo piso está dedicado al equipo de desarrollo de software. Los 4 PCs de desarrollo son estaciones de trabajo de alto rendimiento. La sala de videoconferencias permite la comunicación con equipos remotos y revisiones de código. Se asigna un /28 (14 útiles) para permitir crecimiento del equipo de desarrollo.
+
+\subsection{Tercer Piso (P3) -- Red LAN}
+
+\begin{table}[H]
+\centering
+\caption{Dispositivos en la subred LAN del Tercer Piso}
+\begin{tabular}{|c|l|l|}
+\hline
+\textbf{ID} & \textbf{Dispositivo} & \textbf{Área} \\
+\hline
+P3-AP & Access Point con contraseña (AP\_C\_P3) & Esparcimiento \\
+P3-L01 & Laptop 1 & Área de Esparcimiento \\
+P3-L02 & Laptop 2 & Área de Esparcimiento \\
+P3-CAM & Cámara de seguridad IP & General \\
+P3-RES & Reserva & Crecimiento futuro \\
+\hline
+\multicolumn{2}{|r|}{\textbf{Total de hosts:}} & \textbf{5} \\
+\hline
+\end{tabular}
+\end{table}
+
+\textbf{Justificación:} El tercer piso es exclusivamente para esparcimiento de los trabajadores. La demanda de dispositivos de red es baja; se proporciona conectividad inalámbrica mediante un AP con contraseña y algunas laptops para uso recreativo. Un /29 (6 hosts útiles) es suficiente, con una dirección de reserva para crecimiento.
+
+\subsection{Enlaces WAN (Punto a Punto)}
+
+\begin{table}[H]
+\centering
+\caption{Enlaces WAN entre routers}
+\begin{tabular}{|l|c|l|}
+\hline
+\textbf{Enlace} & \textbf{Hosts} & \textbf{Descripción} \\
+\hline
+WAN PB $\leftrightarrow$ P1 & 2 & Backbone entre Planta Baja y Primer Piso \\
+WAN P1 $\leftrightarrow$ P2 & 2 & Backbone entre Primer Piso y Segundo Piso \\
+WAN P2 $\leftrightarrow$ P3 & 2 & Backbone entre Segundo Piso y Tercer Piso \\
+\hline
+\end{tabular}
+\end{table}
+
+\textbf{Justificación:} Cada enlace punto a punto conecta exactamente 2 interfaces (una de cada router adyacente), por lo que un /30 (2 hosts útiles) es la asignación óptima que no desperdicia direcciones.
+
+% ====================================================================
+% 3. VLSM - SUBNETEO
+% ====================================================================
+\section{VLSM -- Subneteo de Longitud Variable}
+
+\subsection{Proceso de Cálculo}
+
+El procedimiento VLSM consiste en:
+\begin{enumerate}
+    \item Ordenar las subredes de mayor a menor según la cantidad de hosts requeridos.
+    \item Asignar el prefijo más largo (subred más pequeña) que pueda acomodar la cantidad de hosts.
+    \item Asignar direcciones secuencialmente, evitando solapamientos.
+\end{enumerate}
+
+\textbf{Resumen de subredes ordenadas por tamaño:}
+
+\begin{enumerate}
+    \item \textbf{P1 LAN}: 12 hosts $\Rightarrow$ se necesitan al menos $2^n - 2 \geq 12$, con $n=4$: $2^4 - 2 = 14$ $\Rightarrow$ \textbf{/28}
+    \item \textbf{PB LAN}: 10 hosts $\Rightarrow$ $2^4 - 2 = 14 \geq 10$ $\Rightarrow$ \textbf{/28}
+    \item \textbf{P2 LAN}: 9 hosts $\Rightarrow$ $2^4 - 2 = 14 \geq 9$ $\Rightarrow$ \textbf{/28}
+    \item \textbf{P3 LAN}: 5 hosts $\Rightarrow$ $2^3 - 2 = 6 \geq 5$ $\Rightarrow$ \textbf{/29}
+    \item \textbf{Servidores}: 4 hosts $\Rightarrow$ $2^3 - 2 = 6 \geq 4$ $\Rightarrow$ \textbf{/29}
+    \item \textbf{WAN PB--P1}: 2 hosts $\Rightarrow$ $2^2 - 2 = 2$ $\Rightarrow$ \textbf{/30}
+    \item \textbf{WAN P1--P2}: 2 hosts $\Rightarrow$ \textbf{/30}
+    \item \textbf{WAN P2--P3}: 2 hosts $\Rightarrow$ \textbf{/30}
+\end{enumerate}
+
+\textbf{Nota:} Las subredes /28 se asignan primero (todas tienen el mismo tamaño de prefijo), seguidas de las /29 y finalmente las /30. Dentro del mismo tamaño de prefijo, el orden es por piso de forma ascendente.
+
+\subsection{Tabla VLSM Completa}
+
+\begin{table}[H]
+\centering
+\caption{Tabla VLSM -- Asignación de subredes desde 10.0.0.0/24}
+\label{tab:vlsm_completa}
+\small
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{|c|l|c|c|c|c|c|c|}
+\hline
+\textbf{\#} & \textbf{Subred} & \textbf{Hosts} & \textbf{Prefijo} & \textbf{Máscara} & \textbf{Dir. de Red} & \textbf{Rango Útil} & \textbf{Broadcast} \\
+\hline
+1 & PB LAN & 10 & /28 & 255.255.255.240 & 10.0.0.0 & .1 -- .14 & 10.0.0.15 \\
+\hline
+2 & P1 LAN & 12 & /28 & 255.255.255.240 & 10.0.0.16 & .17 -- .30 & 10.0.0.31 \\
+\hline
+3 & P2 LAN & 9 & /28 & 255.255.255.240 & 10.0.0.32 & .33 -- .46 & 10.0.0.47 \\
+\hline
+4 & Servidores & 4 & /29 & 255.255.255.248 & 10.0.0.48 & .49 -- .54 & 10.0.0.55 \\
+\hline
+5 & P3 LAN & 5 & /29 & 255.255.255.248 & 10.0.0.56 & .57 -- .62 & 10.0.0.63 \\
+\hline
+6 & WAN PB--P1 & 2 & /30 & 255.255.255.252 & 10.0.0.64 & .65 -- .66 & 10.0.0.67 \\
+\hline
+7 & WAN P1--P2 & 2 & /30 & 255.255.255.252 & 10.0.0.68 & .69 -- .70 & 10.0.0.71 \\
+\hline
+8 & WAN P2--P3 & 2 & /30 & 255.255.255.252 & 10.0.0.72 & .73 -- .74 & 10.0.0.75 \\
+\hline
+\end{tabular}
+\end{table}
+
+\textbf{Verificación:}
+\begin{itemize}
+    \item Direcciones utilizadas: 10.0.0.0 a 10.0.0.75 (76 direcciones).
+    \item Direcciones restantes en el /24: 10.0.0.76 a 10.0.0.255 (180 direcciones disponibles para crecimiento futuro).
+    \item No existe solapamiento entre subredes.
+    \item Todas las subredes respetan los límites de alineación de su máscara.
+\end{itemize}
+
+% ====================================================================
+% 4. ASIGNACIÓN DE DIRECCIONES IP A DISPOSITIVOS
+% ====================================================================
+\section{Tabla de Direccionamiento IP por Dispositivo}
+
+\subsection{Interfaces de Routers}
+
+\begin{table}[H]
+\centering
+\caption{Direccionamiento IP -- Interfaces de Routers}
+\label{tab:routers_ip}
+\small
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{|l|l|l|l|l|}
+\hline
+\textbf{Router} & \textbf{Interfaz} & \textbf{IP} & \textbf{Máscara} & \textbf{Descripción} \\
+\hline
+\multirow{3}{*}{R\_PB} & GigabitEthernet0/0 & 10.0.0.1 & 255.255.255.240 & Gateway PB LAN \\
+\cline{2-5}
+ & GigabitEthernet0/1 & 10.0.0.49 & 255.255.255.248 & Gateway Servidores \\
+\cline{2-5}
+ & Serial0/0/0 & 10.0.0.65 & 255.255.255.252 & WAN hacia P1 \\
+\hline
+\multirow{3}{*}{R\_P1} & GigabitEthernet0/0 & 10.0.0.17 & 255.255.255.240 & Gateway P1 LAN \\
+\cline{2-5}
+ & Serial0/0/0 & 10.0.0.66 & 255.255.255.252 & WAN hacia PB \\
+\cline{2-5}
+ & Serial0/0/1 & 10.0.0.69 & 255.255.255.252 & WAN hacia P2 \\
+\hline
+\multirow{3}{*}{R\_P2} & GigabitEthernet0/0 & 10.0.0.33 & 255.255.255.240 & Gateway P2 LAN \\
+\cline{2-5}
+ & Serial0/0/0 & 10.0.0.70 & 255.255.255.252 & WAN hacia P1 \\
+\cline{2-5}
+ & Serial0/0/1 & 10.0.0.73 & 255.255.255.252 & WAN hacia P3 \\
+\hline
+\multirow{2}{*}{R\_P3} & GigabitEthernet0/0 & 10.0.0.57 & 255.255.255.248 & Gateway P3 LAN \\
+\cline{2-5}
+ & Serial0/0/0 & 10.0.0.74 & 255.255.255.252 & WAN hacia P2 \\
+\hline
+\end{tabular}
+\end{table}
+
+\subsection{Dispositivos Finales -- Planta Baja}
+
+\begin{table}[H]
+\centering
+\caption{Direccionamiento IP -- Planta Baja (10.0.0.0/28)}
+\small
+\begin{tabular}{|l|l|l|l|l|}
+\hline
+\textbf{Dispositivo} & \textbf{IP} & \textbf{Máscara} & \textbf{Gateway} & \textbf{Área} \\
+\hline
+R\_PB (Gig0/0) & 10.0.0.1 & 255.255.255.240 & -- & Gateway \\
+AP\_C\_PB (PB-A01) & 10.0.0.2 & 255.255.255.240 & 10.0.0.1 & Recepción \\
+AP\_A\_PB (PB-A02) & 10.0.0.3 & 255.255.255.240 & 10.0.0.1 & Recepción \\
+Laptop 1 (PB-A03a) & 10.0.0.4 & 255.255.255.240 & 10.0.0.1 & Sala Conf. \\
+Laptop 2 (PB-A03b) & 10.0.0.5 & 255.255.255.240 & 10.0.0.1 & Sala Conf. \\
+Laptop 3 (PB-A03c) & 10.0.0.6 & 255.255.255.240 & 10.0.0.1 & Sala Conf. \\
+Laptop 4 (PB-A03d) & 10.0.0.7 & 255.255.255.240 & 10.0.0.1 & Sala Conf. \\
+Impresora (PB-A04) & 10.0.0.8 & 255.255.255.240 & 10.0.0.1 & Recepción \\
+PC 1 (PB-A05) & 10.0.0.9 & 255.255.255.240 & 10.0.0.1 & Recepción \\
+PC 2 (PB-A06) & 10.0.0.10 & 255.255.255.240 & 10.0.0.1 & Recepción \\
+Cámara IP & 10.0.0.11 & 255.255.255.240 & 10.0.0.1 & General \\
+\hline
+\end{tabular}
+\end{table}
+
+\subsection{Dispositivos Finales -- Servidores}
+
+\begin{table}[H]
+\centering
+\caption{Direccionamiento IP -- Servidores (10.0.0.48/29)}
+\small
+\begin{tabular}{|l|l|l|l|l|}
+\hline
+\textbf{Dispositivo} & \textbf{IP} & \textbf{Máscara} & \textbf{Gateway} & \textbf{Función} \\
+\hline
+R\_PB (Gig0/1) & 10.0.0.49 & 255.255.255.248 & -- & Gateway \\
+Servidor DHCP & 10.0.0.50 & 255.255.255.248 & 10.0.0.49 & DHCP \\
+Servidor Web & 10.0.0.51 & 255.255.255.248 & 10.0.0.49 & Web \\
+Servidor DNS & 10.0.0.52 & 255.255.255.248 & 10.0.0.49 & DNS \\
+Servidor Syslog & 10.0.0.53 & 255.255.255.248 & 10.0.0.49 & Syslog \\
+\hline
+\end{tabular}
+\end{table}
+
+\subsection{Dispositivos Finales -- Primer Piso}
+
+\begin{table}[H]
+\centering
+\caption{Direccionamiento IP -- Primer Piso (10.0.0.16/28)}
+\small
+\begin{tabular}{|l|l|l|l|l|}
+\hline
+\textbf{Dispositivo} & \textbf{IP} & \textbf{Máscara} & \textbf{Gateway} & \textbf{Área} \\
+\hline
+R\_P1 (Gig0/0) & 10.0.0.17 & 255.255.255.240 & -- & Gateway \\
+PC Admin Red (P1-A02) & 10.0.0.18 & 255.255.255.240 & 10.0.0.17 & Admin. Red \\
+PC Gerente 1 (P1-A03) & 10.0.0.19 & 255.255.255.240 & 10.0.0.17 & Gerencia \\
+PC Gerente 2 (P1-A04) & 10.0.0.20 & 255.255.255.240 & 10.0.0.17 & Gerencia \\
+PC Trabajo 1 (P1-A05) & 10.0.0.21 & 255.255.255.240 & 10.0.0.17 & Área Trabajo \\
+Laptop VC 1 (P1-A06) & 10.0.0.22 & 255.255.255.240 & 10.0.0.17 & VideoConf. \\
+Laptop VC 2 (P1-A07) & 10.0.0.23 & 255.255.255.240 & 10.0.0.17 & VideoConf. \\
+AP\_C\_P1 (P1-A08) & 10.0.0.24 & 255.255.255.240 & 10.0.0.17 & Admin. Red \\
+Impresora (P1-A09) & 10.0.0.25 & 255.255.255.240 & 10.0.0.17 & General \\
+PC Admin 1 (P1-A10) & 10.0.0.26 & 255.255.255.240 & 10.0.0.17 & Administración \\
+PC Admin 2 (P1-A11) & 10.0.0.27 & 255.255.255.240 & 10.0.0.17 & Administración \\
+PC Trabajo 2 (P1-A12) & 10.0.0.28 & 255.255.255.240 & 10.0.0.17 & Área Trabajo \\
+Cámara IP & 10.0.0.29 & 255.255.255.240 & 10.0.0.17 & General \\
+\hline
+\end{tabular}
+\end{table}
+
+\subsection{Dispositivos Finales -- Segundo Piso}
+
+\begin{table}[H]
+\centering
+\caption{Direccionamiento IP -- Segundo Piso (10.0.0.32/28)}
+\small
+\begin{tabular}{|l|l|l|l|l|}
+\hline
+\textbf{Dispositivo} & \textbf{IP} & \textbf{Máscara} & \textbf{Gateway} & \textbf{Área} \\
+\hline
+R\_P2 (Gig0/0) & 10.0.0.33 & 255.255.255.240 & -- & Gateway \\
+AP\_C\_P2 (P2-A01) & 10.0.0.34 & 255.255.255.240 & 10.0.0.33 & Desarrollo \\
+PC Dev 1 (P2-A02) & 10.0.0.35 & 255.255.255.240 & 10.0.0.33 & Desarrollo \\
+PC Dev 2 (P2-A03) & 10.0.0.36 & 255.255.255.240 & 10.0.0.33 & Desarrollo \\
+PC Dev 3 (P2-A04) & 10.0.0.37 & 255.255.255.240 & 10.0.0.33 & Desarrollo \\
+PC Dev 4 (P2-A05) & 10.0.0.38 & 255.255.255.240 & 10.0.0.33 & Desarrollo \\
+PC VC 1 (P2-A06) & 10.0.0.39 & 255.255.255.240 & 10.0.0.33 & VideoConf. \\
+PC VC 2 (P2-A07) & 10.0.0.40 & 255.255.255.240 & 10.0.0.33 & VideoConf. \\
+Impresora (P2-A08) & 10.0.0.41 & 255.255.255.240 & 10.0.0.33 & General \\
+Cámara IP & 10.0.0.42 & 255.255.255.240 & 10.0.0.33 & General \\
+\hline
+\end{tabular}
+\end{table}
+
+\subsection{Dispositivos Finales -- Tercer Piso}
+
+\begin{table}[H]
+\centering
+\caption{Direccionamiento IP -- Tercer Piso (10.0.0.56/29)}
+\small
+\begin{tabular}{|l|l|l|l|l|}
+\hline
+\textbf{Dispositivo} & \textbf{IP} & \textbf{Máscara} & \textbf{Gateway} & \textbf{Área} \\
+\hline
+R\_P3 (Gig0/0) & 10.0.0.57 & 255.255.255.248 & -- & Gateway \\
+AP\_C\_P3 & 10.0.0.58 & 255.255.255.248 & 10.0.0.57 & Esparcimiento \\
+Laptop 1 & 10.0.0.59 & 255.255.255.248 & 10.0.0.57 & Esparcimiento \\
+Laptop 2 & 10.0.0.60 & 255.255.255.248 & 10.0.0.57 & Esparcimiento \\
+Cámara IP & 10.0.0.61 & 255.255.255.248 & 10.0.0.57 & General \\
+\hline
+\end{tabular}
+\end{table}
+
+\subsection{Enlaces WAN}
+
+\begin{table}[H]
+\centering
+\caption{Direccionamiento IP -- Enlaces WAN}
+\small
+\begin{tabular}{|l|l|l|l|}
+\hline
+\textbf{Enlace} & \textbf{Dispositivo} & \textbf{IP} & \textbf{Máscara} \\
+\hline
+\multirow{2}{*}{WAN PB--P1 (10.0.0.64/30)} & R\_PB (Se0/0/0) & 10.0.0.65 & 255.255.255.252 \\
+\cline{2-4}
+ & R\_P1 (Se0/0/0) & 10.0.0.66 & 255.255.255.252 \\
+\hline
+\multirow{2}{*}{WAN P1--P2 (10.0.0.68/30)} & R\_P1 (Se0/0/1) & 10.0.0.69 & 255.255.255.252 \\
+\cline{2-4}
+ & R\_P2 (Se0/0/0) & 10.0.0.70 & 255.255.255.252 \\
+\hline
+\multirow{2}{*}{WAN P2--P3 (10.0.0.72/30)} & R\_P2 (Se0/0/1) & 10.0.0.73 & 255.255.255.252 \\
+\cline{2-4}
+ & R\_P3 (Se0/0/0) & 10.0.0.74 & 255.255.255.252 \\
+\hline
+\end{tabular}
+\end{table}
+
+% ====================================================================
+% 5. CONFIGURACIÓN DE ROUTERS
+% ====================================================================
+\section{Configuración de Routers}
+
+A continuación se presentan los comandos de configuración completos para cada router. Todas las configuraciones incluyen: hostname, contraseñas de acceso, interfaces con direccionamiento IP, EIGRP y seguridad básica.
+
+\subsection{Router Planta Baja (R\_PB)}
+
+\begin{lstlisting}[style=cisco, caption={Configuración completa de R\_PB}]
+enable
+configure terminal
+
+! --- Identificación del dispositivo ---
+hostname R_PB
+
+! --- Seguridad: contraseña de modo privilegiado (cifrada) ---
+enable secret Redes2026PB
+
+! --- Seguridad: acceso por consola ---
+line console 0
+ password c0ns0laPB
+ login
+ logging synchronous
+ exec-timeout 5 0
+ exit
+
+! --- Seguridad: acceso remoto VTY ---
+line vty 0 4
+ password vtYpb2026
+ login
+ transport input ssh telnet
+ exec-timeout 5 0
+ exit
+
+! --- Cifrado de contraseñas almacenadas ---
+service password-encryption
+
+! --- Mensaje de advertencia legal ---
+banner motd #
+==============================================
+  ROUTER PLANTA BAJA (R_PB)
+  Acceso no autorizado está prohibido.
+  Todas las conexiones son monitoreadas.
+==============================================
+#
+
+! --- Interfaz LAN Planta Baja ---
+interface GigabitEthernet0/0
+ description LAN-Planta-Baja_Recepcion-Conferencias
+ ip address 10.0.0.1 255.255.255.240
+ no shutdown
+ exit
+
+! --- Interfaz Red de Servidores ---
+interface GigabitEthernet0/1
+ description Red-Servidores_DHCP-WEB-DNS-SYSLOG
+ ip address 10.0.0.49 255.255.255.248
+ no shutdown
+ exit
+
+! --- Interfaz WAN hacia Primer Piso ---
+interface Serial0/0/0
+ description WAN-Enlace-hacia-Primer-Piso_R_P1
+ ip address 10.0.0.65 255.255.255.252
+ clock rate 128000
+ no shutdown
+ exit
+
+! --- Enrutamiento dinámico EIGRP ---
+router eigrp 100
+ network 10.0.0.0 0.0.0.15
+ network 10.0.0.48 0.0.0.7
+ network 10.0.0.64 0.0.0.3
+ no auto-summary
+ exit
+
+! --- Logging hacia servidor Syslog ---
+logging 10.0.0.53
+logging trap warnings
+
+! --- Guardar configuración ---
+end
+copy running-config startup-config
+\end{lstlisting}
+
+\subsection{Router Primer Piso (R\_P1)}
+
+\begin{lstlisting}[style=cisco, caption={Configuración completa de R\_P1}]
+enable
+configure terminal
+
+! --- Identificación del dispositivo ---
+hostname R_P1
+
+! --- Seguridad: contraseña de modo privilegiado ---
+enable secret Redes2026P1
+
+! --- Seguridad: acceso por consola ---
+line console 0
+ password c0ns0laP1
+ login
+ logging synchronous
+ exec-timeout 5 0
+ exit
+
+! --- Seguridad: acceso remoto VTY ---
+line vty 0 4
+ password vtYp12026
+ login
+ transport input ssh telnet
+ exec-timeout 5 0
+ exit
+
+! --- Cifrado de contraseñas ---
+service password-encryption
+
+! --- Mensaje de advertencia ---
+banner motd #
+==============================================
+  ROUTER PRIMER PISO (R_P1)
+  Gerencia - Administración - Área de Trabajo
+  Acceso no autorizado está prohibido.
+==============================================
+#
+
+! --- Interfaz LAN Primer Piso ---
+interface GigabitEthernet0/0
+ description LAN-Primer-Piso_Gerencia-Admin-Trabajo
+ ip address 10.0.0.17 255.255.255.240
+ no shutdown
+ exit
+
+! --- Interfaz WAN hacia Planta Baja ---
+interface Serial0/0/0
+ description WAN-Enlace-hacia-Planta-Baja_R_PB
+ ip address 10.0.0.66 255.255.255.252
+ no shutdown
+ exit
+
+! --- Interfaz WAN hacia Segundo Piso ---
+interface Serial0/0/1
+ description WAN-Enlace-hacia-Segundo-Piso_R_P2
+ ip address 10.0.0.69 255.255.255.252
+ clock rate 128000
+ no shutdown
+ exit
+
+! --- Enrutamiento dinámico EIGRP ---
+router eigrp 100
+ network 10.0.0.16 0.0.0.15
+ network 10.0.0.64 0.0.0.3
+ network 10.0.0.68 0.0.0.3
+ no auto-summary
+ exit
+
+! --- Logging hacia servidor Syslog ---
+logging 10.0.0.53
+logging trap warnings
+
+! --- Guardar configuración ---
+end
+copy running-config startup-config
+\end{lstlisting}
+
+\subsection{Router Segundo Piso (R\_P2)}
+
+\begin{lstlisting}[style=cisco, caption={Configuración completa de R\_P2}]
+enable
+configure terminal
+
+! --- Identificación del dispositivo ---
+hostname R_P2
+
+! --- Seguridad: contraseña de modo privilegiado ---
+enable secret Redes2026P2
+
+! --- Seguridad: acceso por consola ---
+line console 0
+ password c0ns0laP2
+ login
+ logging synchronous
+ exec-timeout 5 0
+ exit
+
+! --- Seguridad: acceso remoto VTY ---
+line vty 0 4
+ password vtYp22026
+ login
+ transport input ssh telnet
+ exec-timeout 5 0
+ exit
+
+! --- Cifrado de contraseñas ---
+service password-encryption
+
+! --- Mensaje de advertencia ---
+banner motd #
+==============================================
+  ROUTER SEGUNDO PISO (R_P2)
+  Equipo de Desarrollo de Software
+  Acceso no autorizado está prohibido.
+==============================================
+#
+
+! --- Interfaz LAN Segundo Piso ---
+interface GigabitEthernet0/0
+ description LAN-Segundo-Piso_Equipo-Desarrollo
+ ip address 10.0.0.33 255.255.255.240
+ no shutdown
+ exit
+
+! --- Interfaz WAN hacia Primer Piso ---
+interface Serial0/0/0
+ description WAN-Enlace-hacia-Primer-Piso_R_P1
+ ip address 10.0.0.70 255.255.255.252
+ no shutdown
+ exit
+
+! --- Interfaz WAN hacia Tercer Piso ---
+interface Serial0/0/1
+ description WAN-Enlace-hacia-Tercer-Piso_R_P3
+ ip address 10.0.0.73 255.255.255.252
+ clock rate 128000
+ no shutdown
+ exit
+
+! --- Enrutamiento dinámico EIGRP ---
+router eigrp 100
+ network 10.0.0.32 0.0.0.15
+ network 10.0.0.68 0.0.0.3
+ network 10.0.0.72 0.0.0.3
+ no auto-summary
+ exit
+
+! --- Logging hacia servidor Syslog ---
+logging 10.0.0.53
+logging trap warnings
+
+! --- Guardar configuración ---
+end
+copy running-config startup-config
+\end{lstlisting}
+
+\subsection{Router Tercer Piso (R\_P3)}
+
+\begin{lstlisting}[style=cisco, caption={Configuración completa de R\_P3}]
+enable
+configure terminal
+
+! --- Identificación del dispositivo ---
+hostname R_P3
+
+! --- Seguridad: contraseña de modo privilegiado ---
+enable secret Redes2026P3
+
+! --- Seguridad: acceso por consola ---
+line console 0
+ password c0ns0laP3
+ login
+ logging synchronous
+ exec-timeout 5 0
+ exit
+
+! --- Seguridad: acceso remoto VTY ---
+line vty 0 4
+ password vtYp32026
+ login
+ transport input ssh telnet
+ exec-timeout 5 0
+ exit
+
+! --- Cifrado de contraseñas ---
+service password-encryption
+
+! --- Mensaje de advertencia ---
+banner motd #
+==============================================
+  ROUTER TERCER PISO (R_P3)
+  Área de Esparcimiento
+  Acceso no autorizado está prohibido.
+==============================================
+#
+
+! --- Interfaz LAN Tercer Piso ---
+interface GigabitEthernet0/0
+ description LAN-Tercer-Piso_Esparcimiento
+ ip address 10.0.0.57 255.255.255.248
+ no shutdown
+ exit
+
+! --- Interfaz WAN hacia Segundo Piso ---
+interface Serial0/0/0
+ description WAN-Enlace-hacia-Segundo-Piso_R_P2
+ ip address 10.0.0.74 255.255.255.252
+ no shutdown
+ exit
+
+! --- Enrutamiento dinámico EIGRP ---
+router eigrp 100
+ network 10.0.0.56 0.0.0.7
+ network 10.0.0.72 0.0.0.3
+ no auto-summary
+ exit
+
+! --- Logging hacia servidor Syslog ---
+logging 10.0.0.53
+logging trap warnings
+
+! --- Guardar configuración ---
+end
+copy running-config startup-config
+\end{lstlisting}
+
+% ====================================================================
+% 6. CONFIGURACIÓN DE SWITCHES
+% ====================================================================
+\section{Configuración de Switches}
+
+Todos los switches se configuran con: hostname identificando el área de servicio, contraseñas de acceso, seguridad en puertos activos y deshabilitación de puertos no utilizados.
+
+\subsection{Switch Planta Baja (SW\_PB)}
+
+\begin{lstlisting}[style=cisco, caption={Configuración completa de SW\_PB}]
+enable
+configure terminal
+
+! --- Identificación ---
+hostname SW_PB
+
+! --- Seguridad: contraseña de modo privilegiado ---
+enable secret Redes2026SwPB
+
+! --- Acceso por consola ---
+line console 0
+ password c0nsolaSWpb
+ login
+ logging synchronous
+ exit
+
+! --- Acceso remoto VTY ---
+line vty 0 4
+ password vtYswpb
+ login
+ exit
+
+! --- Cifrado y banner ---
+service password-encryption
+banner motd #
+==============================================
+  SWITCH PLANTA BAJA (SW_PB)
+  Recepción - Sala de Conferencias
+  Acceso no autorizado está prohibido.
+==============================================
+#
+
+! --- IP de administración ---
+interface vlan 1
+ ip address 10.0.0.12 255.255.255.240
+ no shutdown
+ exit
+ip default-gateway 10.0.0.1
+
+! --- Puertos activos con seguridad (Fa0/1 a Fa0/12) ---
+interface range FastEthernet0/1-12
+ description Puertos-Activos_PB-LAN
+ switchport mode access
+ switchport port-security
+ switchport port-security maximum 2
+ switchport port-security violation shutdown
+ switchport port-security mac-address sticky
+ no shutdown
+ exit
+
+! --- Puertos no utilizados: deshabilitar ---
+interface range FastEthernet0/13-24
+ description Puerto-No-Utilizado_DESHABILITADO
+ shutdown
+ exit
+
+interface range GigabitEthernet0/1-2
+ description Uplink-Trunk
+ no shutdown
+ exit
+
+end
+copy running-config startup-config
+\end{lstlisting}
+
+\subsection{Switch Primer Piso (SW\_F1)}
+
+\begin{lstlisting}[style=cisco, caption={Configuración completa de SW\_F1}]
+enable
+configure terminal
+
+! --- Identificación ---
+hostname SW_F1
+
+! --- Seguridad ---
+enable secret Redes2026SwF1
+line console 0
+ password c0nsolaSWf1
+ login
+ logging synchronous
+ exit
+line vty 0 4
+ password vtYswf1
+ login
+ exit
+service password-encryption
+banner motd #
+==============================================
+  SWITCH PRIMER PISO (SW_F1)
+  Gerencia - Admin Red - Área de Trabajo
+  Acceso no autorizado está prohibido.
+==============================================
+#
+
+! --- IP de administración ---
+interface vlan 1
+ ip address 10.0.0.29 255.255.255.240
+ no shutdown
+ exit
+ip default-gateway 10.0.0.17
+
+! --- Puertos activos con seguridad (Fa0/1 a Fa0/14) ---
+interface range FastEthernet0/1-14
+ description Puertos-Activos_P1-LAN
+ switchport mode access
+ switchport port-security
+ switchport port-security maximum 2
+ switchport port-security violation shutdown
+ switchport port-security mac-address sticky
+ no shutdown
+ exit
+
+! --- Puertos no utilizados ---
+interface range FastEthernet0/15-24
+ description Puerto-No-Utilizado_DESHABILITADO
+ shutdown
+ exit
+
+interface range GigabitEthernet0/1-2
+ description Uplink-Router
+ no shutdown
+ exit
+
+end
+copy running-config startup-config
+\end{lstlisting}
+
+\subsection{Switch Segundo Piso (SW\_F2)}
+
+\begin{lstlisting}[style=cisco, caption={Configuración completa de SW\_F2}]
+enable
+configure terminal
+
+! --- Identificación ---
+hostname SW_F2
+
+! --- Seguridad ---
+enable secret Redes2026SwF2
+line console 0
+ password c0nsolaSWf2
+ login
+ logging synchronous
+ exit
+line vty 0 4
+ password vtYswf2
+ login
+ exit
+service password-encryption
+banner motd #
+==============================================
+  SWITCH SEGUNDO PISO (SW_F2)
+  Equipo de Desarrollo - Videoconferencias
+  Acceso no autorizado está prohibido.
+==============================================
+#
+
+! --- IP de administración ---
+interface vlan 1
+ ip address 10.0.0.43 255.255.255.240
+ no shutdown
+ exit
+ip default-gateway 10.0.0.33
+
+! --- Puertos activos con seguridad (Fa0/1 a Fa0/10) ---
+interface range FastEthernet0/1-10
+ description Puertos-Activos_P2-LAN
+ switchport mode access
+ switchport port-security
+ switchport port-security maximum 2
+ switchport port-security violation shutdown
+ switchport port-security mac-address sticky
+ no shutdown
+ exit
+
+! --- Puertos no utilizados ---
+interface range FastEthernet0/11-24
+ description Puerto-No-Utilizado_DESHABILITADO
+ shutdown
+ exit
+
+interface range GigabitEthernet0/1-2
+ description Uplink-Router
+ no shutdown
+ exit
+
+end
+copy running-config startup-config
+\end{lstlisting}
+
+\subsection{Switch Tercer Piso (SW\_P3)}
+
+\begin{lstlisting}[style=cisco, caption={Configuración completa de SW\_P3}]
+enable
+configure terminal
+
+! --- Identificación ---
+hostname SW_P3
+
+! --- Seguridad ---
+enable secret Redes2026SwP3
+line console 0
+ password c0nsolaSWp3
+ login
+ logging synchronous
+ exit
+line vty 0 4
+ password vtYswp3
+ login
+ exit
+service password-encryption
+banner motd #
+==============================================
+  SWITCH TERCER PISO (SW_P3)
+  Área de Esparcimiento
+  Acceso no autorizado está prohibido.
+==============================================
+#
+
+! --- IP de administración ---
+interface vlan 1
+ ip address 10.0.0.62 255.255.255.248
+ no shutdown
+ exit
+ip default-gateway 10.0.0.57
+
+! --- Puertos activos con seguridad (Fa0/1 a Fa0/6) ---
+interface range FastEthernet0/1-6
+ description Puertos-Activos_P3-LAN
+ switchport mode access
+ switchport port-security
+ switchport port-security maximum 2
+ switchport port-security violation shutdown
+ switchport port-security mac-address sticky
+ no shutdown
+ exit
+
+! --- Puertos no utilizados ---
+interface range FastEthernet0/7-24
+ description Puerto-No-Utilizado_DESHABILITADO
+ shutdown
+ exit
+
+interface range GigabitEthernet0/1-2
+ description Uplink-Router
+ no shutdown
+ exit
+
+end
+copy running-config startup-config
+\end{lstlisting}
+
+% ====================================================================
+% 7. CONFIGURACIÓN DE SERVIDORES EN PACKET TRACER
+% ====================================================================
+\section{Configuración de Servidores en Packet Tracer}
+
+Los servidores se configuran a través de la interfaz gráfica de Packet Tracer. A continuación se detallan los parámetros de cada uno.
+
+\subsection{Servidor DHCP (10.0.0.50)}
+
+\textbf{Configuración de red del servidor:}
+\begin{itemize}
+    \item IP: \texttt{10.0.0.50}
+    \item Máscara: \texttt{255.255.255.248}
+    \item Gateway: \texttt{10.0.0.49}
+    \item DNS: \texttt{10.0.0.52}
+\end{itemize}
+
+\textbf{Configuración del servicio DHCP} (pestaña Services $\rightarrow$ DHCP):
+\begin{itemize}
+    \item Servicio: \textbf{ON}
+    \item Pool Name: \texttt{PB\_POOL}
+    \item Default Gateway: \texttt{10.0.0.1}
+    \item DNS Server: \texttt{10.0.0.52}
+    \item Start IP Address: \texttt{10.0.0.4}
+    \item Subnet Mask: \texttt{255.255.255.240}
+    \item Maximum Number of Users: \texttt{10}
+\end{itemize}
+
+\textbf{Nota:} El servicio DHCP asigna direcciones IP dinámicamente a los equipos de la planta baja. Las direcciones \texttt{10.0.0.1}, \texttt{10.0.0.2} y \texttt{10.0.0.3} están reservadas para el gateway y los Access Points (configuración estática). Los equipos de los pisos superiores utilizan direccionamiento estático.
+
+\subsection{Servidor Web (10.0.0.51)}
+
+\textbf{Configuración de red del servidor:}
+\begin{itemize}
+    \item IP: \texttt{10.0.0.51}
+    \item Máscara: \texttt{255.255.255.248}
+    \item Gateway: \texttt{10.0.0.49}
+    \item DNS: \texttt{10.0.0.52}
+\end{itemize}
+
+\textbf{Configuración del servicio HTTP} (pestaña Services $\rightarrow$ HTTP):
+\begin{itemize}
+    \item Servicio HTTP: \textbf{ON}
+    \item Servicio HTTPS: \textbf{ON}
+    \item Editar el archivo \texttt{index.html} para incluir:
+    \begin{itemize}
+        \item Logotipo de la empresa
+        \item Nombre de los integrantes: Espinoza Matamoros Percival Ulises y Lara Hernández Ángel Husiel
+        \item Información de la empresa
+    \end{itemize}
+\end{itemize}
+
+\subsection{Servidor DNS (10.0.0.52)}
+
+\textbf{Configuración de red del servidor:}
+\begin{itemize}
+    \item IP: \texttt{10.0.0.52}
+    \item Máscara: \texttt{255.255.255.248}
+    \item Gateway: \texttt{10.0.0.49}
+    \item DNS: \texttt{10.0.0.52} (apunta a sí mismo)
+\end{itemize}
+
+\textbf{Configuración del servicio DNS} (pestaña Services $\rightarrow$ DNS):
+\begin{itemize}
+    \item Servicio: \textbf{ON}
+    \item Registro A:
+    \begin{itemize}
+        \item Name: \texttt{www.empresa.com}
+        \item Address: \texttt{10.0.0.51}
+        \item Type: A Record
+    \end{itemize}
+\end{itemize}
+
+\textbf{Nota:} Después de configurar el DNS, todos los dispositivos de la red pueden acceder al servidor web escribiendo \texttt{www.empresa.com} en su navegador, siempre y cuando tengan configurado \texttt{10.0.0.52} como su servidor DNS.
+
+\subsection{Servidor Syslog (10.0.0.53)}
+
+\textbf{Configuración de red del servidor:}
+\begin{itemize}
+    \item IP: \texttt{10.0.0.53}
+    \item Máscara: \texttt{255.255.255.248}
+    \item Gateway: \texttt{10.0.0.49}
+    \item DNS: \texttt{10.0.0.52}
+\end{itemize}
+
+\textbf{Configuración del servicio Syslog} (pestaña Services $\rightarrow$ Syslog):
+\begin{itemize}
+    \item Servicio: \textbf{ON}
+    \item Los routers ya están configurados con \texttt{logging 10.0.0.53} para enviar mensajes de log a este servidor.
+\end{itemize}
+
+% ====================================================================
+% 8. RESUMEN DE EIGRP
+% ====================================================================
+\section{Resumen de Configuración EIGRP}
+
+Se utiliza EIGRP con \textbf{Sistema Autónomo (AS) 100}. Cada router anuncia únicamente las redes directamente conectadas usando máscaras wildcard precisas. La auto-sumarización se desactiva en todos los routers para preservar la información de subredes VLSM.
+
+\begin{table}[H]
+\centering
+\caption{Redes anunciadas por cada router en EIGRP AS 100}
+\small
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{|l|l|l|l|}
+\hline
+\textbf{Router} & \textbf{Comando network} & \textbf{Wildcard} & \textbf{Subred} \\
+\hline
+\multirow{3}{*}{R\_PB} & network 10.0.0.0 & 0.0.0.15 & PB LAN /28 \\
+\cline{2-4}
+ & network 10.0.0.48 & 0.0.0.7 & Servidores /29 \\
+\cline{2-4}
+ & network 10.0.0.64 & 0.0.0.3 & WAN PB--P1 /30 \\
+\hline
+\multirow{3}{*}{R\_P1} & network 10.0.0.16 & 0.0.0.15 & P1 LAN /28 \\
+\cline{2-4}
+ & network 10.0.0.64 & 0.0.0.3 & WAN PB--P1 /30 \\
+\cline{2-4}
+ & network 10.0.0.68 & 0.0.0.3 & WAN P1--P2 /30 \\
+\hline
+\multirow{3}{*}{R\_P2} & network 10.0.0.32 & 0.0.0.15 & P2 LAN /28 \\
+\cline{2-4}
+ & network 10.0.0.68 & 0.0.0.3 & WAN P1--P2 /30 \\
+\cline{2-4}
+ & network 10.0.0.72 & 0.0.0.3 & WAN P2--P3 /30 \\
+\hline
+\multirow{2}{*}{R\_P3} & network 10.0.0.56 & 0.0.0.7 & P3 LAN /29 \\
+\cline{2-4}
+ & network 10.0.0.72 & 0.0.0.3 & WAN P2--P3 /30 \\
+\hline
+\end{tabular}
+\end{table}
+
+\textbf{Comandos de verificación de EIGRP:}
+
+\begin{lstlisting}[style=cisco, caption={Verificación de EIGRP}]
+! Ver vecinos EIGRP
+show ip eigrp neighbors
+
+! Ver tabla de topología EIGRP
+show ip eigrp topology
+
+! Ver tabla de enrutamiento
+show ip route
+show ip route eigrp
+
+! Ver interfaces participando en EIGRP
+show ip eigrp interfaces
+
+! Ver protocolos de enrutamiento activos
+show ip protocols
+\end{lstlisting}
+
+% ====================================================================
+% 9. COMANDOS DE VERIFICACIÓN GENERAL
+% ====================================================================
+\section{Comandos de Verificación General}
+
+\begin{lstlisting}[style=cisco, caption={Comandos de verificación para routers y switches}]
+! --- Verificación de interfaces ---
+show ip interface brief
+show interfaces status
+
+! --- Verificación de conectividad ---
+ping 10.0.0.1      ! Gateway PB
+ping 10.0.0.17     ! Gateway P1
+ping 10.0.0.33     ! Gateway P2
+ping 10.0.0.57     ! Gateway P3
+ping 10.0.0.50     ! Servidor DHCP
+ping 10.0.0.51     ! Servidor Web
+ping 10.0.0.52     ! Servidor DNS
+ping 10.0.0.53     ! Servidor Syslog
+
+! --- Verificación de seguridad en puertos (switches) ---
+show port-security
+show port-security interface FastEthernet0/1
+show port-security address
+
+! --- Verificación de configuración ---
+show running-config
+show startup-config
+
+! --- Verificación de DHCP (en PCs de PB) ---
+ipconfig /renew
+ipconfig /all
+\end{lstlisting}
+
+% ====================================================================
+% 10. OBSERVACIONES
+% ====================================================================
+\section{Observaciones}
+
+\begin{enumerate}
+    \item \textbf{Coincidencia de octetos X1 y X2:} Ambos números de cuenta (320025561 y 320060829) tienen ``00'' como su tercer y cuarto dígito, lo que resulta en el segmento 10.0.0.0. Esto da como resultado una red Clase A con máscara prestada /24, proporcionando 256 direcciones que son más que suficientes para los requerimientos del edificio (se utilizan solo 76 de las 256 disponibles).
+
+    \item \textbf{Servidor DHCP limitado a Planta Baja:} Conforme a las especificaciones del proyecto, el servidor DHCP proporciona direcciones IP únicamente a los equipos de la planta baja. Los dispositivos de los pisos superiores (P1, P2, P3) utilizan direccionamiento IP estático. Si se desea extender el servicio DHCP a otros pisos, se deberá configurar \texttt{ip helper-address 10.0.0.50} en la interfaz LAN de cada router correspondiente, y agregar pools adicionales en el servidor DHCP.
+
+    \item \textbf{Clock rate en enlaces seriales:} El \texttt{clock rate} se configura en el extremo DCE de cada enlace serial. En la topología propuesta, los routers que proporcionan el reloj son: R\_PB (hacia P1), R\_P1 (hacia P2) y R\_P2 (hacia P3). Si al conectar los cables en Packet Tracer el extremo DCE queda en el router opuesto, se deberá mover el comando \texttt{clock rate} al router correspondiente.
+
+    \item \textbf{Modelo de router recomendado en Packet Tracer:} Se recomienda utilizar el router \textbf{Cisco 1941} o \textbf{2901}, que incluyen interfaces GigabitEthernet y ranuras para módulos seriales (HWIC-2T). Es necesario agregar el módulo serial antes de encender el router en Packet Tracer.
+
+    \item \textbf{Modelo de switch recomendado:} Se recomienda el switch \textbf{Cisco 2960} con 24 puertos FastEthernet y 2 puertos GigabitEthernet, disponible en Packet Tracer.
+
+    \item \textbf{Seguridad en puertos -- modo sticky:} La configuración \texttt{mac-address sticky} permite que el switch aprenda automáticamente las direcciones MAC de los dispositivos conectados y las almacene en la configuración. Si un dispositivo no autorizado se conecta a un puerto, este se deshabilitará (\texttt{shutdown}). Para reactivar un puerto en modo \texttt{err-disabled}, se debe ejecutar \texttt{shutdown} seguido de \texttt{no shutdown} en la interfaz.
+
+    \item \textbf{Acceso inalámbrico:} En Packet Tracer, los Access Points se configuran con SSID y contraseña WPA2 a través de la interfaz gráfica del dispositivo. El AP\_A\_PB (público) debe configurarse sin autenticación o con autenticación abierta. Los demás APs (AP\_C\_PB, AP\_C\_P1, AP\_C\_P2, AP\_C\_P3) deben configurarse con WPA2-PSK.
+
+    \item \textbf{Topología de backbone lineal:} La interconexión entre pisos sigue una topología lineal (PB $\rightarrow$ P1 $\rightarrow$ P2 $\rightarrow$ P3). Esto implica que la comunicación entre PB y P3 debe atravesar dos routers intermedios (P1 y P2). Para un edificio de esta escala (4 pisos), esta topología es aceptable y mantiene la simplicidad del diseño. Si se requiriera mayor redundancia, se podría implementar un enlace directo adicional entre PB y P3.
+
+    \item \textbf{Wildcard en EIGRP:} Las máscaras wildcard utilizadas en los comandos \texttt{network} de EIGRP se calculan como el complemento de la máscara de subred: para /28 (255.255.255.240) la wildcard es 0.0.0.15; para /29 (255.255.255.248) es 0.0.0.7; para /30 (255.255.255.252) es 0.0.0.3. Esto garantiza que EIGRP anuncie exactamente cada subred sin sumarización no deseada.
+
+    \item \textbf{Archivo PKT:} La topología debe construirse manualmente en Cisco Packet Tracer siguiendo las tablas de direccionamiento y configuraciones de esta guía. Se recomienda separar visualmente cada piso utilizando cuadros de color (áreas de notas) y etiquetar cada dispositivo con su nombre e IP correspondiente.
+\end{enumerate}
+
+\end{document}
