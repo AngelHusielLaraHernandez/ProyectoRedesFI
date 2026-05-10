@@ -1,12 +1,12 @@
 # Fdb version 4
-["biber main"] 1778346733.08758 "main.bcf" "main.bbl" "main" 1778353702.14453 0
-  "main.bcf" 1778353701 134011 8218675f7551708631d3ce072e2da23f "pdflatex"
+["biber main"] 1778424161.94414 "main.bcf" "main.bbl" "main" 1778433157.67823 0
+  "main.bcf" 1778433156 134011 8218675f7551708631d3ce072e2da23f "pdflatex"
   "referencias.bib" 1778332998 0 d41d8cd98f00b204e9800998ecf8427e ""
   (generated)
   "main.bbl"
   "main.blg"
   (rewritten before read)
-["pdflatex"] 1778353698.5219 "c:/Users/Angel Lara/Music/semestre8/RedesTeoria/Poryecto/Document/main.tex" "main.pdf" "main" 1778353702.14592 0
+["pdflatex"] 1778433153.91856 "c:/Users/Angel Lara/Music/semestre8/RedesTeoria/Poryecto/Document/main.tex" "main.pdf" "main" 1778433157.67994 0
   "C:/Users/Angel Lara/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1777520753 164858 1926c8d7bd1823f0c8393a5c0272d2d9 ""
   "C:/Users/Angel Lara/AppData/Local/MiKTeX/fonts/tfm/public/rsfs/rsfs10.tfm" 1739064368 688 37338d6ab346c2f1466b29e195316aa4 ""
   "C:/Users/Angel Lara/AppData/Local/MiKTeX/fonts/tfm/public/rsfs/rsfs5.tfm" 1739064370 684 3a51bd4fd9600428d5264cf25f04bb9a ""
@@ -237,13 +237,13 @@
   "C:/Users/Angel Lara/AppData/Local/Programs/MiKTeX/tex/latex/xkeyval/xkeyval.sty" 1656236919 4937 4ce600ce9bd4ec84d0250eb6892fcf4f ""
   "C:/Users/Angel Lara/AppData/Local/Programs/MiKTeX/tex/latex/xpatch/xpatch.sty" 1585221260 8510 7803f78066c4f9d008405191a4b43073 ""
   "C:/Users/Angel Lara/AppData/Local/Programs/MiKTeX/tex/latex/xstring/xstring.sty" 1693735632 123 a302f2c651a95033260db60e51527ae8 ""
-  "c:/Users/Angel Lara/Music/semestre8/RedesTeoria/Poryecto/Document/main.tex" 1778353694 19605 3968d90e05b9a5f34450cc7a69397462 ""
-  "main.aux" 1778353701 2112 1e2a1b3619459b8fe93e7efaa07123ff "pdflatex"
-  "main.bbl" 1778346735 486 76d65a242ec496c9b4361af646ff12cb "biber main"
-  "main.out" 1778353701 1855 457d0355af5881f36764e7756822aeb8 "pdflatex"
-  "main.run.xml" 1778353701 2360 a00b619d16868491fb73fd3d38642c18 "pdflatex"
-  "main.tex" 1778353694 19605 3968d90e05b9a5f34450cc7a69397462 ""
-  "main.toc" 1778353701 1110 cf702bff1ef4ebfd17f4b528d65fd83d "pdflatex"
+  "c:/Users/Angel Lara/Music/semestre8/RedesTeoria/Poryecto/Document/main.tex" 1778433153 33160 aa64e2c6b92118471fd011ffa2d9d492 ""
+  "main.aux" 1778433156 2804 27959be3948266d18c74af664c39f1dc "pdflatex"
+  "main.bbl" 1778424164 486 76d65a242ec496c9b4361af646ff12cb "biber main"
+  "main.out" 1778433156 2966 a957a699c3c2be4dcda320e7815a1daf "pdflatex"
+  "main.run.xml" 1778433156 2360 a00b619d16868491fb73fd3d38642c18 "pdflatex"
+  "main.tex" 1778433153 33160 aa64e2c6b92118471fd011ffa2d9d492 ""
+  "main.toc" 1778433156 1596 5ea0b7983af5c93b0cf5995f8b61de78 "pdflatex"
   "portada.tex" 1778333175 1412 875a00e3bb0219143dc5bdc9f3a632e7 ""
   "portada_img/der.png" 1778291478 210257 06dba9f878f374ac030ef44e424ff46e ""
   "portada_img/izq.png" 1778291478 32490 d7273825e9d4d7935ebf779b146a35ff ""

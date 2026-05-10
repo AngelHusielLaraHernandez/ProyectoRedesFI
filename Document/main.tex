@@ -294,12 +294,17 @@
     El problema principal consta de asignrar correctamente el cableado estructurado al edificio, asi como el diseño del plano, para esto,
     primero el edificio consta de cuatro niveles, cada uno con un cuarto de telecomunicaciones que tiene un router 
     y un switch para cada planta, tal cual como lo dictan las normas. 
-    Los pisos se conectan mediante cableado vertical a esto por los purtos seriales entre los routers, 
-    haciando que se vean de la siguiente manera la conexion de los pisos: 
-    R\_PB $\leftrightarrow$ R\_P1 $\leftrightarrow$ R\_P2 $\leftrightarrow$ R\_P3. 
+    Los pisos se conectan mediante cableado vertical a esto por los puertos seriales entre los routers, 
+    haciendo que se vean de la siguiente manera la conexion de los pisos: 
+    R\_PB $\leftrightarrow$ R\_P1, R\_PB $\leftrightarrow$ R\_P2, R\_PB $\leftrightarrow$ R\_P3, lo que hace que esta sea una conexion estrella.
     Cabe recalcar, que la planta baja cuenta con el cuarto de equipos principal donde se estan los servidores 
     (DHCP, Web, DNS, Syslog) y la entrada de servicios esto siguiendo de igual forma las normas ANSI/TIA.
 
+    La eleccion de la conexion estrella, se debe a que es uan forma de conexion mas eficiente y tambien mucho mas facil de gestionar, tambien por que cuando se manda request de los 
+    servidores, estos tienen que hacer una cantidad menor de saltos, ademas de esto, la principal razon de la eleccion 
+    de esta conexion en estrella es que si un cable se llega a romper o deja de funcionar algun router secundario, la conexion en entonces no se
+    cae en toda la red, si no que se aisla a un solo sector.
+    
     \subsection{Distribucion por Pisos}
 
     Como en las especificaciones del proyecto, cada piso tiene una funcion diferente, por lo que la propuesta siguiendo esas instrucciones es esta:
@@ -359,6 +364,7 @@
     \begin{itemize}
         \item Contraseña de modo privilegiado cifrada (\texttt{enable secret}).
         \item Acceso por consola y VTY protegido con contraseña.
+        \item Administración remota segura mediante ssh con llaves RSA de 1024 bits.
         \item Cifrado de contraseñas almacenadas (\texttt{service password-encryption}).
         \item Nombre del router correspondiente al piso y área que da servicio.
     \end{itemize}
@@ -366,7 +372,9 @@
     \textbf{Seguridad Lógica en Switches:}
     \begin{itemize}
         \item Seguridad en puertos: \texttt{switchport port-security} con máximo 2 direcciones MAC, modo \texttt{sticky} para aprendizaje dinámico y violación en modo \texttt{shutdown}.
+        \item Configuración diferencial para Access Point: limtie de 40 con violación en modo \texttt{restrict}.
         \item Deshabilitación de puertos no utilizados.
+        \item Acceso remoto por SSH protegido con autenticacion mediante login local.
         \item Nombre del switch correspondiente al área que da servicio.
     \end{itemize}
 
@@ -383,7 +391,133 @@
 
     \section{Implementación}
 
+    Para la construccion de la topologia, nos basamos directamente en el modelo OSI, integrando una conexion de estrella, donde el router central es el de planta baja
+    donde este se conecta a los otros routers que se encuentran en cada piso, esto siguiendo las normas del cableado estructurado que es por medio del cableado vertial
+    por medio de las conexiones de los puertos seriales. En el caso del router de la planta baja se tuvieron que agregar 2 modulos HWIC-2T para poder expandir los puertos seriales hasta 4, en el caso de los demas routers, solo se 
+    agrego un modulo HWIC-2T para tener 2 puertos seriales, esto por que originalmente los routers 
+    no cuentan con un puerto serial, por lo que fue indispensable agergar estos modulos para la conexion mutua de los rotuers.
+    
+    \subsection{Implementacion de topologia:}
+    
+    No obstante cabe recalcar, que en la topologia se contruyo de forma que lo dividmos en bloques para tener un mejor control 
+    y diseño de la misma en el software de cisco. 
 
+    La construccion de cada sala se llevo a cabo de tal fomra que coincida con el plano, debido a que en ciso packet tracer
+    no se cuenta con path panels, estos solo se vieron reflejados en el plano, a nivel de cisco,
+    los dispositivos que irian al patch panel se conectaron directamente al switch, esto para facilitar de igual manera las conexiones, pasando 
+    a la cuestion de dispositivos inalmbricos, estos pasan a ser las impresoras principalmente pero tambien dos computadoras
+    esto por que a nivel de seguridad, por que estas computadoras no estaban en una zona muy sensible, por que lo que se decidio hacerlo de esa manera.
+
+    La posicion de los AP, se definio en cada piso con un rango de 60 metros, esto para asegurar la cobertura de cada AP 
+    en cada piso y que la señal de los AP de pisos mas arriba o abajo no se pasaran al piso donde el AP fue directamente 
+    pensando para operar, de igual forma a todos los AP tienen un nombre de red diferente y la contraseña de igual forma cambia en cada uno, el modo 
+    de canal de direccionamiento se dejo en automatico, esto para que el mismo AP 
+    se encarge de decidir en que modo puede transmitir, esto para optimizar la señal y el rendimiento de cada AP correspondienteme.
+    
+    \subsection{Asingacion de IP y enrutamiento:}
+
+    Por lo que lo primero que se hizo despues de diseñar el plano, fue hacer hace toda la implementacion fisica, despues todas las conexiones por medio de los cableados verticales y horizontales,
+    despues al tener todo el cableado hecho y teniendo toda la topologia armado, se implemento la asignacion de IP a traves de nuestro segmento de red 10.0.0.0/24, que este fue nuestro segmento base dado
+    y se le aplico VLSM para asignar a cada piso su segmento correspondiente, donde la eleccion de este metodo fue para no desperdiciar tantas direcciones IP por el tipo de segmento dado.
+
+    Ahora bien, despues de tener todo el calculo de las IP, y asignar a cada dispositivos las IP, se paso a poner en cada dispositivo final la IP de forma estatica con su respectiva configuracion,
+    no obstante, tuvimos que dejar una holgura en los puntos de conexion AP, esto por que estos se conectan de forma 
+    inalmbrica y en cuestion del AP que se encuentra en planta baja y que es abierto, no sabemos como tal el numero de 
+    dipositivos que se llegaran a conectar, es por eso que se dejo para 40 dispositivos que se llegan a conectar para este AP.
+
+    Siguiendo con la implementacion, despues de tener la asignacion de las IP para dispositivos, se procedio a realizar 
+    la configuracion del enrutamiento, donde como se menciono desde un principio se implemento EIRGP, 
+    esto por su soporte para VLSM, balanceo de carga y el algoritmo dual, para esto, en cada router se
+    configuro su enrutamiento, asignando el camiono del segmento que le correspondia a cada router, 
+    para esto en el enrutamiendo se asigno un un numero autonomo de 100, de esta forma implementado el enrutamiendo se hicieron las pruebas, de envio de paquetes a cada maquina en diferentes pisos 
+    como la prueba de ping a cada IP de cada dispositivo, con cada ping, dando positivo, se confirmo que el enrutamiendo fue hecho correctamente 
+    y que todos los pisos estaban correctamente conectados.
+
+    \subsection{Implementación de Servidores y Servicios}
+
+    La seccion de servidores, fue implementada en el cuarto de equipos, todo en el mismo piso, siendo 
+    el piso de planta baja con la subred aislada 10.0.0.128/28, donde estos servidores seran importantes, debido a que syslog, tendra com objetivo
+    el monitore de la red, para guardar un registro de los eventos que puedan pasar en el lapso de tiempo en la red, es por eso que en ese mismo servidr
+    para optimizar costes se integro de igual forma el servidor NTP, que este complementa al syslog de forma 
+    que de las marcas de tiempos de los eventos que llegue a registrar el syslog, ahora bien para el servidor DHCP, este tuvo como objetivo principal 
+    la asignacion automatica de direcciones IP a los dipositivos que se lleguen a conectar por medio 
+    del AP abierto de la planta baja, teniendo en cuenta esto, el servidro DHCP como se especifican en los requisitos,
+    este solo va a funcionar para la planta la asignacion de IP, esto es por que a nivel de seguridad los otros pisos 
+    se les asignan direcciones IP de forma estatica, esto para evitar que dispositivos no autorizados ingresen a la red, 
+    por ultimo los dos servidores de WEB y DNS se encargan del levantamiendo de la web de la empresa, esto para 
+    que los empleados puedan acceder a esta web desde cualquier dipositovo conectado a la red, estos dos servidor funcionan 
+    de tal manera que el servidor DNS se encarga de resolver el dominio www.distrologic.com 
+    a la IP del servidor web, esto de igual forma es para
+    que los empleados puedan acceder a la web de la empresa por medio del dominio 
+    y no sea tan pesado ingresar por medio de la IP, ahora bien, la forma de configuracion de cada servidor es la siguiente:
+
+    \begin{itemize}
+        \item \textbf{Servidor DHCP (10.0.0.130):} Para el servidor DHCP se configuro el pool
+        de direcciones esto para la asginacion y la limitacion a los 40 usuarios 
+        esto por el AP abierto de la Planta Baja, ahora bien, dando que los usuarios y el servidor se encuentran en subredes 
+        distintas, fue necesario configurar el rotuer de planta baja, como el intermediariaro para la comunicacion, 
+        esto por medio de un ip helper-address, que lo que hacemos con esto es que el router, pasa todo el trafico 
+        de los dispositivos que buscan una direccion IP, y el router mismo se encarga de pasarlo al servidor DHCP,
+        esto para que el servidor asigne la direccion IP de forma automatica a cada dispositivo que se conecte al AP abierto.
+        
+        \item \textbf{Servidores Web (10.0.0.131) y DNS (10.0.0.132):} El servicio DNS se creo y se contruyo de forma que primero 
+        fue creando un registro tipo A que vinvula directamente el dominio www.distrologic.com a la direccion IP 10.0.0.131, esto permite que sea directamente legiable el dominio para los 
+        navedaores en lugar de colocar la IP en el buscador. 
+        En cuestion en el servidor HTTP, se cambio directamente
+        el html, donde tambien se agrego al servidor la imagen del logo, la pagina web, construida por apenas 100 lineas de codigo, donde se integro un poco de css para centrar los nombres de el usario y centrar de forma correcta el logo de la empresa, en seguida el 
+        codigo html, es muy basico con solo equiquetas de nombres que hacen referencia al css para que el css se el encargado de centrar todo de forma correcta.
+        
+        \item \textbf{Servidor Syslog y NTP (10.0.0.133):} Para optimizar costes y tener mejor control de los servidores, se integraron los dos servidores en uno solo, donde lo que primero se logro fue 
+        configurar cada router con el comando \texttt{logging host 10.0.0.133}, 
+        esto para que cada alerta de la topologia se pase al servidor. 
+        Ahora bien, el syslog necestiamos un control de tiempo es por eso que se habilitó el servicio NTP 
+        en el servidor y los routers se sincronizaron al mismo con el comando \texttt{ntp server 10.0.0.133}, por ultimo
+        se forzo que apareciaera la estampa de tiempo exacta en los logs con el comando \texttt{service timestamps log datetime msec}.
+    \end{itemize}
+
+    \subsection{Implementación de Seguridad:}
+
+    Para la cuestiond de la seguridad, se implemento todo de forma logica y un poco de fisica en de forma que demarcamos con bloques las areas restrigindas en los cuartos de telecomunicaciones y en el de equipos, 
+    ahora bien para cuestionde seguridad logica, se implemento en cada router y switch, asi como con las contraseñas de los AP para las cuestionde privicidad 
+    en los que son por red cerrada, empezando primero por lo switches, donde en cada switch se desahabilitaron los puertos FastEthernet 
+    que no se estaban ocupando, esto para evitar que se conecten dispositivos no autorizados, ahora bien, en cuestion de los puertos 
+    que se estan eso, se implemento seguridad en los puertos, empezando primero por los puertos que son para los AP, 
+    para los puertos que no son de AP, se limito a solo maximo 2 disposiivos por puerto, de igual forma ocupando 
+    el modo sticky, esto para que el switch aprenda de forma dinamica las direcciones MAC de los dispositivos 
+    conectados y no deje pasar a otros dispositivos que no sean los registrados, en caso de que se conecete un desconocido no registrado
+    por seguridad el puerto se apaga y se tiene que encender manualmente, ahora bien, para los puertos de los AP, y mas para el AP publico,
+    no tenemos idea del flujo de gente que se puede llegar a tener en la empresa, asi que es por esto no se implemento la seguridad de apagado del puerto
+    si no que se implemento la medida de seguridad restrict, lo que hace esto es que el puerto se mantenga activo
+    pero no deje pasar a mas de 40 dispositivos, esto para evitar que se sature el puerto 
+    y se pueda seguir dar servicio el AP de forma correcta.
+    
+    En cuestion de seguridad en los rotuers,se implemento la seguridad por medio de acceso de contraseña 
+    definiendo el nombre de usuario y la contraseña del mismo usuario, asi como la contraseña en modo privilegiado, 
+    esta configuracion se hizo para cada router, esto para evitar que se pueda acceder a la configuracion de los 
+    routers sin autorizacion, no obstante, esto tambien paso para los switches, donde de igual forma 
+    se implementaron los usuarios con contraseña y la contraseña en modo privilegiado, esto para evitar 
+    el acceso no autorizado a la configuracion de los switches.
+    
+    Para los AP, se implemento la seguridad por medio de contraseña para los AP que son de red cerrada,
+    esto para evitar que cualquier persona pueda acceder a la red inalambrica de la empresa y
+    asi mismo tener un control de los dispositivos que se conectan a esta red, no obstante, 
+    el AP que es publico se dejo sin contraseña para facilitar el acceso a los visitantes.
+
+    \subsection{Seguridad de conexion SSH:}
+
+    Por ultimo se implemento la conexion por ssh para adminsitracion de los switches y routers, esto 
+    para evitar que la administracion de los dispositivos se tanga que hacer de forma fisica, no obstante 
+    esta forma de administracion trae consigo nuevas formas de acceso,d onde cuando se implementaron las contraseñas en los rotuers 
+    y switches se colocaron los comandos para que acepte directamente ssh y tambien se cifren las contrasñeales del enable secret, 
+    esto por medio del comando service password-encryption, esto para que las 
+    contraseñas no se vean en texto plano, ahora bien, para la conexion por ssh,
+    se configuro cada router y switch con un nombre de dominio, esto para que se pueda generar la clave de 
+    cifrado para la conexion por ssh, despues de esto se genero la clave de cifrado con el comando 
+    crypto key generate rsa, esto para generar la clave de cifrado para la conexion, 
+    por ultimo se configuro el acceso a las lineas los puertosvirtuales a habilitar para la conexion por ssh misma.
+
+    La comprobacion de esta estructura se llevo acabo de forma que si desde la computadora de sistemas podemos acceder a cualqueir router o switche por medio de saltos 
+    esto por ssh.
 
     \section{Conclusiones:}
 
