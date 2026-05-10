@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DistroLogic</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: radial-gradient(circle at 50% 50%, #1a1025 0%, #05050a 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            padding-top: 10vh;
+            padding-bottom: 5vh;
+            gap: 3rem;
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+
+        .logo-image {
+            width: 250px;
+            height: auto;
+            max-width: 90vw;
+            object-fit: contain;
+            z-index: 1;
+        }
+
+        .team-header {
+            color: #8b9bb4;
+            font-size: 0.9rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            text-align: center;
+            margin-bottom: 1.5rem;
+            font-weight: 500;
+        }
+
+        .team-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .member-name {
+            font-weight: 500;
+            font-size: 0.6rem; 
+        }
+
+        .member-id {
+            color: #00f3ff;
+            font-family: monospace;
+            font-size: 0.75rem;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="ambient-light"></div>
+
+    <img src="DistroLogic_Logo.png" alt="DistroLogic Logo" class="logo-image">
+
+    <div class="team-container">
+        <div class="team-header">Integrantes:</div>
+        <ul class="team-list">
+            <li>
+                <span class="member-name">Espinoza Matamoros Percival Ulises</span>
+                <span class="member-id">320025561</span>
+            </li>
+            <li>
+                <span class="member-name">Lara Hernandez Angel Husiel</span>
+                <span class="member-id">320060829</span>
+            </li>
+        </ul>
+    </div>
+
+</body>
+</html>
