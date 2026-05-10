@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2025.9.10)  10 MAY 2026 11:12
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2025.9.10)  10 MAY 2026 13:08
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1456,19 +1456,29 @@ Package pdftex.def Info: portada_img/izq.png  used on input line 493.
 (pdftex.def)             Requested size: 36.13269pt x 42.67912pt.
 [8]
 
-LaTeX Warning: Empty bibliography on input line 527.
+File: portada_img/der.png Graphic file (type png)
+<use portada_img/der.png>
+Package pdftex.def Info: portada_img/der.png  used on input line 526.
+(pdftex.def)             Requested size: 36.0346pt x 42.67912pt.
+File: portada_img/izq.png Graphic file (type png)
+<use portada_img/izq.png>
+Package pdftex.def Info: portada_img/izq.png  used on input line 526.
+(pdftex.def)             Requested size: 36.13269pt x 42.67912pt.
+[9]
+
+LaTeX Warning: Empty bibliography on input line 549.
 
 
 
 File: portada_img/der.png Graphic file (type png)
 <use portada_img/der.png>
-Package pdftex.def Info: portada_img/der.png  used on input line 528.
+Package pdftex.def Info: portada_img/der.png  used on input line 550.
 (pdftex.def)             Requested size: 36.0346pt x 42.67912pt.
 File: portada_img/izq.png Graphic file (type png)
 <use portada_img/izq.png>
-Package pdftex.def Info: portada_img/izq.png  used on input line 528.
+Package pdftex.def Info: portada_img/izq.png  used on input line 550.
 (pdftex.def)             Requested size: 36.13269pt x 42.67912pt.
-[9] (main.aux
+[10] (main.aux
 LaTeX Info: Redefining \sptext on input line 9.
 LaTeX Info: Redefining \. on input line 9.
 LaTeX Info: Redefining \% on input line 9.
@@ -1493,17 +1503,17 @@ Package logreq Info: Writing requests to 'main.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 40298 strings out of 468133
- 766868 string characters out of 5428256
+ 40299 strings out of 468133
+ 766875 string characters out of 5428256
  1760478 words of memory out of 5000000
  68259 multiletter control sequences out of 15000+600000
  669700 words of font info for 82 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  84i,15n,131p,761b,2899s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Users/Angel Lara/AppData/Local/Programs/MiKTeX/fonts/type1/public/txfonts/t1xtt.pfb><C:/Users/Angel Lara/AppData/Local/Programs/MiKTeX/fonts/type1/public/newtx/txsys.pfb><C:/Users/Angel Lara/AppData/Local/Programs/MiKTeX/fonts/type1/public/newtx/ztmb.pfb><C:/Users/Angel Lara/AppData/Local/Programs/MiKTeX/fonts/type1/public/newtx/ztmr.pfb>
-Output written on main.pdf (11 pages, 352094 bytes).
+Output written on main.pdf (12 pages, 354660 bytes).
 PDF statistics:
- 212 PDF objects out of 1000 (max. 8388607)
- 35 named destinations out of 1000 (max. 500000)
+ 216 PDF objects out of 1000 (max. 8388607)
+ 36 named destinations out of 1000 (max. 500000)
  271 words of extra memory for PDF output out of 10000 (max. 10000000)
 

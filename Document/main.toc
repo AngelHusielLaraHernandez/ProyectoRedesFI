@@ -17,4 +17,4 @@
 \contentsline {subsection}{\numberline {6.3}Implementación de Servidores y Servicios}{7}{subsection.6.3}%
 \contentsline {subsection}{\numberline {6.4}Implementación de Seguridad:}{8}{subsection.6.4}%
 \contentsline {subsection}{\numberline {6.5}Seguridad de conexion SSH:}{9}{subsection.6.5}%
-\contentsline {section}{\numberline {7}Conclusiones:}{9}{section.7}%
+\contentsline {section}{\numberline {7}Conclusiones:}{10}{section.7}%
