@@ -15,6 +15,8 @@
 \usepackage{amssymb}
 \fi
 
+\usepackage{pdfpages}
+
 % --- PAQUETES MATEMÁTICOS --
 \usepackage{amsmath}
 \usepackage{cancel}
@@ -192,358 +194,239 @@
 
     \input{portada.tex}
 
+
     \newpage
     {\hypersetup{linkcolor=black}\tableofcontents}
+    \thispagestyle{empty}
     
     \newpage
 
     \setcounter{page}{1}
+    \singlespacing
+
 
     \section{Introducción}
 
-    Se implementara un diseño eficiente y completo de red de datos esto para un edificio empresarial 
-    de cuantro plantas, donde, para estas 4 plantas se satifacera las necesasidades de conexion de cada dispostivo 
-    asi como el cumplimientos de los requisitos puestos para el proyecto, con esto siguiendo estandares de cableado.
+    La infraestructura de red de datos en un edificio empresarial es un pilar fundamental ya que es a través de esta que se realizan las principales actividades de una empresa, es por esto que para  poder tener una red óptima es necesario realizar un correcto diseño e implementación de la misma de acuerdo a las necesidades y recursos de la empresa. Es por esto que para el diseño e implementación de la red de datos para el edificio empresarial de cuatro pisos, se tomaran en cuenta normas como la ANSI/TIA-568 y ANSI/TIA-569, considerando todos los subsistemas del cableado estructurado, esto con la finalidad de garantizar que el cableado cumpla con los estándares de la industria, por otro lado al implementar estas normas se garantiza un funcionamiento óptimo además de una mejor gestión y mantenimiento del sistema de red.
 
-    El diseño principal es basado completamente en el cableado estructurado 
-    siguiendo las normas ANSI/TIA-568 y ANSI/TIA-569, 
-    esto debido a que vamos a tener un cableado, con las 6 areas, donde se contamplaran la entrada de servicios, 
-    cuarto de equipos, cableado vertical (backbone), cuarto de telecomunicaciones, cableado horizontal y área de trabajo. 
-    
-    Siguiendo documentacion oficial, tanto de profesores de instituciones, como de empresas, se llevara a cabo la implementacion
-    principal de un plan, donde se debera de contemplar la administracion, mantemineto y expansión de la red a futuro si es que la empresa 
-    asi lo desea.
+    Sin embargo para lograr implementar una red de datos eficiente no basta con implementar cableado de acuerdo a las normas, es necesario considerar aspectos a nivel lógico. La infraestructura de red trabaja con el segmento base \texttt{10.0.0.0} la cual se fragmentara de manera eficiente mediante VLSM esto con la finalidad de evitar el desperdicio de direcciones IP. Por otro lado al tener varios pisos y dispositivos, es necesario implementar un protocolo de enrutamiento para interconectar las subredes de cada piso, para esto se implementara EIGRP, esto debido a que soporta VLSM y tiene una rápida convergencia. Por otro lado considerando las necesidades de la empresa, se implementaran servidores DHCP, DNS, Web y Syslog con la finalidad de garantizar operatividad, monitoreo y los servicios de red que la empresa requiera.
 
-    Con ayuda de planos de la empresa, se llevara a cabo el diseño primario de la topologia de la red,
-    donde a criterio del equipo, es que se asigara la disposicision del cableado y del cuarto, esto bajo las normas del cableado estructurado, 
-    tal es el caso de el cuarto de telecomunicaciones, donde estos cuartos por norma y recomendacion se deben de encontrar 
-    a la misma altura en cada planta, esto para facilitar la instalacion del cableado vertical, asi mismo tenemos la orientacion de las puertas 
-    que estas en los cuartos de telecomunicaciones deben de estar orientadas hacia el pasillo, esto para facilitar el acceso a los equipos y al cableado.
-    No obstante, cabe recalcar que para el diseño de los planos, se siguieron codigo de colores para delimitar cada area, asi como cda 
-    subsistema del mismo, esto para facilitar la lectura de los planos, la disposicion de los equipos, sera asignada por los requisitos del proyecto.
-
-    El segmento con el que se trabajara sera proporcionado por los numeros de cuenta del equipo a cargo, donde
-    el formato del segmento es \texttt{10.X1.X2.0}, donde X1 corresponde al tercer y cuarto dígito del número de cuenta del primer integrante 
-    y X2 al tercer y cuarto dígito del segundo integrante. 
-    A partir de este segmento, se usara VLSM, esto para crear subredes las cuales seran las encargadas de la configuracion de los dispositivos en nuestra topologia.
-
-    Ahora bien, siguiendo con la topologia, la cuestion del enrutamiento, este se implementa mediante el protocolo dinámico EIGRP, 
-    este fue elegido, ademas de las espeficaciones del proyecto, es por su soporte para VLSM y balanceo de carga. 
-    Ademas de esto, se implementara la cuestion de servidor, estos seran el servidor DHCP que es para la asignacion 
-    automática de direcciones en la planta baja; tambien a los servidores DNS y Web que estos son principalmente para el alojamiento y lanzamiendo de la pagina web de la empresa 
-    que se mostrara en los dispositivos conectados, por ultimo tenemos al servidor Syslog para el monitoreo del estado de la red.
+    Como se menciono al inicio, la infraestructura de red es un pilar fundamental para el funcionamiento de una empresa, es por esto que un aspecto fundamental a considerar en el diseño e implementación es la seguridad, es por esto que se implementaran medidas de seguridad a nivel físico y lógico, con la finalidad de garantizar la triada de seguridad en la red de datos.
 
     \section{Objetivo:}
 
-    Se diseñara e implementar una red de datos segura, escalable para un edificio empresarial de cuatro pisos, cumpliendo con los
-    estándares de cableado estructurado y seguridad de redes. Se configuraran los dispositivos por medio de cisco packet tracer,
-    aplicando VLSM para la asginacion de IP, y como metodo de enrutamiento se aplicara EIGRP, esto para asugurar el envio de paquetes entre 
-    los dispositivos, ademas de esto, se implementaran los servidores DHCP, DNS, Web y Syslog para dar los servicios conrrespondientes a la red.
+    Diseñar e implementar una red de datos segura, la cual sea escalable considerando un edificio empresarial de cuatro pisos, donde el diseño cumpla con los estándares del cableado estructurado así como medidas de seguridad.
 
-    Se investigara que es un AP, como se configura un AP, y como se implementa en una red, esto para la asignacion de los APs en cada piso, esto para dar conectividad inalámbrica a los dispositivos que lo requieran,
-    ademas de esto, se implementaran medidas de seguridad tanto físicas como lógicas.
+    Implementar el diseño propuesto de la red de datos en Cisco Packet tracer aplicando VLSM para la asignación de direcciones IP, enrutamiento dinámico con EIGRP así como la configuración e implementación de servidores DHCP, DNS, Web y Syslog para dar los servicios de red correspondientes.
+
+    Investigar e implementar las configuración de repetidores (AP) para poder brindar comunicación inalámbrica en la red a los dispositivos de la empresa que lo requieran.
 
     \section{Justificación}
 
-    Para la implementacion de la topologia, se tomaron en cuenta los siguientes aspectos, partiendo desde el plano:
+    Para el diseño de la red de datos se tomaron en cuenta los siguientes aspectos, para así obtener un plano que cumpla con los requerimientos solicitados  empresa:
 
     \subsection{Cableado Estructurado:}
 
-    En cuestion del cableado estructurado, como se dijo desde la introduccion, se tomo basandonos en las normas ANSI/TIA 
-    porque es la forma mas viable, de llevarlo a cabo, debido al orden que esta lleva, esto por lo rapido de alambrar 
-    y por el facil mantemiento que se le puede dar a futuro, esto por que que al separar la red en los seis subsisteas, se pueden aislar las fallas
-    y tambien la escalabilidad ante nuevos requerimientos se podria implementar de una manera mas sencilla. 
+    Para el cableado y distribución de la red, se consideraron las normas ANSI/TIA-568 y ANSI/TIA-569, ya que es a partir de esta normas que se puede tener un cableado organizado, además al implementar los subsistemas del cableado estructurado se pueden solucionar e identificar fallas de manera mas eficiente,facilitando así el mantenimiento y escalabilidad en la infraestructura.
 
     \subsection{Seguridad Física y Lógica:}
 
-    La seguridad se vera reflaja a nivel del plano, esto tendra dos secciones, tal cual como dictan los estandes de redes
-    para esto, tenemos primero a la seguridad a nivel físico, 
-    donde en este punto en la empresa se utilizaran cerraduras con llave biometrica de huellas en los cuartos de telecomunicaciones, esto principalmente 
-    por que al ser los cuartos que contienen todos los equipos principales, tales como los servidores, routers, esto hace que sea la zona mas sensible 
-    de la infrestructura, por lo que solo personal autorizado podra acceder a estos, con las claves necesarias,
-    no obstante, tenemos la seguridad por medio de lleves, a zonas no tan sensibles, colo son a cuartos de trabajo mas especializados
-    y por ultimo tenemos la seguridad a nivel de las cámaras de vigilancia en áreas críticas. 
-    Ahora bien, pasando a la segundo nivel de seguridad, que es el nivel lógico, todos los routers y switches 
-    cuentan con contraseñas cifradas, acceso por consola, cifrado de contraseñas con servicios de encriptacion, y 
-    mensajes de advertencia. 
-    Los switches implementan seguridad en puertos mediante port securitty esto tambien donde los switches aprenden las direccionees MAC de los dispositivos conectados
-    de forma dinamicar y gurdandolas en su configuracion, 
-    limitando el número de dispositivos por puerto y deshabilitando puertos no utilizados.
+    La seguridad física se puede ver señalizada en el plano, ya que para brindar seguridad de forma física, se implementaran en los cuartos de telecomunicaciones y en el cuarto de equipos, que el acceso sea por medio de una llave biómetrica, específicamente por medio de huellas dactilares, esto con la finalidad de que solo personal autorizado pueda acceder a estas zonas, debido a que dentro se encuentra la parte mas sensible de la infraestructura, como lo son los servidores, routers, switches. Adicionalmente para aumentar el nivel se seguridad física afuera de de estas zonas se colocaran cámaras de seguridad para asi tener un monitoreo de estas zonas.
 
-
-    \subsection{Protocolo de enrutamiento:}
-
-    Se usara EIGRP como protocolo de enrutamiento dinámico esto, por su varacterisitcas de soprote con VLSM, balanceo de carga y su algoritmo dual, no obstante, tambien tenemos las siguientes caracteristicas:
-
-    \begin{itemize}
-        \item El soporte de VLSM, lo hace que sea un protocolo eficiente, pero este protocolo tiene una convergencia mas rapida que RIP, es por que es RIP, debido a que EIGRP es mejor en cuestion de eficiencia.
-        \item La convergencia rapida, se debe al uso del algoritmo DUAL que integra, este algoritmo es principal para calcular rutas, que ademas mantiene rutas de respaldo precalculadas.
-        \item Consume menor ancho de banda como OSPF, al enviar actualizaciones de un solo sector, solo pasa cuando ocurre un cambio en la topología.
-    \end{itemize}
+    Para la seguridad a nivel lógico, se implementaran medidas de seguridad en los routers y switches, entre las medidas de seguridad que se implementaran son contraseñas cifradas, acceso por consola, deshabilitación de puertos no autorizados, conexión por medio de SSH. Adicionalmente en los switches se implementara seguridad en los puertos, esto con la finalidad de evitar que dispositivos no autorizados se conecten a la red, limitando el número de dispositivos por puerto.
 
     \subsection{VLSM:}
 
-    Se usara en este caso VLSM en lugar de un subneteo, porque permite asignar subredes sin que se desperdicien direcciones. 
-    
-    Para nuestra empresa, tenemos ya un numero predefinido de dispositivos, esto hace que tengamos un numero de hosts
-    por piso, esto hace que al usar VLSM, se asignes solo necesarios, a camparacion de que con subneteo, se desperdiciarian una gran cantidad e IP, utiles.
+    Considerando la descripción del edificio, donde cada piso tiene diferentes departamentos con diferentes números de dispositivos, la opción más eficiente para asignar direcciones IP es por medio de VLSM para así evitar que se desperdicie un número significativo de direcciones IP. De forma que considerando el número predefinido de dispositivos así como un cierto número de hosts de holgura de acuerdo a las necesidades de cada piso, es como se crearan de forma eficiente las subredes para cada piso.
 
+    \subsection{Protocolo de enrutamiento:}
+
+    Dado que cada piso va tener su propia subred, es necesario interconectar estas subredes para que pueda existir comunicación entre cada piso, es por esto que se implementará el protocolo de enrutamiento EIGRP, ya que tiene soporte para VLSM, ofreciendo una convergencia rápida respecto a otros protocolos de enrutamiento, además al tener un algoritmo dual, permite mantener rutas de respaldo precalculadas, lo que mejora la eficiencia en la red. Otro aspecto importante a considerar es que EIGRP consume menor ancho de banda como OSPF, al enviar actualizaciones de un solo sector, solo pasa cuando ocurre un cambio en la topología.
 
     \section{Propuesta}
 
-    El problema principal consta de asignrar correctamente el cableado estructurado al edificio, asi como el diseño del plano, para esto,
-    primero el edificio consta de cuatro niveles, cada uno con un cuarto de telecomunicaciones que tiene un router 
-    y un switch para cada planta, tal cual como lo dictan las normas. 
-    Los pisos se conectan mediante cableado vertical a esto por los puertos seriales entre los routers, 
-    haciendo que se vean de la siguiente manera la conexion de los pisos: 
-    R\_PB $\leftrightarrow$ R\_P1, R\_PB $\leftrightarrow$ R\_P2, R\_PB $\leftrightarrow$ R\_P3, lo que hace que esta sea una conexion estrella.
-    Cabe recalcar, que la planta baja cuenta con el cuarto de equipos principal donde se estan los servidores 
-    (DHCP, Web, DNS, Syslog) y la entrada de servicios esto siguiendo de igual forma las normas ANSI/TIA.
+    Para obtener el plano que se encuentra al final de esta sección se consideraron los siguientes aspectos de diseño e implementación de la red de datos para el edificio empresarial de cuatro pisos:
 
-    La eleccion de la conexion estrella, se debe a que es uan forma de conexion mas eficiente y tambien mucho mas facil de gestionar, tambien por que cuando se manda request de los 
-    servidores, estos tienen que hacer una cantidad menor de saltos, ademas de esto, la principal razon de la eleccion 
-    de esta conexion en estrella es que si un cable se llega a romper o deja de funcionar algun router secundario, la conexion en entonces no se
-    cae en toda la red, si no que se aisla a un solo sector.
+    Para el diseño de la red, se considera la distribución de pisos y áreas de trabajo, para esto se decidió seguir las recomendaciones del cableado estructurado, colocando en cada piso un cuarto de telecomunicaciones, para asi tener un mejor control de la red, donde en cada cuarto de telecomunicaciones se colocara un router y un switch, esto para que cada piso tenga su propia subred y asi mismo tener una mejor gestión de la red.
     
-    \subsection{Distribucion por Pisos}
+    La topología que se implemento para la conexión de los pisos, es una conexión en estrella, donde el router principal es el de la planta baja (R\_PB), este se conecta a los routers de cada piso (R\_P1, R\_P2, R\_P3) por medio de cableado vertical, conectando los cuartos de telecomunicaciones de cada piso con el cuarto de equipos donde se encuentran los servidores.
 
-    Como en las especificaciones del proyecto, cada piso tiene una funcion diferente, por lo que la propuesta siguiendo esas instrucciones es esta:
+    La elección de la conexión estrella, se debe a que es la topología más eficiente de acuerdo a la estructura del edificio, ya que si algún piso llega a tener problemas de conexión, este problema no afecta a los demás pisos, estos siguen funcionando de forma normal, sin embargo al implementar esta topología se considera que el router principal de la planta baja es un punto crítico, es por esto que se implementan medidas de seguridad más estrictas en el piso de la planta baja. Por otro lado la topología en estrella es más fácil de gestionar, además que cuando se manda request de los servidores, estos tienen que hacer una cantidad menor de saltos para llegar a su destino, mejorando el rendimiento de la red.
+    
+    \subsection{Distribución por Pisos}
 
-    \textbf{Planta Baja (PB):} Esta plana tiene la recepción que es en la que cualquier persona (publica o privada) puede llegar a tener contacto,
-    tambien tenemos una sala de conferencias, una impresora de red, dos AP
-    uno público sin contraseña y otro con contraseña que este es exclusivo para el uso de las personas que trabajan en la empresa, en cuestion de medidas de seguridad, al ser un lugar donde el publico en general tiene acceso se cuenta con
-    cámaras de seguridad, esto tambien con cerraduras, en los diferentes cuartos sensibles. 
+    A partir de las especificaciones  del proyecto, se decidió distribuir cada piso de acuerdo a las funciones que se realizan en cada uno:
+
+    \textbf{Planta Baja (PB):} Esta planta tiene la recepción que es en la que cualquier persona (publica o privada) puede llegar a tener contacto,
+    también tenemos una sala de conferencias, una impresora de red, dos AP
+    uno público sin contraseña y otro con contraseña que este es exclusivo para el uso de las personas que trabajan en la empresa. Al ser el piso donde se encuentra la entrada de servicios y el cuarto de equipos, se tienen medidas de seguridad más estrictas, para la entrada de servicio se implemento una cerradura físico esto para facilitar el acceso al proveedor, sin embargo para el cuarto de equipos se tienen dos puertas, una puerta de acceso para el personal autorizado con una cerradura física y otra puerta con acceso por huella dactilar, esto para garantizar que solo el personal autorizado pueda acceder a esta zona, debido a que es la zona más sensible de la infraestructura. Ademas se cuenta con cámaras de seguridad para el monitoreo de esta planta.
 
     \textbf{Primer Piso (P1):} Esta planta tiene las áreas de gerencia, administración de red, administración general, 
     área de trabajo, una sala de videoconferencias, una impresora de red, un Access Point con contraseña y cámaras de seguridad. 
-    Donde de igual forma que en la anterior, la seguridad se ve reflejada en los cuartos mas sensibles, y el cuarto de telecomunicacion 
+    Donde de igual forma que en la anterior, la seguridad se ve reflejada en los cuartos mas sensibles, y el cuarto de telecomunicación 
     se encuentra al mismo nivel que de los otros pisos.
 
     \textbf{Segundo Piso (P2):} Este segundo piso tiene a toda la parte del desarrollo de software, este tiene
-    estaciones de trabajo para los desarrolladores, que se convierte en un punto sensible, tambien tiene 
+    estaciones de trabajo para los desarrolladores, que se convierte en un punto sensible, también tiene 
     una sala de videoconferencias, una impresora de red, un Access Point con contraseña y cámaras de seguridad. 
 
     \textbf{Tercer Piso (P3):} Por ultimo el tercer piso, este es el area de descanso para los trabajadores, 
-    con un Access Point con contraseña esto para la conexion inalámbrica y cámaras de seguridad de igual forma que en los anteriores.
+    con un Access Point con contraseña esto para la conexión inalámbrica y cámaras de seguridad de igual forma que en los anteriores.
 
     \subsection{Cableado Estructurado}
 
     \begin{enumerate}
-        \item Entrada de Servicios: Esta seccion se coloco en la planta baja, 
-        esto como dictaminan las normas, este debe de ir en la planta baja, esto por que es donde se coloca
-        la conexion con el exterior con la empresa, es decir 
-        donde el proveedor  proporciona la infrestructura para empezar la conexion. Este ademas se conecta directamente 
+        \item Entrada de Servicios: Este subsistema del cableado estructurado se coloco en la planta baja, ya que asi lo dictaminan las normas, este debe de ir en la planta baja, esto por que es donde se coloca la conexión con el exterior con la empresa, es decir donde el proveedor  proporciona la infraestructura para empezar la conexión. Este ademas se conecta directamente 
         al cuarto de equipos.
         \item Cuarto de Equipos: Este esta en la planta baja, este tiene toda la parte de los servidores que vamos a usar tales como 
         DHCP, Web/DNS, Syslog, el router principal y un switch. Este cuarto se encuentra en esta planta por que 
-        es donde se encuentra la entrada de servicios y esto hace que sea mas facil la conexion con el proveedor.
-        \item Cableado Vertical (Backbone): Este cableado, su funcion principal es la conexion de 
-        los cuartos de telecomunicaciones de cada piso con el cuarto de equipos. 
+        es donde se encuentra la entrada de servicios y esto hace que sea mas fácil la conexión con el proveedor.
+        \item Cableado Vertical (Backbone): Este cableado, su funcion principal es la conexion de los cuartos de telecomunicaciones de cada piso con el cuarto de equipos. 
 
-        \item Cuarto de Telecomunicaciones: Este cuarto se encuentra en los 3 pisos, donde por reglas de las normas ANSI/TIA, cada planata debera de
+        \item Cuarto de Telecomunicaciones: Este cuarto se encuentra en los 3 pisos, donde por reglas de las normas ANSI/TIA, cada planta deberá de
         contar con un cuarto de telecomunicaciones, estos cuartos se tiene el router, switch y patch panel correspondiente. 
         
-        \item Cableado Horizontal: Para subsistema su objetivo es que conecta las rosetas de cada área de trabajo 
-        con el patch panel de el cuarto de telecomunicaciones que se encuentra en el piso correspondiente a donde esta. 
+        \item Cableado Horizontal: Para subsistema su objetivo es que conecta las rosetas de cada área de trabajo  con el patch panel de el cuarto de telecomunicaciones que se encuentra en el piso correspondiente a donde esta. 
         
-        \item Area de Trabajo: Para este subsistema, este no se comrpende un solo lugar, en la empresa como tal, tenenemos multiples lugares de trabajo en diferentes plantas,
-        es por eso que como tal el area de trabajo tiene las rosetas y los dispositivos finales con lo que trabajaran los empleados, tales 
+        \item Area de Trabajo: Para este subsistema, este no se comprende un solo lugar, en la empresa como tal, tenemos multiples lugares de trabajo en diferentes plantas, es por eso que como tal el area de trabajo tiene las rosetas y los dispositivos finales con lo que trabajaran los empleados, tales 
         como PCs, laptops, impresoras.
     \end{enumerate}
 
     \subsection{Seguridad Propuesta}
 
-    \textbf{Seguridad Física:}
-    \begin{itemize}
-        \item Cuarto de equipos (PB): acceso mediante huella dactilar.
-        \item Cuartos de telecomunicaciones (P1, P2, P3): acceso mediante huella dactilar.
-        \item Cámaras de seguridad en cada piso para vigilancia de zonas sensibles.
-    \end{itemize}
+    La seguridad propuesta es la que se describió en el apartado de justificación, donde para la seguridad física en los cuartos de telecomunicaciones y equipos el acceso es por medio de huella dactilar, además de tener cámaras de seguridad para monitorear esos cuartos. Ademas en esos cuartos se colocaron mamparas para ver en todo momento quien se encuentra dentro de estos cuartos. Mientras que para la seguridad lógica en routers y switches, se implemento que para acceder al modo privilegiado es por medio de una contraseña cifrada, de igual forma el acceso por consola y SHH está protegido con contraseña. Adicionalmente en lo switches se implementó port-security para limitar el número de dispositivos por puerto,asi evitando que dispositivos no autorizados se conecten a la red, por último se deshabilitaron los puertos que no se están usando en los switches. Finalmente para los AP protegidos se implemento autenticación WPA2-PSK.
 
-    \textbf{Seguridad Lógica en Routers:}
-    \begin{itemize}
-        \item Contraseña de modo privilegiado cifrada (\texttt{enable secret}).
-        \item Acceso por consola y VTY protegido con contraseña.
-        \item Administración remota segura mediante ssh con llaves RSA de 1024 bits.
-        \item Cifrado de contraseñas almacenadas (\texttt{service password-encryption}).
-        \item Nombre del router correspondiente al piso y área que da servicio.
-    \end{itemize}
-
-    \textbf{Seguridad Lógica en Switches:}
-    \begin{itemize}
-        \item Seguridad en puertos: \texttt{switchport port-security} con máximo 2 direcciones MAC, modo \texttt{sticky} para aprendizaje dinámico y violación en modo \texttt{shutdown}.
-        \item Configuración diferencial para Access Point: limtie de 40 con violación en modo \texttt{restrict}.
-        \item Deshabilitación de puertos no utilizados.
-        \item Acceso remoto por SSH protegido con autenticacion mediante login local.
-        \item Nombre del switch correspondiente al área que da servicio.
-    \end{itemize}
-
-    \textbf{Seguridad Inalámbrica:}
-    \begin{itemize}
-        \item Se coloque un AP con acceso libre sin contraseña para visitantes en la recepción.
-        \item Los AP, de plantas superiores y de zonas sensibles tienen acceso protegido mediante contraseña para empleados.
-    \end{itemize}
+    De forma que considerando los aspectos descritos en la justificación se obtiene el plano que se muestra a continuación, donde se puede observar lo descrito anteriormente.
 
     %[Aqui ira la foto del plano]
 
+    \includepdf[pages=-, landscape=true, pagecommand={\thispagestyle{plain}}]{plano.pdf}
 
     \section{Desarrollo}
 
+    \subsection{Realización de VLSM}
+
+    Para la realización de VLSM, se partió del segmento base dado que es el \texttt{10.0.0.0}, donde se consideraron que era necesario crear las siguientes subredes. Donde para cada piso se tienen las subredes \texttt{P1\_LAN}, \texttt{P2\_LAN}, \texttt{P3\_LAN}. Para los servidores se tiene la subred \texttt{SERVIDORES} y para las conexiones punto a punto entre los routers se tienen las subredes \texttt{PB-P1}, \texttt{PB-P2}, \texttt{PB-P3}. 
+
+    Para realizar el VLSM es necesario considerar el número de hosts que se deciden para cada red, aunque se conocen el número de hosts que se necesitan para cada red, es necesario dejar una cantidad de hosts de holgura para cada red, esto con la finalidad de que si en un futuro se necesitan agregar más dispositivos a la red, no sea necesario realizar un nuevo VLSM, sino que se pueda usar las direcciones IP de holgura. Es por esto que para la \texttt{PB\_LAN} se consideraron 62 hosts, donde 40 IPs son para el servidor DHCP, 8 se están usando y quedan 14 libres para el futuro, para la \texttt{P1\_LAN} se consideraron 30 hosts, se usan 12 y quedan libres 18 para el futuro, para la \texttt{P2\_LAN} se consideraron 30 hosts, se usan 11 y quedan libres 19, mientras que para la \texttt{P3\_LAN} se consideraron 14 hosts, se usan 6 y quedan libres 8 para el futuro, para la subred de servidores \texttt{SERVIDORES} se consideraron 14 hosts, se usan 6 y quedan libres 8 para el futuro, finalmente para las conexiones punto a punto entre los routers se consideraron 2 hosts, se usan 2 y no quedan hosts libres para el futuro, esto por que estas conexiones son solo para la comunicación entre los routers. Es importante mencionar que en el número de dispositivos que se usan se incluyen los AP aunque en Cisco Packet Tracer no se les asigna una dirección IP sin embargo en la realidad si se les asignaría una dirección IP.
+
+    De forma que al realizar el VLSM con el número de hosts necesarios para cada red, se obtienen las siguientes subredes, se considero tomar la primer dirección IP útil para el gateway:
+
+    \begin{table}[htbp]
+    \centering
+    \resizebox{\textwidth}{!}{%
+    \begin{tabular}{|l|l|l|l|c|l|l|}
+    \hline
+    \textbf{Subred} & \textbf{Segmento de Red} & \textbf{Máscara de Red} & \textbf{Rango de IPs Útiles} & \textbf{IPs Útiles} & \textbf{Broadcast} & \textbf{Gateway} \\ \hline
+    PB LAN & 10.0.0.0/26 & 255.255.255.192 & 10.0.0.1 - 10.0.0.62 & 62 & 10.0.0.63 & 10.0.0.1 \\ \hline
+    P1 LAN & 10.0.0.64/27 & 255.255.255.224 & 10.0.0.65 - 10.0.0.94 & 30 & 10.0.0.95 & 10.0.0.65 \\ \hline
+    P2 LAN & 10.0.0.96/27 & 255.255.255.224 & 10.0.0.97 - 10.0.0.126 & 30 & 10.0.0.127 & 10.0.0.97 \\ \hline
+    Servidores & 10.0.0.128/28 & 255.255.255.240 & 10.0.0.129 - 10.0.0.142 & 14 & 10.0.0.143 & 10.0.0.129 \\ \hline
+    P3 LAN & 10.0.0.144/28 & 255.255.255.240 & 10.0.0.145 - 10.0.0.158 & 14 & 10.0.0.159 & 10.0.0.145 \\ \hline
+    PB-P1 & 10.0.0.160/30 & 255.255.255.252 & 10.0.0.161 - 10.0.0.162 & 2 & 10.0.0.163 & N/A* \\ \hline
+    PB-P2 & 10.0.0.164/30 & 255.255.255.252 & 10.0.0.165 - 10.0.0.166 & 2 & 10.0.0.167 & N/A* \\ \hline
+    PB-P3 & 10.0.0.168/30 & 255.255.255.252 & 10.0.0.169 - 10.0.0.170 & 2 & 10.0.0.171 & N/A* \\ \hline
+    \end{tabular}%
+    }
+    \caption{Tabla de Subredes obtenidas por VLSM}
+    \end{table}
+
+    \subsection{Selección del Hardware}
+
+    Para seleccionar el hardware con el que se va a realizar la simulación en Cisco Packet Tracer, se consideraron los requerimientos de la empresa, así como el número de dispositivos que se necesitan para cada piso, esto con la finalidad de seleccionar el hardware más adecuado para cada piso. Dado que en cada cuarto de telecomunicaciones se tienen 1 router y 1 switch, se optó por seleccionar routers que no sean muy básicos, pero tampoco muy avanzados, asi obteniendo un balance entre número de puertos y funcionalidades. Por lo que selecciono el \texttt{Router Cisco 1841} con los módulos HWIC-2T para expandir los puertos seriales y asi poder realizar la topología en estrella que se planteo, mientras que para los switches se selecciono el \texttt{Switch Cisco 2950-24} ya que al no requerir funciones avanzadas como puertos GigabitEthernet, ni proporcionar energía a través de los cables Ethernet, este switch es suficiente para las necesidades de cada piso. Para los servidores y APs, se seleccionaron las opciones genéricas que se encuentran en Cisco Packet Tracer, esto ya que en si se fuera implementar en la vida real no importaría tanto la marca o modelo del servidor o AP.
+
+    El número de servidores corresponde a cada servicio que se va a implementar, es decir, un servidor para DHCP, otro para Web/DNS y otro para Syslog, esto con la finalidad de que cada servicio tenga su propio servidor dedicado, asi obteniendo un mejor rendimiento y seguridad. De igual forma, el número de APs corresponde a cada piso, esto para garantizar la cobertura inalámbrica en cada piso.
+
+    Es importante mencionar que como se tienen AP los cuales ofrecen conexión de manera inalámbrica, es necesario considerar que se requieren módulos para computadoras, laptops o impresoras que no cuentan con una tarjeta de red inalámbrica, esto para que puedan conectarse a la red de manera inalámbrica, por lo que para los dispositivos que se conectan de manera inalámbrica, se seleccionaron los módulos \texttt{HWIC-2AWG} para las computadoras.
+
+    El tipo de cable que se usara para las conexiones entre los routers, es decir, para el cableado vertical, se selecciono el cable serial DTE, mientras que para las conexiones entre los routers y los switches, así como para las conexiones entre los switches y los dispositivos finales, es decir para el cableado horizontal, se selecciono el cable Ethernet directo.
+
+    \subsection{Diseño de Seguridad Física y  Políticas de Seguridad Lógica}
+
+    \textbf{Seguridad Física:} Para la seguridad física se seleccionaron cerraduras biométricas para los cuartos de telecomunicaciones y el cuarto de equipos, asi garantizando que solo personal autorizado pueda acceder a estas zonas, además al ser con un dato biómetrico se está garantizando el No repudio, ya que se tiene un registro de quien accede a estas zonas, por otro lado para el monitoreo de estas zonas se seleccionaron cámaras de seguridad por medio de circuito cerrado 24/7, esto para garantizar que se tenga un monitoreo constante de estas zonas sensibles. Adicionalmente para el cuarto de entrada de servicios se selecciono una cerradura física, esto para facilitar el acceso al proveedor, sin embargo para aumentar la seguridad de esta zona, se colocaron cámaras de seguridad para el monitoreo de esta zona.
+
+    \textbf{Políticas de Seguridad Lógica:} Se restringió el acceso al modo privilegiado en los routers y switches por medio de contraseñas cifradas, donde para acceder a la línea de comandos por consola y SSH también se requiere de una contraseña diferente a la del modo privilegiado, además al estar cifradas las contraseñas estas no están visibles en la configuración de los dispositivos. Se opto por usar SSH y no Telnet para el acceso remoto a los dispositivos, esto por que SSH cifra la comunicación, mientras que Telnet no lo hace, siendo asi SSH la opción más segura. Para los puertos de los swithches que no están siendo utilizados se  deshabilitaron, mientras que los que están en uso a excepción de los puertos donde se conectan los APs, se configuró port-security para limitar el número de dispositivos que se pueden conectar a cada puerto, donde si se supera el número de dispositivos permitidos (2), el puerto se apaga de manera automática. Para los APs protegidos se implemento autenticación \texttt{WPA2-PSK} la cual emplea un cifrado AES, siendo asi una opción más segura que WEB
+
+    Es importante mencionar que las claves de los dispositivos, así como las claves de los APs se guardaron en un documento seguro y encriptado, de forma que solo personal autorizado tiene acceso a este documento. De forma que solo se proporciona la información de las claves correspondientes a su personal autorizado.
+
     \section{Implementación}
 
-    Para la construccion de la topologia, nos basamos directamente en el modelo OSI, integrando una conexion de estrella, donde el router central es el de planta baja
-    donde este se conecta a los otros routers que se encuentran en cada piso, esto siguiendo las normas del cableado estructurado que es por medio del cableado vertial
-    por medio de las conexiones de los puertos seriales. En el caso del router de la planta baja se tuvieron que agregar 2 modulos HWIC-2T para poder expandir los puertos seriales hasta 4, en el caso de los demas routers, solo se 
-    agrego un modulo HWIC-2T para tener 2 puertos seriales, esto por que originalmente los routers 
-    no cuentan con un puerto serial, por lo que fue indispensable agergar estos modulos para la conexion mutua de los rotuers.
+    Para la construcción de la topología, nos basamos directamente en el modelo OSI, integrando una conexión de estrella, donde el router central es el de planta baja
+    donde este se conecta a los otros routers que se encuentran en cada piso, esto siguiendo las normas del cableado estructurado que es por medio del cableado vertical
+    por medio de las conexiones de los puertos seriales. En el caso del router de la planta baja como se mencionó en la elección del hardware, se selecciono el router Cisco 1841 con dos módulos HWIC-2T, mientras que para los demás routers se seleccionaron  1 módulos HWIC-2T para expandir los puertos seriales y asi poder realizar la topología en estrella que se planteo.
+
+    \subsection{Implementación de topología:}
+
+    La topología se implemento de forma en que se dividió por bloques cada piso, esto para tener un mejor control de la topología así como una mejor visualización de forma que se asemeje al plano que se diseño.
+
+    Dado que en Cisco Packet Tracer no se cuenta con patch panels, en la sala de telecomunicaciones se colocaron los switches y routers, de forma que las conexiones se hacen directamente del switch a los dispositivos finales,pasando a la cuestión de dispositivos inalámbricos, estos pasan a ser las impresoras principalmente pero también dos computadoras esto por que a nivel de seguridad, por que estas computadoras no estaban en una zona muy sensible, por que lo que se decidió hacerlo de esa manera.
+
+    La posición de los AP, se definió en cada piso con un rango de 60 metros, esto para asegurar la cobertura de cada AP en cada piso y que la señal de los AP de pisos mas arriba o abajo no se pasaran al piso donde el AP fue directamente pensando para operar, de igual forma a todos los AP tienen un nombre de red diferente y la contraseña de igual forma cambia en cada uno, el modo 
+    de canal de direccionamiento se dejo en automático, esto para que el mismo AP 
+    se encargue de decidir en que modo puede transmitir, esto para optimizar la señal y el rendimiento de cada AP correspondiente.
     
-    \subsection{Implementacion de topologia:}
-    
-    No obstante cabe recalcar, que en la topologia se contruyo de forma que lo dividmos en bloques para tener un mejor control 
-    y diseño de la misma en el software de cisco. 
+    \subsection{Asignación de IP y enrutamiento:}
 
-    La construccion de cada sala se llevo a cabo de tal fomra que coincida con el plano, debido a que en ciso packet tracer
-    no se cuenta con path panels, estos solo se vieron reflejados en el plano, a nivel de cisco,
-    los dispositivos que irian al patch panel se conectaron directamente al switch, esto para facilitar de igual manera las conexiones, pasando 
-    a la cuestion de dispositivos inalmbricos, estos pasan a ser las impresoras principalmente pero tambien dos computadoras
-    esto por que a nivel de seguridad, por que estas computadoras no estaban en una zona muy sensible, por que lo que se decidio hacerlo de esa manera.
+    Lo primero que se hizo después de diseñar el plano, fue hacer hace toda la implementación física, después todas las conexiones por medio de los cableados verticales y horizontales,
+    posteriormente se realizó la asignación de IP a través de nuestro segmento de red \texttt{10.0.0.0/24}, que este fue nuestro segmento base dado y se le aplicó VLSM como se detallo al inicio de la sección de desarrollo, esto para obtener las subredes necesarias para cada piso, así como para los servidores y las conexiones punto a punto entre los routers.
 
-    La posicion de los AP, se definio en cada piso con un rango de 60 metros, esto para asegurar la cobertura de cada AP 
-    en cada piso y que la señal de los AP de pisos mas arriba o abajo no se pasaran al piso donde el AP fue directamente 
-    pensando para operar, de igual forma a todos los AP tienen un nombre de red diferente y la contraseña de igual forma cambia en cada uno, el modo 
-    de canal de direccionamiento se dejo en automatico, esto para que el mismo AP 
-    se encarge de decidir en que modo puede transmitir, esto para optimizar la señal y el rendimiento de cada AP correspondienteme.
-    
-    \subsection{Asingacion de IP y enrutamiento:}
+    Ya con las subredes obtenidas por medio de VLSM, se asignaron las direcciones IP a cada dispositivo con su respectiva configuración. En cuestión del AP que se encuentra en planta baja y que es abierto, no sabemos como tal el numero de dispositivos que se llegaran a conectar, es por eso que se dejo para 40 dispositivos que se llegan a conectar para este AP.
 
-    Por lo que lo primero que se hizo despues de diseñar el plano, fue hacer hace toda la implementacion fisica, despues todas las conexiones por medio de los cableados verticales y horizontales,
-    despues al tener todo el cableado hecho y teniendo toda la topologia armado, se implemento la asignacion de IP a traves de nuestro segmento de red 10.0.0.0/24, que este fue nuestro segmento base dado
-    y se le aplico VLSM para asignar a cada piso su segmento correspondiente, donde la eleccion de este metodo fue para no desperdiciar tantas direcciones IP por el tipo de segmento dado.
-
-    Ahora bien, despues de tener todo el calculo de las IP, y asignar a cada dispositivos las IP, se paso a poner en cada dispositivo final la IP de forma estatica con su respectiva configuracion,
-    no obstante, tuvimos que dejar una holgura en los puntos de conexion AP, esto por que estos se conectan de forma 
-    inalmbrica y en cuestion del AP que se encuentra en planta baja y que es abierto, no sabemos como tal el numero de 
-    dipositivos que se llegaran a conectar, es por eso que se dejo para 40 dispositivos que se llegan a conectar para este AP.
-
-    Siguiendo con la implementacion, despues de tener la asignacion de las IP para dispositivos, se procedio a realizar 
-    la configuracion del enrutamiento, donde como se menciono desde un principio se implemento EIRGP, 
-    esto por su soporte para VLSM, balanceo de carga y el algoritmo dual, para esto, en cada router se
-    configuro su enrutamiento, asignando el camiono del segmento que le correspondia a cada router, 
-    para esto en el enrutamiendo se asigno un un numero autonomo de 100, de esta forma implementado el enrutamiendo se hicieron las pruebas, de envio de paquetes a cada maquina en diferentes pisos 
-    como la prueba de ping a cada IP de cada dispositivo, con cada ping, dando positivo, se confirmo que el enrutamiendo fue hecho correctamente 
-    y que todos los pisos estaban correctamente conectados.
+    Siguiendo con la implementación, el paso siguiente fue la configuración del enrutamiento, donde como se mencionó desde un principio se implemento EIRGP, en cada router se
+    configuro su enrutamiento, asignando el camino del segmento que le correspondía a cada router, 
+    se asigno un un numero autónomo de 100, de esta forma implementado el enrutamiento se hicieron las pruebas, de envió de paquetes a cada maquina en diferentes pisos así como uso del comando ping para verificar la conectividad entre cada dispositivo.
 
     \subsection{Implementación de Servidores y Servicios}
 
-    La seccion de servidores, fue implementada en el cuarto de equipos, todo en el mismo piso, siendo 
-    el piso de planta baja con la subred aislada 10.0.0.128/28, donde estos servidores seran importantes, debido a que syslog, tendra com objetivo
-    el monitore de la red, para guardar un registro de los eventos que puedan pasar en el lapso de tiempo en la red, es por eso que en ese mismo servidr
-    para optimizar costes se integro de igual forma el servidor NTP, que este complementa al syslog de forma 
-    que de las marcas de tiempos de los eventos que llegue a registrar el syslog, ahora bien para el servidor DHCP, este tuvo como objetivo principal 
-    la asignacion automatica de direcciones IP a los dipositivos que se lleguen a conectar por medio 
-    del AP abierto de la planta baja, teniendo en cuenta esto, el servidro DHCP como se especifican en los requisitos,
-    este solo va a funcionar para la planta la asignacion de IP, esto es por que a nivel de seguridad los otros pisos 
-    se les asignan direcciones IP de forma estatica, esto para evitar que dispositivos no autorizados ingresen a la red, 
-    por ultimo los dos servidores de WEB y DNS se encargan del levantamiendo de la web de la empresa, esto para 
-    que los empleados puedan acceder a esta web desde cualquier dipositovo conectado a la red, estos dos servidor funcionan 
-    de tal manera que el servidor DNS se encarga de resolver el dominio www.distrologic.com 
-    a la IP del servidor web, esto de igual forma es para
-    que los empleados puedan acceder a la web de la empresa por medio del dominio 
-    y no sea tan pesado ingresar por medio de la IP, ahora bien, la forma de configuracion de cada servidor es la siguiente:
+    Para la configuración e implementación de los servidores, se uso la subred de servidores que se obtuvo por medio de VLSM, es decir la subred \texttt{10.0.0.128/28} entre los servidores que se implementaron se encuentran el servidor DHCP, el servidor Web/DNS y el servidor Syslog/NTP. Donde el servidor DHCP se encarga de la asignación automática de direcciones IP a los dispositivos que se conecten al AP abierto de la planta baja, el servidor Web/DNS se encarga del levantamiento de la web de la empresa, esto para que los empleados puedan acceder a esta web desde cualquier dispositivo conectado a la red, el servidor Syslog se encarga del monitoreo de la red, para guardar un registro de los eventos que puedan pasar en el lapso de tiempo en la red, mientras que el servidor NTP se encarga de complementar al syslog de forma que de las marcas de tiempos de los eventos que llegue a registrar el syslog.
 
     \begin{itemize}
         \item \textbf{Servidor DHCP (10.0.0.130):} Para el servidor DHCP se configuro el pool
-        de direcciones esto para la asginacion y la limitacion a los 40 usuarios 
-        esto por el AP abierto de la Planta Baja, ahora bien, dando que los usuarios y el servidor se encuentran en subredes 
-        distintas, fue necesario configurar el rotuer de planta baja, como el intermediariaro para la comunicacion, 
-        esto por medio de un ip helper-address, que lo que hacemos con esto es que el router, pasa todo el trafico 
-        de los dispositivos que buscan una direccion IP, y el router mismo se encarga de pasarlo al servidor DHCP,
-        esto para que el servidor asigne la direccion IP de forma automatica a cada dispositivo que se conecte al AP abierto.
+        de direcciones esto para la asignación y la limitation a los 40 usuarios 
+        esto por el AP abierto de la Planta Baja, ahora bien, dando que los usuarios y el servidor se encuentran en subredes  distintas, fue necesario configurar el router de planta baja, como el intermediario para la comunicación, 
+        esto por medio de un \texttt{ip helper-address}, que lo que hacemos con esto es que el router, pasa todo el trafico de los dispositivos que buscan una dirección IP, y el router mismo se encarga de pasarlo al servidor DHCP,
+        esto para que el servidor asigne la dirección IP de forma automática a cada dispositivo que se conecte al AP abierto.
         
-        \item \textbf{Servidores Web (10.0.0.131) y DNS (10.0.0.132):} El servicio DNS se creo y se contruyo de forma que primero 
-        fue creando un registro tipo A que vinvula directamente el dominio www.distrologic.com a la direccion IP 10.0.0.131, esto permite que sea directamente legiable el dominio para los 
-        navedaores en lugar de colocar la IP en el buscador. 
-        En cuestion en el servidor HTTP, se cambio directamente
-        el html, donde tambien se agrego al servidor la imagen del logo, la pagina web, construida por apenas 100 lineas de codigo, donde se integro un poco de css para centrar los nombres de el usario y centrar de forma correcta el logo de la empresa, en seguida el 
-        codigo html, es muy basico con solo equiquetas de nombres que hacen referencia al css para que el css se el encargado de centrar todo de forma correcta.
+        \item \textbf{Servidores Web (10.0.0.131) y DNS (10.0.0.132):} El servicio DNS se configuro para que el dominio \texttt{www.DistroLogic.com} apunte a la dirección IP del servidor web(\texttt{10.0.0.131}), esto para que cuando los empleados quieran acceder a la web de la empresa, puedan hacerlo por medio del dominio y no por medio de la dirección IP. Para configurar el servicio web, se cambio directamente el archivo HTML, donde también se agregó al servidor la imagen del logo, la pagina web está construida por apenas 100 lineas de código, donde se integro un poco de CSS para centrar los nombres de el usuario y centrar de forma correcta el logo de la empresa.
         
         \item \textbf{Servidor Syslog y NTP (10.0.0.133):} Para optimizar costes y tener mejor control de los servidores, se integraron los dos servidores en uno solo, donde lo que primero se logro fue 
         configurar cada router con el comando \texttt{logging host 10.0.0.133}, 
-        esto para que cada alerta de la topologia se pase al servidor. 
-        Ahora bien, el syslog necestiamos un control de tiempo es por eso que se habilitó el servicio NTP 
+        esto para que cada alerta de la topología se pase al servidor. 
+        Ahora bien, el syslog necesitamos un control de tiempo es por eso que se habilitó el servicio NTP 
         en el servidor y los routers se sincronizaron al mismo con el comando \texttt{ntp server 10.0.0.133}, por ultimo
-        se forzo que apareciaera la estampa de tiempo exacta en los logs con el comando \texttt{service timestamps log datetime msec}.
+        se forzó que apareciera el tiempo exacto en los logs con el comando \texttt{service timestamps log datetime msec}.
     \end{itemize}
 
     \subsection{Implementación de Seguridad:}
 
-    Para la cuestiond de la seguridad, se implemento todo de forma logica y un poco de fisica en de forma que demarcamos con bloques las areas restrigindas en los cuartos de telecomunicaciones y en el de equipos, 
-    ahora bien para cuestionde seguridad logica, se implemento en cada router y switch, asi como con las contraseñas de los AP para las cuestionde privicidad 
-    en los que son por red cerrada, empezando primero por lo switches, donde en cada switch se desahabilitaron los puertos FastEthernet 
-    que no se estaban ocupando, esto para evitar que se conecten dispositivos no autorizados, ahora bien, en cuestion de los puertos 
-    que se estan eso, se implemento seguridad en los puertos, empezando primero por los puertos que son para los AP, 
-    para los puertos que no son de AP, se limito a solo maximo 2 disposiivos por puerto, de igual forma ocupando 
-    el modo sticky, esto para que el switch aprenda de forma dinamica las direcciones MAC de los dispositivos 
-    conectados y no deje pasar a otros dispositivos que no sean los registrados, en caso de que se conecete un desconocido no registrado
-    por seguridad el puerto se apaga y se tiene que encender manualmente, ahora bien, para los puertos de los AP, y mas para el AP publico,
-    no tenemos idea del flujo de gente que se puede llegar a tener en la empresa, asi que es por esto no se implemento la seguridad de apagado del puerto
-    si no que se implemento la medida de seguridad restrict, lo que hace esto es que el puerto se mantenga activo
-    pero no deje pasar a mas de 40 dispositivos, esto para evitar que se sature el puerto 
-    y se pueda seguir dar servicio el AP de forma correcta.
+    Para implementar la seguridad lógica descrita en el desarrollo, se implemento en cada router y switch por medio de la Interfaz de linea de comandos las siguientes configuraciones.
+
+    Para los switches, se deshabilitaron los puertos que no se estaban usando, para esto se seleccionaron las interfaces FastEthernet que no se estaban usando y se deshabilitaron con el comando \texttt{shutdown}, esto para evitar que se conecten dispositivos no autorizados a la red. En los puertos que estaban siendo utilizados sin contar los AP se habilitó el port-security por medio del comando \texttt{switchport port-security}, donde se habilito el aprendizaje dinámico \texttt{mac-address sticky}, limitando la conexión a 2 dispositivos por puerto con el comando \texttt{switchport port-security maximum 2}, donde si se conectan más de 2 dispositivos el puerto se apaga de forma automática, esto se configuro por medio del comando \texttt{switchport port-security violation shutdown}. 
+
+    Mientras que para los routers y switches, se implemento la seguridad de acceso por medio de contraseñas cifradas, para esto se configuro el acceso al modo privilegiado con una contraseña cifrada, esto por medio del comando \texttt{enable secret}, de igual forma se configuro el acceso por consola y SSH con contraseñas cifradas, esto por medio del comando \texttt{line console 0} y \texttt{line vty 0 4} respectivamente, donde se asignaron contraseñas cifradas para cada uno. En el caso de los AP protegidos, se implemento autenticación WPA2-PSK, mientras que para el AP abierto se configuro una autenticación Open System.
     
-    En cuestion de seguridad en los rotuers,se implemento la seguridad por medio de acceso de contraseña 
-    definiendo el nombre de usuario y la contraseña del mismo usuario, asi como la contraseña en modo privilegiado, 
-    esta configuracion se hizo para cada router, esto para evitar que se pueda acceder a la configuracion de los 
-    routers sin autorizacion, no obstante, esto tambien paso para los switches, donde de igual forma 
-    se implementaron los usuarios con contraseña y la contraseña en modo privilegiado, esto para evitar 
-    el acceso no autorizado a la configuracion de los switches.
+
+    \subsection{Seguridad de conexión SSH:}
+
+    Por último se implemento la conexión por ssh para administración de los switches y routers, esto 
+    para evitar que la administración de los dispositivos se tenga que hacer de forma física, no obstante 
+    esta forma de administración trae consigo nuevas formas de acceso, donde cuando se implementaron las contraseñas en los routers y switches, para la conexión por ssh, se configuro cada router y switch con un nombre de dominio, esto para que se pueda generar la clave de 
+    cifrado para la conexión por ssh, después de esto se genero la clave de cifrado con el comando 
+    crypto key generate rsa, esto para generar la clave de cifrado para la conexión, 
+    por ultimo se configuro el acceso a las lineas los puertos virtuales a habilitar para la conexión por ssh misma.
+
+    La comprobación de esta estructura se llevo acabo de forma que si desde la computadora de sistemas podemos acceder a cualquier router o switch por medio de saltos esto por ssh.
+
+    \section{Conclusión}
+
+    Para diseñar e implementar una red de datos segura y eficiente para un edificio empresarial se deben de tener muchos factores en cuenta, los cuales no siempre son los mismos o están sujetas a las distintas necesidades que tiene una empresa. De forma que el diseño es una parte fundamental para la implementación de una red de datos, de forma que si se tiene un mal diseño, la implementación se vuelve más difícil, es por esto que empezar el diseño considerando normas como las del cableado estructurado, así como la seguridad física y lógica, permite tener un mejor flujo a la hora de diseñar la red datos, de forma que se pueden pasar a las etapas posteriores de forma más optima y teniendo definido lo que se debe de realizar, donde en este caso al finalizar la etapa del diseño obtuvimos el plano lo que ayudó en gran medida tomar otras decisiones de diseño e implementación, como lo son la topología, la selección del hardware, la asignación de IP, el enrutamiento, la implementación de servidores y servicios, así como la implementación de seguridad. Donde cada una de estas etapas se relacionan entre sí, de forma que una decisión en una etapa puede afectar a las demás etapas, por lo que una mala decisión puede significar en costos de escalabilidad, mantenimiento, seguridad, rendimiento, entre otros aspectos. Adicionalmente la implementación de servidores y funcionalidades como SHH son fundamentales para el funcionamiento de la red, ya que estos permiten tener servicios de red, así como una mejor administración y monitoreo de la red.
+
+    Gracias a la realización de este proyecto, pudimos comprender todo el proceso que hay detrás del diseño e implementación de una red de datos ya en un entorno profesional, donde en cada parte del diseño se consideran aspectos técnicos, económicos, de seguridad, entre otros aspectos, donde cada una de estas partes se relacionan entre sí, donde para poder realizar un buen diseño e implementación implica tener un conocimiento total de como funcionan las redes de datos.
+
+    \newpage
+
+    \thispagestyle{empty}
     
-    Para los AP, se implemento la seguridad por medio de contraseña para los AP que son de red cerrada,
-    esto para evitar que cualquier persona pueda acceder a la red inalambrica de la empresa y
-    asi mismo tener un control de los dispositivos que se conectan a esta red, no obstante, 
-    el AP que es publico se dejo sin contraseña para facilitar el acceso a los visitantes.
-
-    \subsection{Seguridad de conexion SSH:}
-
-    Por ultimo se implemento la conexion por ssh para adminsitracion de los switches y routers, esto 
-    para evitar que la administracion de los dispositivos se tanga que hacer de forma fisica, no obstante 
-    esta forma de administracion trae consigo nuevas formas de acceso,d onde cuando se implementaron las contraseñas en los rotuers 
-    y switches se colocaron los comandos para que acepte directamente ssh y tambien se cifren las contrasñeales del enable secret, 
-    esto por medio del comando service password-encryption, esto para que las 
-    contraseñas no se vean en texto plano, ahora bien, para la conexion por ssh,
-    se configuro cada router y switch con un nombre de dominio, esto para que se pueda generar la clave de 
-    cifrado para la conexion por ssh, despues de esto se genero la clave de cifrado con el comando 
-    crypto key generate rsa, esto para generar la clave de cifrado para la conexion, 
-    por ultimo se configuro el acceso a las lineas los puertosvirtuales a habilitar para la conexion por ssh misma.
-
-    La comprobacion de esta estructura se llevo acabo de forma que si desde la computadora de sistemas podemos acceder a cualqueir router o switche por medio de saltos 
-    esto por ssh.
-
-    \section{Conclusiones:}
-
-    \begin{itemize}
-        \item Espinoza Matamoros Percival Ulises:
-        \item Lara Hernandez Angel Husiel: En redes de datos, se tienen que tomar muchos factores en cuenta, tal es el caso de este proyecto 
-        donde no solo tenemos que tener en cuenta la parte tecnica de la misma, si no tambien la parte de seguridad y en este sentido tenemos dos consideraciones
-        la seguridad que normalmente implementamos a nivel logico, que es por medio de lineas de comandos definiendo reglas, contraseñas 
-        y protocolos para su correcto acceso, pero tambien tenemos la seguridad a nivel fisico, donde en esta cuestion solo vemos representado en un entorno real debido 
-        a que estamos contemplando la seguridad de quien accede a los lugares donde estan todos los servidores, routers y switches. Ahora bien, con la implementacion del plano, es importante entender,
-        que tenemos que tener muchas cosas a considerar, tal es el caso del cableado estructurado, que es la arquitectura 
-        en la que se va a basar toda la red, para esto, es que por medio del plano implementamos todo el cableado verticual, horizontal 
-        definimos las secciones en las cuales se van a encontrar los dispositivos que esta es una cuestion importante, debido a que si lo llevamos a la 
-        realidad esta implementacion, necesitamos hacer los costes de cables y de dispositivos a usar, esto 
-        para tener un orden correcto en el prosupuesto por si queremos lanzar esta propuesta a una empresa, cuestiones de asignaciones de IP, en este caso 
-        al usar el metodo de VLSM, tuvimos que tener en cuenta consideraciones para los equipos que puedan llegar a conectarse por medio de las inalmbricas, que esto 
-        nos hizo a rehacer los calculos en varios ocaciones para poder adaptar las IP de forma correcta dejando una holgura amplica, asi mismo 
-        la forma de enrutamiendo que elegimos que fue EIGERP, pude considerarla como la mas eficiente, en el sentido de su tiempo 
-        de convergencia, debido a esto es mas rapido el envio de paquetes para cuando esta aprendiendo los caminos los routers, no obstante los saltos 
-        de ssh que es lo mas importante para mi en este sentido, es importante, por que esto nos hace que podamos gestionar los dispositivos 
-        sin la necesidad de estar presentes, esto por que ssh lo que haces es conectarse por via remota a traves de cifrados, ademas de que es por esto 
-        que eljimos ssh y no telnet, por que telnet usa el texto plano, y en redes seguras tal cual, queremos seguridad lo que ssh nos otorga, esto hizo que 
-        tuviera un mejor conocimientod e estos entornos y como estas dicicones influyen en cada armado de la red.
-    \end{itemize}
-
-
     % Impresión Referencias
     \nocite{*}
     \printbibliography[heading=bibintoc, title={Referencias}]
