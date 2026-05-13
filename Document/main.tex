@@ -378,12 +378,13 @@
 
     \subsection{Implementación de Servidores y Servicios}
 
-    Para la configuración e implementación de los servidores, se uso la subred de servidores que se obtuvo por medio de VLSM, es decir la subred \texttt{10.0.0.128/28} entre los servidores que se implementaron se encuentran el servidor DHCP, el servidor Web/DNS y el servidor Syslog/NTP. Donde el servidor DHCP se encarga de la asignación automática de direcciones IP a los dispositivos que se conecten al AP abierto de la planta baja, el servidor Web/DNS se encarga del levantamiento de la web de la empresa, esto para que los empleados puedan acceder a esta web desde cualquier dispositivo conectado a la red, el servidor Syslog se encarga del monitoreo de la red, para guardar un registro de los eventos que puedan pasar en el lapso de tiempo en la red, mientras que el servidor NTP se encarga de complementar al syslog de forma que de las marcas de tiempos de los eventos que llegue a registrar el syslog.
+    Para la configuración e implementación de los servidores, se uso la subred de servidores que se obtuvo por medio de VLSM, es decir la subred \texttt{10.0.0.128/28} entre los servidores que se implementaron se encuentran el servidor DHCP, el servidor Web/DNS y el servidor Syslog/NTP. Donde el servidor DHCP se encarga de la asignación automática de direcciones IP a los dispositivos que se conecten al AP abierto de la planta baja y en su defecto en el AP de la planta 3 que es privada que solo bastara con colocar el nombre de la red y la contraseña del AP correspondiente, el servidor Web/DNS se encarga del levantamiento de la web de la empresa, esto para que los empleados puedan acceder a esta web desde cualquier dispositivo conectado a la red, el servidor Syslog se encarga del monitoreo de la red, para guardar un registro de los eventos que puedan pasar en el lapso de tiempo en la red, mientras que el servidor NTP se encarga de complementar al syslog de forma que de las marcas de tiempos de los eventos que llegue a registrar el syslog.
 
     \begin{itemize}
-        \item \textbf{Servidor DHCP (10.0.0.130):} Para el servidor DHCP se configuro el pool
-        de direcciones esto para la asignación y la limitation a los 40 usuarios 
-        esto por el AP abierto de la Planta Baja, ahora bien, dando que los usuarios y el servidor se encuentran en subredes  distintas, fue necesario configurar el router de planta baja, como el intermediario para la comunicación, 
+        \item \textbf{Servidor DHCP (10.0.0.130):} Para el servidor DHCP se configuro dos pool
+        de direcciones esto para la asignación de IPs, el primero con la limitation de 40 usuarios 
+        esto por el AP abierto de la Planta Baja, el segundo con 10 usuarios para el AP de planta 3 que es privado, 
+        ahora bien, dando que los usuarios y el servidor se encuentran en subredes  distintas, fue necesario configurar el router de planta baja, como el intermediario para la comunicación, 
         esto por medio de un \texttt{ip helper-address}, que lo que hacemos con esto es que el router, pasa todo el trafico de los dispositivos que buscan una dirección IP, y el router mismo se encarga de pasarlo al servidor DHCP,
         esto para que el servidor asigne la dirección IP de forma automática a cada dispositivo que se conecte al AP abierto.
         
